@@ -1,0 +1,193 @@
+{% comment %} Translations {% endcomment %}
+{% assign tags_title_t = 'collections.tags_title' | t %}
+
+{% comment %} Variables {% endcomment %}
+{% assign products_per_row = section.settings.collections-products-per-row | to_number %}
+{% assign products_per_page =  products_per_row | to_number | times: 10 %}
+
+{% paginate collection.products by products_per_page %}
+
+<div
+  class="collection--root"
+  data-section-id="{{ section.id }}"
+  data-section-type="collection"
+  data-empty="{% if collection.products.length == 0 %}true{% endif %}"
+  data-breadcrumbs="{{ section.settings.collections-breadcrumbs-show }}"
+  data-title="{{ section.settings.show-title }}"
+>
+
+  <header class="collection--top-row">
+    {% if section.settings.collections-breadcrumbs-show %}
+      <div class="left columns">
+        {% render 'framework--breadcrumbs' %}
+      </div>
+    {% endif %}
+    {% if collection.all_tags.size > 0 and section.settings.collections-tags-show %}
+      <div class="right columns">
+        <div class="collection--tag-filter" data-item="accent-text">
+
+          <span class="collection--filter-text">{{ tags_title_t }}</span>
+
+          {%- capture available_tags -%}
+            {{- 'collections.tags_show_all' | t -}},
+
+            {%- for tag in collection.all_tags -%}
+              {{- tag -}},
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {% assign available_tags = available_tags | split: "," %}
+
+          {%- capture collection_url -%}
+            {{- routes.collections_url }}/{{ collection.handle -}}
+          {%- endcapture -%}
+
+          {%- capture available_tag_values -%}
+            {{- collection_url -}},
+
+            {%- for tag in collection.all_tags -%}
+              {%- assign tag_handle = tag | handleize -%}
+
+              {%- if current_tags == blank -%}
+                {%- assign current_tag_value = collection_url -%}
+              {%- elsif current_tags contains tag -%}
+                {%- assign current_tag_value = collection_url | append: '/' | append: tag_handle -%}
+              {%- endif -%}
+
+              {{- collection_url }}/{{ tag_handle -}},
+            {%- endfor -%}
+          {%- endcapture -%}
+
+          {% assign available_tag_values = available_tag_values | split: "," %}
+
+          {%
+            render 'framework--disclosure',
+            label_name: tags_title_t,
+            option_names: available_tags,
+            option_values: available_tag_values,
+            current_value: current_tag_value,
+            id: 'collection-filter',
+            type: 'url-redirect'
+          %}
+
+        </div>
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="collection-page--top-divider">
+    <div class="columns">
+      <div class="divider"></div>
+    </div>
+  </div>
+
+  {% if section.settings.show-title or collection.description.size > 0 %}
+    <div class="collection--header">
+      {% if section.settings.show-title %}
+        <h1 class="collection--title" data-item="section-heading">
+          {{ collection.title }}
+        </h1>
+      {% endif %}
+
+      {% if collection.description.size > 0 %}
+        <article class="collection--description rte-content" data-item="paragraph">
+          {{ collection.description }}
+        </article>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if collection.products.size == 0 %}
+    <div class="collection--no-products">
+      <p
+        class="collection--no-product-text"
+        data-item="paragraph"
+      >
+        {{ 'collections.no_products_feedback' | t }}
+      </p>
+      <a target="_blank" href="/admin/products" data-item="paragraph">
+        {{ 'collections.no_products_link' | t }}
+      </a>
+    </div>
+
+  {% else %}
+    <div
+      class="product-grid--root"
+      data-items-per-row="{{ section.settings.collections-products-per-row }}"
+      data-mobile-items-per-row="{{ section.settings.mobile-items-per-row }}"
+      data-js-class="ProductGrid"
+    >
+      {% comment %} this render tag iterates with 'for' syntax {% endcomment %}
+      {% render 'framework--product--item' for collection.products as product %}
+    </div>
+
+  {% endif %}
+
+  <div class="divider bottom-margin"></div>
+
+  <footer class="collection--bottom-row">
+    {% if section.settings.collections-breadcrumbs-show %}
+      <div class="left columns">
+        {% render 'framework--breadcrumbs' %}
+      </div>
+    {% endif %}
+    {% if paginate.pages > 1 %}
+      <div class="right columns">
+        <div class="collection--pagination">
+          {% render 'framework--pagination', paginate: paginate %}
+        </div>
+      </div>
+    {% endif %}
+
+  </footer>
+
+</div>
+
+{% endpaginate %}
+
+{% schema %}
+{
+  "name": "Collection",
+  "class": "section--collection",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "collections-breadcrumbs-show",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "collections-tags-show",
+      "label": "Show tag filter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show-title",
+      "label": "Show title",
+      "default": false
+    },
+    {
+      "id": "collections-products-per-row",
+      "label": "Products per row",
+      "type": "radio",
+      "options": [
+        { "value": "3", "label": "3"},
+        { "value": "4", "label": "4"}
+      ],
+      "default": "4"
+    },
+    {
+      "id": "mobile-items-per-row",
+      "label": "Products per row for small devices",
+      "type": "radio",
+      "options": [
+        { "value": "1", "label": "1"},
+        { "value": "2", "label": "2"}
+      ],
+      "default": "2"
+    }
+  ]
+}
+{% endschema %}

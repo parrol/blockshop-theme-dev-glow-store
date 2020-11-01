@@ -1,0 +1,19 @@
+{% capture image_height %}x{{ logo_height }}{% endcapture %}
+
+<div class="title clearfix" role="banner">
+  {% if logo_image %}
+    <a href="{{ routes.root_url }}" role="banner" title="{{ shop.name }}">
+      <img
+        class="logo-image"
+        src="{{ logo_image | img_url: image_height }}"
+        srcset=
+          "{{ logo_image | img_url: image_height }} 1x,
+          {{ logo_image | img_url: image_height, scale: 2 }} 2x"
+        alt="{{ logo_alt | default: shop.name }}"
+        itemprop="logo"
+      >
+    </a>
+  {% else %}
+    <a class="font--section-heading" href="{{ routes.root_url }}">{{ shop.name }}</a>
+  {% endif %}
+</div>

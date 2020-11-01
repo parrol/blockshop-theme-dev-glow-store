@@ -1,0 +1,21 @@
+<div class="collection-item columns large-4">
+  <a href="{{ collection.url }}">
+    <div class="image-wrapper">
+      {%
+        render "framework--placeholder",
+        type: "collection",
+        aspect_ratio: 1,
+        placeholder_index: index
+      %}
+    </div>
+    <div class="caption">
+      <div class="bg"></div>
+      <div class="inner">
+        <div data-item="block-heading">
+          {{ 'home.onboarding.collection_title' | t }}
+        </div>
+        <p data-item="accent-text">{{ 'home.onboarding.num_items' | t }}</p>
+      </div>
+    </div>
+  </a>
+</div>
