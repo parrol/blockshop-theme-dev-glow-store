@@ -395,7 +395,7 @@
           "background-color": "accent",
           "alternative-color": false,
           "icon": "",
-          "text": "Are you registered to vote? Register & find resources here.",
+          "richtext": "<p>Are you registered to vote? Register & find resources here.</p>",
           "link": ""
         }
       },

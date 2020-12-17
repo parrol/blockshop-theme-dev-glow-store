@@ -208,6 +208,42 @@
       },
       {
         "type": "header",
+        "content": "Header menu"
+      },
+      {
+        "id": "typography--header--menu",
+        "label": "Font",
+        "type": "font_picker",
+        "default": "montserrat_n7"
+      },
+      {
+        "id": "typography--header--menu--uppercase",
+        "label": "Uppercase",
+        "type": "checkbox",
+        "default": true
+      },
+      {
+        "id": "typography--header--menu--size",
+        "label": "Size",
+        "type": "select",
+        "options": [
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          }
+        ],
+        "default": "medium"
+      },
+      {
+        "type": "header",
         "content": "Navigation and buttons"
       },
       {

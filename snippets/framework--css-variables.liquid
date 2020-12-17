@@ -9,21 +9,25 @@
   {% assign font--block-heading--size = '18px' %}
 {% endif %}
 
-{% if settings.typography--heading--size == 'large' %}
-  {% assign font--section-heading--size = '28px' %}
-  {% assign font--block-heading--size = '20px' %}
-{% elsif settings.typography--heading--size == 'medium' %}
-  {% assign font--section-heading--size = '24px' %}
-  {% assign font--block-heading--size = '18px' %}
-{% elsif settings.typography--heading--size == 'small' %}
-  {% assign font--section-heading--size = '20px' %}
-  {% assign font--block-heading--size = '16px' %}
-{% endif %}
-
 {% if settings.typography--heading--uppercase %}
   {% assign font--heading--uppercase = 'uppercase' %}
 {% else %}
   {% assign font--heading--uppercase = 'normal' %}
+{% endif %}
+
+{% comment %} HEADER MENU MONTSERRAT {% endcomment %}
+{% if settings.typography--header--menu--size == 'large' %}
+  {% assign font--header--menu--size = '28px' %}
+{% elsif settings.typography--header--menu--size == 'medium' %}
+  {% assign font--header--menu--size = '24px' %}
+{% elsif settings.typography--header--menu--size == 'small' %}
+  {% assign font--header--menu--size = '20px' %}
+{% endif %}
+
+{% if settings.typography--header--menu--uppercase %}
+  {% assign font--header--menu--uppercase = 'uppercase' %}
+{% else %}
+  {% assign font--header--menu--uppercase = 'normal' %}
 {% endif %}
 
 {% if settings.typography--paragraph--size == 'large' %}
@@ -42,6 +46,10 @@
   {% if font--heading--normal %}
     {{ font--heading--normal | font_face: font_display: 'swap' }}
   {% endif %}
+
+  /*HEADER MENU MONTSERRAT*/
+  {% assign font--header--menu = settings.typography--header--menu %}
+  {{ font--header--menu | font_face: font_display: 'swap' }}
 
   {% assign font--accent = settings.typography--accent %}
   {{ font--accent | font_face: font_display: 'swap' }}
@@ -75,12 +83,19 @@
     --font--section-heading--size: {{ font--section-heading--size }};
     --font--block-heading--size: {{ font--block-heading--size }};
     --font--heading--uppercase: {{ font--heading--uppercase }};
+    --font--header--menu--uppercase: {{ font--header--menu--uppercase }};
     --font--paragraph--size: {{ font--paragraph--size }};
+    --font--header--menu--size: {{ font--header--menu--size }}
 
     --font--heading--family: {{ font--heading.family }}, {{ font--heading.fallback_families }};
     --font--heading--weight: {{ font--heading.weight | default: 400 }};
     --font--heading--normal-weight: {{ font--heading--normal.weight | default: 400 }};
     --font--heading--style: {{ font--heading.style }};
+
+    /* HEADER MENU MONTSERRAT */
+    --font--header--menu--family: {{ font--header--menu.family }}, {{ font--accent.fallback_families }};
+    --font--header--menu--weight: {{ font--header--menu.weight | default: 400 }};
+    --font--header--menu--style: {{ font--header--menu.style }};
 
     --font--accent--family: {{ font--accent.family }}, {{ font--accent.fallback_families }};
     --font--accent--weight: {{ font--accent.weight | default: 400 }};

@@ -2500,10 +2500,9 @@ textarea {
     font-size: 13px;
   }
 }
-
+body,
 [data-item='paragraph'],
-.font--paragraph,
-body {
+.font--paragraph{
   font-family: var(--font--paragraph--family);
   font-weight: var(--font--paragraph--weight);
   font-style: var(--font--paragraph--style);
@@ -2513,9 +2512,9 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+  body,
   [data-item='paragraph'],
-  .font--paragraph,
-  body {
+  .font--paragraph{
     font-size: 15px;
   }
 }
