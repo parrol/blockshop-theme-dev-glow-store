@@ -19,6 +19,68 @@
 
 /* Add your theme customizations below */
 
+.header--root{
+  margin: 0;
+}
+
+.header--top-row{
+  width: 100%;
+}
+
+.header--bottom-row{
+  background-color: var(--color-header-bottom-row-bg);
+  padding-top: 0;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+a.header--search{
+  color: var(--color-header-search-icon);
+  padding: 16px;
+}
+
+.header--search svg{
+  color: var(--color-header-search-icon);
+}
+
+.icon--root icon--search{
+  color: var(--color-header-search-icon);
+}
+
+.x-menu--level-1--link a{
+  padding: 16px;
+}
+
+.header--cart {
+  top: 0px;
+}
+a.header--cart-link{
+  margin-right: 0;
+}
+
+.header--mobile .icon--menu{
+  color: var(--color-header-open-left);
+}
+
+/*STICKY*/
+.off-canvas--viewport{
+  overflow: visible;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media only screen and (min-width: 768px){
+  .header--root {
+    padding: 0;
+  }
+
+  a.header--cart-link{
+    color: var(--color-header);
+  }
+}
+
 /* text width larger than first defined */
 .featured-content--root[data-text-width='xl'] .featured-content--text {
   min-width: 90%;

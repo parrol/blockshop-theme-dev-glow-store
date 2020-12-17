@@ -76,9 +76,27 @@
         "default": "#444444"
       },
       {
+        "label": "Background bottom row",
+        "type": "color",
+        "id": "color-header-bottom-row-bg",
+        "default": "#FFFFFF"
+      },
+      {
         "label": "Text",
         "type": "color",
         "id": "color-header",
+        "default": "#444444"
+      },
+      {
+        "label": "Search icon",
+        "type": "color",
+        "id": "color-header-search-icon",
+        "default": "#444444"
+      },
+      {
+        "label": "Open left menu",
+        "type": "color",
+        "id": "color-header-open-left",
         "default": "#444444"
       },
       {

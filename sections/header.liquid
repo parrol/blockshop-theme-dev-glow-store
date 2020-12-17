@@ -276,11 +276,31 @@
   </style>
 {% endif %}
 
+{% comment %} Sticky {% endcomment %}
+{% if section.settings.header-sticky %}
+  <style>
+    .section--header {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 0;
+      width: 100%;
+      z-index: 3;
+    }
+  </style>
+{% endif %}
+
 {% schema %}
 {
   "name": "Header",
   "class": "section--header",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "header-sticky",
+      "label": "Header sticky",
+      "default": true,
+      "info": "This will make the logo and header become sticky."
+    },
     {
       "type": "checkbox",
       "id": "transparent-menu",
