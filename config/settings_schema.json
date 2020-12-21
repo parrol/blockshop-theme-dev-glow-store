@@ -164,6 +164,12 @@
         "type": "color",
         "id": "color-tabs-accordions",
         "default": "#ebebeb"
+      },
+      {
+        "label": "Product cards",
+        "type": "color",
+        "id": "color-product-cards",
+        "default": "#EFE6E6"
       }
     ]
   },

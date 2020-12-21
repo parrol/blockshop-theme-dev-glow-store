@@ -82,6 +82,40 @@ body {
   text-transform: var(--font--header--menu--uppercase);
 }
 
+
+/*PRODUCTS*/
+.product-grid--root{
+  align-items: flex-end;
+}
+
+.product--title{
+  text-align: left;
+  font-weight: bold;
+}
+
+.product--description{
+  text-align: left;
+}
+
+.product--details{
+  padding: 1rem;
+  background-color: var(--color-product-cards);
+}
+
+/*This will override the rule of two items per row on "small" devices*/
+@media only screen and (max-width: 460px) {
+  .product-grid--root[data-mobile-items-per-row='2'] > * {
+    width: calc(100%);
+  }
+}
+
+.product-form--add-to-cart{
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+  background-color: white;
+  width: 100%;
+}
 @media only screen and (min-width: 768px){
   .header--root {
     padding: 0;

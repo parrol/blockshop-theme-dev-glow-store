@@ -128,12 +128,12 @@
           {% endfor %}
         </select>
 
-        <input type="hidden" name="quantity" value="1">
+        {% comment %}<input type="hidden" name="quantity" value="1">{% endcomment %}
         {% comment %}
           NOTE: to add quantity field, remove input above this line and uncomment block below
         {% endcomment %}
 
-        {% comment %}
+        
           <div class="product-form--quantity">
             <label for="product-quantity">{{ quantity_t }}</label>
             <input
@@ -145,7 +145,7 @@
               style="width: 64px"
             />
           </div>
-        {% endcomment %}
+        
       </div>
 
       {% if low_stock_amount > 0 and sold_out == false %}
