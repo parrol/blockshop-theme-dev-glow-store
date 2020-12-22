@@ -18,14 +18,12 @@
 {% endcomment %}
 
 /* Add your theme customizations below */
-
 .header--root{
   margin: 0;
 }
 
 .header--top-row{
   width: 100%;
-  margin-top: .5rem;
   margin-bottom: .5rem;
 }
 
@@ -65,12 +63,12 @@ a.header--cart-link{
 }
 
 /*STICKY*/
-.off-canvas--viewport{
-  overflow: visible;
-}
-
-body {
-  overflow-x: hidden;
+/*This class allows the header to stop being fixed while scrolling inside the sidemenus*/
+.section--header-sticky{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
 }
 
 /*FONT HEADER MENU*/
@@ -81,7 +79,6 @@ body {
   font-size: var(--font--header--menu--size) !important;
   text-transform: var(--font--header--menu--uppercase);
 }
-
 
 /*PRODUCTS*/
 .product-grid--root{
@@ -109,13 +106,22 @@ body {
   }
 }
 
-.product-form--add-to-cart{
+.product-form--add-to-cart-preview{
   display: flex;
   justify-content: space-between;
   height: fit-content;
   background-color: white;
   width: 100%;
 }
+
+.product--form--select-variant{
+  display: none;
+}
+
+.product-recommendations--body--container{
+  align-items: flex-end;
+}
+
 @media only screen and (min-width: 768px){
   .header--root {
     padding: 0;
@@ -130,3 +136,9 @@ body {
 .featured-content--root[data-text-width='xl'] .featured-content--text {
   min-width: 90%;
 }
+
+/*CHANGES*/
+/*
+
+framework--product-recommendations --> framework--product-recommendations-form
+framework--product--item --> framework--product--item--form

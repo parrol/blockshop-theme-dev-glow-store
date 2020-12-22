@@ -1,6 +1,6 @@
 {
   "current": {
-    "color--accent": "#ffd7d7",
+    "color--accent": "#ad1349",
     "color-text": "#212121",
     "color--alternative": "#ffffff",
     "color-page-bg": "#ffffff",
@@ -9,26 +9,31 @@
     "color-error": "#f66767",
     "color-button": "#ffffff",
     "color-button-bg": "#212121",
-    "color-header-bg": "#ffeff0",
-    "color-header": "#212121",
+    "color-header-bg": "#ffffff",
+    "color-header-bottom-row-bg": "#212121",
+    "color-header": "#ffffff",
     "color-header-cart": "#272727",
-    "bg-color--footer": "#ffeff0",
-    "color--footer": "#212121",
+    "bg-color--footer": "#ad1349",
+    "color--footer": "#ffffff",
     "color-slider-caption": "#212121",
     "color-slider-caption-bg": "#ffffff",
     "color-slider-button": "#ffffff",
     "color-slider-button-bg": "#212121",
     "color-slider-nav": "#212121",
     "color-tabs-accordions": "#f7f7f7",
+    "color-product-cards": "#efe6e6",
     "typography--heading": "roboto_n5",
-    "typography--heading--uppercase": true,
+    "typography--heading--uppercase": false,
     "typography--heading--size": "small",
-    "typography--accent": "karla_n4",
+    "typography--header--menu": "montserrat_n6",
+    "typography--header--menu--uppercase": true,
+    "typography--header--menu--size": "medium",
+    "typography--accent": "karla_n7",
     "typography--paragraph": "roboto_n4",
     "typography--paragraph--size": "medium",
-    "hover-image-enabled": false,
+    "hover-image-enabled": true,
     "product--show-vendor": false,
-    "product--label-color": "light",
+    "product--label-color": "accent-light-text",
     "product--show-sale-label": true,
     "search--show-in-header": true,
     "search--show-articles": true,
@@ -71,16 +76,17 @@
       "header": {
         "type": "header",
         "settings": {
+          "header-sticky": true,
           "transparent-menu": false,
           "header-account-show": true,
-          "cart--icon": "text",
+          "cart--icon": "cart",
           "header-menu-center": true,
           "menu": "main-menu",
           "show-currency-selector": true,
           "show-locale-selector": true,
           "header-logo-center": true,
           "logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
-          "logo-height": 70
+          "logo-height": 90
         }
       },
       "framework--footer": {
@@ -90,7 +96,7 @@
             "type": "about",
             "settings": {
               "about-title": "Store",
-              "text": "<p>© Your brand name here<p>",
+              "text": "<p>© Glow Beauty Aids<\/p><p><\/p>",
               "subscribe--show-social-icons": true
             }
           },
@@ -155,31 +161,28 @@
       },
       "1519177052247": {
         "type": "slideshow",
-        "disabled": true,
         "blocks": {
           "1519177052247-0": {
             "type": "image",
             "settings": {
-              "image": "",
+              "image": "shopify:\/\/shop_images\/IMG_6496.jpg",
               "slide-title": "Slideshow",
               "slide-tagline": "Introduce your store or campaign with this slideshow section.",
-              "slide-link-url": "",
               "slide-link-title": "Link to content",
               "slide-y-pos": "middle",
-              "slide-x-pos": "left",
+              "slide-x-pos": "right",
               "slide-text-pos": "text-left"
             }
           },
           "1519177052247-1": {
             "type": "image",
             "settings": {
-              "image": "",
+              "image": "shopify:\/\/shop_images\/video-tutorials.png",
               "slide-title": "Slideshow",
               "slide-tagline": "Introduce your store or campaign with this slideshow section.",
-              "slide-link-url": "",
               "slide-link-title": "Link to content",
               "slide-y-pos": "middle",
-              "slide-x-pos": "left",
+              "slide-x-pos": "right",
               "slide-text-pos": "text-left"
             }
           }
@@ -205,10 +208,8 @@
           "overlap": false,
           "transparent-overlap": false,
           "alternative-color": false,
-          "image": "",
           "title": "Image with text",
           "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-url": "",
           "link-text": ""
         }
       },
@@ -219,54 +220,42 @@
           "1519177136360-0": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           },
           "1519177136360-1": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           },
           "1519177136360-2": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           },
           "1519177136360-3": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           },
           "1521155794713": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           },
           "1521155797117": {
             "type": "image",
             "settings": {
-              "image": "",
               "title": "Grid image",
-              "link-url": "",
               "link-text": "View more"
             }
           }
@@ -289,13 +278,11 @@
           "mobile-width": "2",
           "title": "Featured grid",
           "subtitle": "",
-          "link-url": "",
           "link-text": ""
         }
       },
       "1519177181912": {
         "type": "featured-collection",
-        "disabled": true,
         "settings": {
           "background-color": "none",
           "home-product-slider-collection": "",
@@ -313,16 +300,13 @@
           "overlap": true,
           "transparent-overlap": true,
           "alternative-color": false,
-          "image": "",
           "title": "Image with text",
           "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-url": "",
           "link-text": ""
         }
       },
       "1519177316120": {
         "type": "framework--newsletter",
-        "disabled": true,
         "settings": {
           "background-color": "none",
           "heading": "Subscribe to our newsletter",
@@ -343,7 +327,6 @@
         "disabled": true,
         "settings": {
           "video-url": "",
-          "image": "",
           "full-width": true,
           "background-color": "light",
           "section-height": "regular",
@@ -351,8 +334,7 @@
           "alt-text": true,
           "heading": "",
           "sub-heading": "Add a subheading here",
-          "button-text": "button",
-          "button-url": ""
+          "button-text": "button"
         }
       },
       "1521155992953": {
@@ -364,9 +346,8 @@
           "background-color": "light",
           "theme": "grayscale",
           "heading": "Map",
-          "address": "<p>391 Sutter St,<br>San Francisco<br>CA 94108, USA<br><br>(555) 555-5555<\/p>",
-          "hours": "<p>Monday - Friday<br>10am - 6pm<br><br>Saturday - Sunday<br>12pm - 5pm<\/p>",
-          "image": ""
+          "address": "<p>391 Sutter St,<br\/>San Francisco<br\/>CA 94108, USA<br\/><br\/>(555) 555-5555<\/p>",
+          "hours": "<p>Monday - Friday<br\/>10am - 6pm<br\/><br\/>Saturday - Sunday<br\/>12pm - 5pm<\/p>"
         }
       },
       "1521156071253": {
@@ -380,10 +361,8 @@
           "overlap": true,
           "transparent-overlap": false,
           "alternative-color": false,
-          "image": "",
           "title": "Image with text",
           "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-url": "",
           "link-text": ""
         }
       },
@@ -393,15 +372,12 @@
           "enabled": true,
           "home-page-only": true,
           "background-color": "accent",
-          "alternative-color": false,
-          "icon": "",
-          "richtext": "<p>Are you registered to vote? Register & find resources here.</p>",
-          "link": ""
+          "alternative-color": true,
+          "text": "<p>Regístrate y obtén nuestro <strong>ebook <\/strong>totalmente gratis. Aquí.<\/p>"
         }
       },
       "1599542427196": {
         "type": "framework--featured-blog",
-        "disabled": true,
         "settings": {
           "background-color": "none",
           "blog-heading": "Blog posts",
@@ -459,6 +435,7 @@
       },
       "1602083674865": {
         "type": "framework--featured-video",
+        "disabled": true,
         "settings": {
           "video-url": "",
           "image": "shopify:\/\/shop_images\/video-1-how-Sara-keeps-her-skin-hydrated-all-long.png",
@@ -469,8 +446,14 @@
           "alt-text": true,
           "heading": "Video",
           "sub-heading": "Add a subheading here",
-          "button-text": "button",
-          "button-url": ""
+          "button-text": "button"
+        }
+      },
+      "framework--product-recommendations-form": {
+        "type": "framework--product-recommendations-form",
+        "settings": {
+          "product-similar-products-show": true,
+          "product-similar-products-heading": "You may also like"
         }
       }
     },
@@ -835,7 +818,7 @@
             "background-color": "accent",
             "alternative-color": false,
             "icon": "",
-            "text": "Add your announcement message",
+            "text": "<p>Add your announcement message<\/p>",
             "link": ""
           }
         },
@@ -1185,7 +1168,7 @@
             "background-color": "dark",
             "alternative-color": true,
             "icon": "",
-            "text": "Add your announcement message",
+            "text": "<p>Add your announcement message<\/p>",
             "link": ""
           }
         },
@@ -1561,7 +1544,7 @@
             "background-color": "dark",
             "alternative-color": true,
             "icon": "",
-            "text": "Add your announcement message",
+            "text": "<p>Add your announcement message<\/p>",
             "link": ""
           }
         },
@@ -1925,7 +1908,7 @@
             "background-color": "dark",
             "alternative-color": true,
             "icon": "",
-            "text": "Add your announcement message",
+            "text": "<p>Add your announcement message<\/p>",
             "link": ""
           }
         },

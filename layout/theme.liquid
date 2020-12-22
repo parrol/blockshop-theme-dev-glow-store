@@ -48,6 +48,7 @@
     {% endif %}
 
     {{ "theme.min.js" | asset_url | script_tag }}
+    {{ "scripts.js" | asset_url | script_tag }}
 
   </head>
 
@@ -62,6 +63,7 @@
     </a>
 
     <div
+      id="off-canvas--viewport"
       class="off-canvas--viewport"
       data-js-class="OffCanvas"
       data-off-canvas--state="closed"
