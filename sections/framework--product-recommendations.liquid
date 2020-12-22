@@ -25,7 +25,7 @@
           {% for product in recommendations.products limit: max_products %}
             <div class="product-recommendations--item">
               {%
-                render 'framework--product--item',
+                render 'framework--product--item--form',
                 product: product,
                 view: 'grid'
               %}
