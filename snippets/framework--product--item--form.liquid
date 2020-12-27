@@ -106,6 +106,23 @@
   {% endif %}
 {% endcapture %}
 
+{% capture display_variants %}
+{% unless product.has_only_default_variant %}
+  <div class="product--select-variants" name="id">
+    {% for option in product.options_with_values %}
+    {%
+      render 'framework--radios--custom',
+      option: option,
+      id: product.id,
+      is_swatches: true,
+      has_header: false
+    %}
+    {% endfor %}
+  </div>
+{% endunless %}
+
+{% endcapture %}
+
 {% capture display_prices %}
 {% assign compare_price = false %}
   <div class="product--price-container">
@@ -210,6 +227,7 @@
         {{ display_vendor }}
         {{ display_title }}
         {{ display_description }}
+        {{ display_variants }}
         {{ display_add_to_cart_button }}
       </div>
 
@@ -282,4 +300,6 @@
   {% endcase %}
   </div>
 {% endform %}
+
+
 

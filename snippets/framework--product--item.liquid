@@ -120,7 +120,7 @@
           </span>
         {% endif %}
         <span class="product--price money" data-item="accent-text">
-          {{ price }}
+          {{ price | money_without_trailing_zeros }}
         </span>
       {% endif %}
     </div>
@@ -145,7 +145,7 @@
 {% endcapture %}
 
 {% capture display_add_to_cart_button%}
-<button class="product-form--add-to-cart">
+<button class="product-form--add-to-cart-preview">
   <span class="product-form--text">{{ add_to_cart_t }}</span>
   <span
     class="fw--loading_animation tiny"

@@ -34,7 +34,7 @@
               {% for product in search.results %}
                 <div class="search--product">
                   {%
-                    render 'framework--product--item',
+                    render 'framework--product--item--form',
                     product: product,
                     view: 'grid'
                   %}
@@ -176,7 +176,7 @@
       {% for product in search.results limit: 12 %}
         <div class="search--product">
           {%
-            render 'framework--product--item',
+            render 'framework--product--item--form',
             product: product,
             view: 'grid'
           %}
