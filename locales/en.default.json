@@ -161,7 +161,8 @@
     "shipping_taxes_notification": "Shipping & taxes calculated at checkout",
     "continue": "Continue Shopping",
     "checkout": "Checkout",
-    "empty_html": "<span class='rte-content'>Your cart is currently empty.<br\/> <a href='{{ collections_url }}'>Click here to continue shopping<\/a>.<\/span>"
+    "empty_html": "<span class='rte-content'>Your cart is currently empty.<br\/> <a href='{{ collections_url }}'>Click here to continue shopping<\/a>.<\/span>",
+    "coming_soon": "Coming soon"
   },
   "blog": {
     "title": "Blog",
