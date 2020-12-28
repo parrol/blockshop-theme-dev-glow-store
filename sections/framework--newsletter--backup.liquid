@@ -28,8 +28,7 @@
     {% endif %}
 
     <div class="newsletter--body">
-      <!-- {% form 'customer', id: 'newsletter_form' %} -->
-      <form class="omnisend-subscribe-form">
+      {% form 'customer', id: 'newsletter_form' %}
         {% if form.errors %}
           <p class="newsletter--failure">
           {% for field in form.errors %}
@@ -40,7 +39,7 @@
         <input type="hidden" name="contact[tags]" value="newsletter" />
         <label for="newsletter-email" data-item="hidden-text">{{ email_placeholder_t }}</label>
         <input
-          class="newsletter--email omnisend-subscribe-input-email""
+          class="newsletter--email"
           id="newsletter-email"
           name="contact[email]"
           type="email"
@@ -60,8 +59,7 @@
           {% comment %} remove the below line to display reCAPTCHA badge {% endcomment %}
           {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
         </div>
-      </form>
-      <!-- {% endform %} -->
+      {% endform %}
 
     </div>
   </div>
