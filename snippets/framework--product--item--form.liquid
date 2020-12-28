@@ -107,7 +107,19 @@
 {% endcapture %}
 
 {% capture display_variants %}
-{% unless product.has_only_default_variant %}
+{% if product.has_only_default_variant %}
+  <div class="product--select-variants" name="id" style="visibility: hidden;">
+    {% for option in product.options_with_values %}
+    {%
+      render 'framework--radios--custom',
+      option: option,
+      id: product.id,
+      is_swatches: true,
+      has_header: false
+    %}
+    {% endfor %}
+  </div>
+{% else %}
   <div class="product--select-variants" name="id">
     {% for option in product.options_with_values %}
     {%
@@ -119,7 +131,7 @@
     %}
     {% endfor %}
   </div>
-{% endunless %}
+{% endif %}
 
 {% endcapture %}
 

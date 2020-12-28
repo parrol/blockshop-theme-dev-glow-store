@@ -92,11 +92,15 @@ a.header--cart-link{
 
 .product--description {
   text-align: left;
+  line-height: 1.1rem;
 }
 
 .product--details {
   padding: 1rem;
   background-color: var(--color-product-cards);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
 }
 
 /*This will override the rule of two items per row on "small" devices*/
@@ -116,6 +120,10 @@ a.header--cart-link{
 
 .product--form--select-variant {
   display: none;
+}
+
+.product--select-variants{
+  margin-top: auto;
 }
 
 .radios--container {
@@ -145,7 +153,6 @@ a.header--cart-link{
   left: -1px;
 }
 
-
 .product-recommendations--body--container {
   align-items: flex-end;
 }
@@ -153,6 +160,8 @@ a.header--cart-link{
 .cart--checkout-button button[disabled] .cart-button--text {
   display: block;
 }
+
+
 @media only screen and (min-width: 768px){
   .header--root {
     padding: 0;
