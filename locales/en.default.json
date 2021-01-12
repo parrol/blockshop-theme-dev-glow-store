@@ -9,6 +9,10 @@
       "addresses": "addresses",
       "activate_account": "activate_account"
     },
+    "announcement_bar": {
+      "link": "ebook",
+      "text": "Register and get our ebook free here."
+    },
     "menu": "Main menu",
     "pagination": {
       "previous": "Previous",
@@ -173,7 +177,9 @@
     "placeholder_excerpt": "This is where the featured article excerpt will display.",
     "no_articles": "No articles found.",
     "rss": "RSS",
+    "view_more_text": "View more",
     "article": {
+      "blog_heading": "Articles",
       "written_by": "Written by",
       "comments": "Comments",
       "comment": "Comment",

@@ -76,14 +76,14 @@
       "header": {
         "type": "header",
         "settings": {
-          "header-sticky": true,
+          "header-sticky": false,
           "transparent-menu": false,
-          "header-account-show": true,
+          "header-account-show": false,
           "cart--icon": "cart",
           "header-menu-center": true,
           "menu": "main-menu",
           "show-currency-selector": true,
-          "show-locale-selector": true,
+          "show-locale-selector": false,
           "header-logo-center": true,
           "logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
           "logo-height": 90
@@ -95,7 +95,7 @@
           "footer--about": {
             "type": "about",
             "settings": {
-              "about-title": "Store",
+              "about-title": "'product.sale'",
               "text": "<p>© Glow Beauty Aids<\/p><p><\/p>",
               "subscribe--show-social-icons": true
             }
@@ -103,15 +103,15 @@
           "footer--menu": {
             "type": "menu",
             "settings": {
-              "menu-title": "Info",
+              "menu-title": "Navegación",
               "menu": "footer"
             }
           },
           "footer--subscribe": {
             "type": "subscribe",
             "settings": {
-              "newsletter--heading": "Subscribe",
-              "newsletter--info": "<p>Sign up to our mailing list<\/p>",
+              "newsletter--heading": "Subscribirse",
+              "newsletter--info": "<p>Registrarse en nuestra lista de correos<\/p>",
               "subscribe--show-newsletter": true
             }
           }
@@ -124,7 +124,7 @@
         "settings": {
           "show-currency-selector": true,
           "show-locale-selector": true,
-          "show-payment-icons": true
+          "show-payment-icons": false
         }
       },
       "product": {
@@ -447,13 +447,6 @@
           "heading": "Video",
           "sub-heading": "Add a subheading here",
           "button-text": "button"
-        }
-      },
-      "framework--product-recommendations-form": {
-        "type": "framework--product-recommendations-form",
-        "settings": {
-          "product-similar-products-show": true,
-          "product-similar-products-heading": "You may also like"
         }
       }
     },
