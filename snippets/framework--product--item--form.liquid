@@ -73,6 +73,10 @@
   {% assign vendor_url = product.vendor | url_for_vendor %}
   {% assign price = product.price | money_without_trailing_zeros  %}
 
+  <!-- split descriptions and assign as array  -->
+  {% assign description_preview = description | split: '~' %}
+
+
   {% if product.compare_at_price > product.price and product.available %}
     {% assign compare_price = product.compare_at_price | money_without_trailing_zeros  %}
   {% else %}
@@ -92,9 +96,10 @@
   </h3>
 {% endcapture %}
 
+<!--  show preview description only -->
 {% capture display_description %}
   <h3 class="product--description" data-item="paragraph">
-    {{ description }}
+    {{ description_preview[0] | strip_html}}
   </h3>
 {% endcapture %}
 
