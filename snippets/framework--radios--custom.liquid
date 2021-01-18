@@ -60,7 +60,7 @@
 
           {% if is_swatches %}
             <label
-              class="radios--swatch-button"
+              class="radios--swatch-button {{ value }}"
               for="{{ radios_name }}-{{ value | downcase | remove: ' ' }}"
               aria-label="{{ value | escape }}"
             ></label>

@@ -83,6 +83,12 @@ a.header--cart-link{
 /*PRODUCTS*/
 .product-grid--root {
   align-items: flex-end;
+  padding: 3rem;
+}
+
+.product--root{
+  max-width: 320px;
+  padding: 10px;
 }
 
 .product--title {
@@ -107,6 +113,13 @@ a.header--cart-link{
 @media only screen and (max-width: 460px) {
   .product-grid--root[data-mobile-items-per-row='2'] > * {
     width: calc(100%);
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .product--root{
+    padding: 6px;
+    max-width: none;
   }
 }
 
@@ -146,6 +159,30 @@ a.header--cart-link{
   width: 15px;
 }
 
+.November{
+  background-image: url("./glowstick-november.png");
+}
+
+.Foxtrot{
+  background-image: url("./glowstick-foxtrot.png");
+}
+
+.Tango{
+  background-image: url("./glowstick-tango.png");
+}
+
+.Charlie{
+  background-image: url("./glowstick-charlie.png");
+}
+
+.Romeo{
+  background-image: url("./glowstick-romeo.png");
+}
+
+.Charlie{
+  background-image: url("./glowstick-charlie.png");
+}
+
 .radios--swatch-button::after {
   height: 15px;
   width: 15px;
@@ -159,6 +196,10 @@ a.header--cart-link{
 
 .cart--checkout-button button[disabled] .cart-button--text {
   display: block;
+}
+
+.product-form--smart-payment-buttons .shopify-payment-button__button--unbranded{
+  display: none;
 }
 
 
