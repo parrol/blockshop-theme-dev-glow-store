@@ -24,7 +24,7 @@
 {% assign show_vendor = settings.product--show-vendor %}
 {% assign variant_style = section.settings.variant-style %}
   <!-- split descriptions and assign as array  -->
-{% assign description_preview = product.description | split: '~' %}
+{% assign description_preview = product.description | split: '--' %}
 
 {% if collections[product_vendor_handle].handle == product_vendor_handle %}
   {% assign vendor_url = collections[product_vendor_handle].url %}
@@ -131,7 +131,7 @@
         <div class="rte-content" data-item="paragraph" itemprop="description">
           {% assign description_size = description_preview.size %}
           {% if description_size > 1 %}
-            {{ description_preview[1]  }}
+            {{ description_preview[1] | strip}}
           {% else %}
             {{ description_preview }}
           {% endif %}

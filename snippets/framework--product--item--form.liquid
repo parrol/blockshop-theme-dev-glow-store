@@ -74,14 +74,14 @@
   {% assign price = product.price | money_without_trailing_zeros  %}
 
   <!-- split descriptions and assign as array  -->
-  {% assign description_preview = description | split: '~' %}
+  {% assign description_preview = description | split: '--' %}
 
 
   {% if product.compare_at_price > product.price and product.available %}
     {% assign compare_price = product.compare_at_price | money_without_trailing_zeros  %}
   {% else %}
     {% assign compare_price = false %}
-  {% endif %}
+  {% endif %} 
 
   {% assign excerpt = product.metafields.global.description_tag | newline_to_br %}
   {% if excerpt == blank %}
