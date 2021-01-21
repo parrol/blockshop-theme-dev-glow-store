@@ -2,7 +2,10 @@
 - Place inside loop of 'option' objects
 - If more than one product is included on one page, include a unique 'id'
 - If swatches are desired, set 'is_swatches' to true
+- This snippet also shows the descriptFions assigned to each product's option value
 {% endcomment %}
+
+{% assign colors_available_t = 'products.products_available' | t %}
 
 {% unless is_swatches %}
   {% assign is_swatches = false %}
@@ -81,3 +84,18 @@
   {% endif %}
   </div>
 </div>
+
+{% for value in option.values%}
+{% if value == "November" %}
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a sunny coral.</p>
+{% elsif value == "Foxtrot" %}
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a bright poppy .</p>
+{% elsif value == "Tango" %}
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a frosty glitter.</p>
+{% elsif value == "Charlie" %}
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span>  is a soft peach.</p>
+{% else value == "Romeo" %}
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a hot raspberry pink.</p>
+{% endif %}
+{% endfor %}
+<p class="reveal" data-value="default-option-description"> {{ colors_available_t }} </p>

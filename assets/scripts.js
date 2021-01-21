@@ -37,4 +37,53 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
     }
+
+    // sets default description visibility
+    function setDefaultVisibility(event, isVisible) {
+        let default_option_description = event.currentTarget.closest('[name = id ]').children
+
+        Array.prototype.forEach.call(default_option_description, function(child){
+            if (child.getAttribute("data-value") === "default-option-description"){
+
+                if (isVisible){
+                    child.classList.add("reveal");
+                    child.classList.remove("hidden");
+                } else {
+                    child.classList.add("hidden");
+                    child.classList.remove("reveal");
+                }
+            }
+        });
+    }
+
+    // shows the hovered option's description
+    function showOptionDescription(event) {
+
+        setDefaultVisibility(event, false);
+
+        let aria_label = event.currentTarget.getAttribute("aria-label");
+        let current_button = document.getElementById("option--" + aria_label);
+        current_button.classList.add("reveal");
+        current_button.classList.remove("hidden");
+    }
+
+    // hides option description and shows default description
+    function hideOptionDescription(event) {
+
+        setDefaultVisibility(event, true);
+
+        let aria_label = event.currentTarget.getAttribute("aria-label");
+        let current_button = document.getElementById("option--" + aria_label);
+        current_button.classList.add("hidden");
+        current_button.classList.remove("reveal");
+    }
+
+    // get class elements that'll be hovered
+    let radios__buttons = document.getElementsByClassName('radios--swatch-button');
+    // add event listeners for mouseover and mouseout to each radio button
+    Array.prototype.forEach.call(radios__buttons, function(radio__button){
+        radio__button.addEventListener("mouseover", showOptionDescription);
+        radio__button.addEventListener("mouseout", hideOptionDescription);
+    });
+
 });
