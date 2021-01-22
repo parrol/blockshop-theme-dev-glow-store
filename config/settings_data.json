@@ -21,7 +21,9 @@
     "color-slider-button-bg": "#212121",
     "color-slider-nav": "#212121",
     "color-tabs-accordions": "#f7f7f7",
-    "color-product-cards": "#efe6e6",
+    "color-product-cards": "#fafafa",
+    "color-product-cards-description": "#707070",
+    "color-product-cards-border": "#ABABAB",
     "typography--heading": "roboto_n5",
     "typography--heading--uppercase": false,
     "typography--heading--size": "small",
@@ -38,8 +40,8 @@
     "search--show-in-header": true,
     "search--show-articles": true,
     "search--show-pages": true,
-    "social--instagram--url": "",
-    "social--facebook--url": "",
+    "social--instagram--url": "https:\/\/instagram.com\/glowbeautyaids",
+    "social--facebook--url": "https:\/\/www.facebook.com\/glowbeautyaids",
     "social--youtube--url": "",
     "social--vimeo--url": "",
     "social--pinterest--url": "",
@@ -54,7 +56,7 @@
     "popup--social-icons--enabled": true,
     "popup--seconds-range": 3,
     "popup--days-range": 7,
-    "favicon": "",
+    "favicon": "shopify:\/\/shop_images\/CleanShot_2021-01-12_at_18.08.31.png",
     "hide-tags": "featured, pinned",
     "cart--type": "drawer",
     "cart--show-note": true,
@@ -86,7 +88,7 @@
           "show-locale-selector": false,
           "header-logo-center": true,
           "logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
-          "logo-height": 90
+          "logo-height": 100
         }
       },
       "framework--footer": {
@@ -95,7 +97,7 @@
           "footer--about": {
             "type": "about",
             "settings": {
-              "about-title": "'product.sale'",
+              "about-title": "",
               "text": "<p>© Glow Beauty Aids<\/p><p><\/p>",
               "subscribe--show-social-icons": true
             }
@@ -103,7 +105,7 @@
           "footer--menu": {
             "type": "menu",
             "settings": {
-              "menu-title": "Navegación",
+              "menu-title": "",
               "menu": "footer"
             }
           },
@@ -123,7 +125,7 @@
         ],
         "settings": {
           "show-currency-selector": true,
-          "show-locale-selector": true,
+          "show-locale-selector": false,
           "show-payment-icons": false
         }
       },
@@ -162,39 +164,55 @@
       "1519177052247": {
         "type": "slideshow",
         "blocks": {
-          "1519177052247-0": {
+          "915842fc-142e-483b-89c3-154e1ef4b514": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/IMG_6496.jpg",
-              "slide-title": "Slideshow",
-              "slide-tagline": "Introduce your store or campaign with this slideshow section.",
-              "slide-link-title": "Link to content",
-              "slide-y-pos": "middle",
-              "slide-x-pos": "right",
+              "image": "shopify:\/\/shop_images\/DSC_0639.jpg",
+              "slide-title": "Affordable",
+              "slide-tagline": "We believe that you deserve the best at an affordable price",
+              "slide-link-url": "shopify:\/\/products\/purple-pallete",
+              "slide-link-title": "CHECK OUR EYE SHADOWS",
+              "slide-y-pos": "bottom",
+              "slide-x-pos": "left",
               "slide-text-pos": "text-left"
             }
           },
           "1519177052247-1": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/video-tutorials.png",
-              "slide-title": "Slideshow",
-              "slide-tagline": "Introduce your store or campaign with this slideshow section.",
-              "slide-link-title": "Link to content",
-              "slide-y-pos": "middle",
+              "image": "shopify:\/\/shop_images\/DSC_0709_1.jpg",
+              "slide-title": "Quality",
+              "slide-tagline": "We strive to access the best resources from the top manufacturers",
+              "slide-link-url": "shopify:\/\/collections\/all",
+              "slide-link-title": "CHECK OUR COLLECTION",
+              "slide-y-pos": "bottom",
               "slide-x-pos": "right",
+              "slide-text-pos": "text-left"
+            }
+          },
+          "1519177052247-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/DSC_0770.jpg",
+              "slide-title": "Trendy",
+              "slide-tagline": "We design our products according to the latest trends",
+              "slide-link-url": "shopify:\/\/products\/purple-palette",
+              "slide-link-title": "CHECK OUR EYE SHADOWS",
+              "slide-y-pos": "bottom",
+              "slide-x-pos": "left",
               "slide-text-pos": "text-left"
             }
           }
         },
         "block_order": [
-          "1519177052247-0",
-          "1519177052247-1"
+          "915842fc-142e-483b-89c3-154e1ef4b514",
+          "1519177052247-1",
+          "1519177052247-0"
         ],
         "settings": {
           "autoplay": true,
           "transition_style": "default",
-          "rotate-frequency-range": 7
+          "rotate-frequency-range": 6
         }
       },
       "1519177108222": {
@@ -284,9 +302,9 @@
       "1519177181912": {
         "type": "featured-collection",
         "settings": {
-          "background-color": "none",
-          "home-product-slider-collection": "",
-          "max_products": 12
+          "background-color": "light",
+          "home-product-slider-collection": "makeup",
+          "max_products": 8
         }
       },
       "1519177213210": {
@@ -307,6 +325,7 @@
       },
       "1519177316120": {
         "type": "framework--newsletter",
+        "disabled": true,
         "settings": {
           "background-color": "none",
           "heading": "Subscribe to our newsletter",
@@ -373,19 +392,21 @@
           "home-page-only": true,
           "background-color": "accent",
           "alternative-color": true,
-          "text": "<p>Regístrate y obtén nuestro <strong>ebook <\/strong>totalmente gratis. Aquí.<\/p>"
+          "text": "<p>Get a free copy of our ebook guide to learn our signature looks<\/p>",
+          "link": "https:\/\/www.google.com\/"
         }
       },
       "1599542427196": {
         "type": "framework--featured-blog",
+        "disabled": true,
         "settings": {
           "background-color": "none",
-          "blog-heading": "Blog posts",
+          "blog-heading": "Artículos",
           "blog": "news",
           "tag-select": "pinned",
           "show-date": true,
           "show-excerpt": true,
-          "view-more-text": "View more"
+          "view-more-text": "Ver más"
         }
       },
       "framework--article": {
@@ -448,11 +469,59 @@
           "sub-heading": "Add a subheading here",
           "button-text": "button"
         }
+      },
+      "1610486410d5bc1a84": {
+        "type": "framework--featured-product",
+        "settings": {
+          "background-color": "none",
+          "smart_payment_button": true,
+          "heading": "Essential Palette",
+          "featured_product": "essential-palete",
+          "show_vendor": false,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "loop-enabled": false,
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": ""
+        }
+      },
+      "product--custom": {
+        "type": "product--custom",
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": true,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "product-modal-enabled": true,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": true
+        }
+      },
+      "framework--product-recommendations": {
+        "type": "framework--product-recommendations",
+        "settings": {
+          "product-similar-products-show": true,
+          "product-similar-products-heading": "You may also like"
+        }
       }
     },
     "content_for_index": [
       "1519177052247",
       "1519177181912",
+      "1610486410d5bc1a84",
       "1519177108222",
       "1519177136360",
       "1519177213210",
