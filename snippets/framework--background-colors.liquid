@@ -8,3 +8,21 @@
   {%- else -%}
     {%- break -%}
 {%- endcase -%}
+
+{%- case color -%}
+  {%- when true -%}
+    color: white;,
+  {%- when false -%}
+    color: black;
+  {%- else -%}
+    {%- break -%}
+{%- endcase -%}
+
+{%- case filter -%}
+  {%- when true -%}
+    filter: invert(1);
+  {%- when false -%}
+    color: black;
+  {%- else -%}
+    {%- break -%}
+{%- endcase -%}

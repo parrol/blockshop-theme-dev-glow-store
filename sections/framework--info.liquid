@@ -1,0 +1,125 @@
+{% assign pancake1 = section.settings.pancake1 | escape %}
+{% assign pancake2 = section.settings.pancake2 | escape %}
+{% assign pancake3 = section.settings.pancake3 | escape %}
+
+<div
+    class="pancake-text--root"
+    style=" {%
+        render 'framework--background-colors',
+        bg_color: section.settings.background-color,
+        color: section.settings.color
+    %}"
+>
+
+    <div class="pancakes-wrapper">
+        <h1 class="pancakes--title">{{ section.settings.heading }}</h1>
+
+        {% if section.settings.color %}
+        <div class="pan-container">
+            {% if pancake1 != blank %}
+            <article class="pan-container--pancake">
+                <div class="pancake--image happiness" style="filter: invert(1);"></div>
+                <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake1 }}</p>
+            </article>
+            {% endif %}
+
+            {% if pancake2 != blank %}
+                <article class="pan-container--pancake">
+                    <div class="pancake--image lipstick" style="filter: invert(1);"></div>
+                    <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake2 }}</p>
+                </article>
+            {% endif %}
+
+            {% if pancake3 != blank %}
+                <article class="pan-container--pancake">
+                    <div class="pancake--image destello" style="filter: invert(1);"></div>
+                    <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake3 }}</p>
+                </article>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="pan-container">
+            {% if pancake1 != blank %}
+            <article class="pan-container--pancake">
+                <div class="pancake--image happiness"></div>
+                <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake1 }}</p>
+            </article>
+            {% endif %}
+
+            {% if pancake2 != blank %}
+                <article class="pan-container--pancake">
+                    <div class="pancake--image lipstick"></div>
+                    <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake2 }}</p>
+                </article>
+            {% endif %}
+
+            {% if pancake3 != blank %}
+                <article class="pan-container--pancake">
+                    <div class="pancake--image destello"></div>
+                    <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake3 }}</p>
+                </article>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Information pancakes",
+    "settings": [
+      {
+        "id": "background-color",
+        "label": "Background color",
+        "type": "select",
+        "options": [
+          { "label": "None", "value": "none" },
+          { "label": "Light gray", "value": "light" },
+          { "label": "Accent", "value": "accent" }
+        ],
+        "default": "none"
+      },
+      {
+        "id": "color",
+        "label": "Use white text color",
+        "type": "checkbox",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Content"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Title, title, title!"
+      },
+      {
+        "type": "richtext",
+        "id": "pancake1",
+        "label": "Text",
+        "default": "<p>Add your text here!</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "pancake2",
+        "label": "Text",
+        "default": "<p>Add your text here!.</p>"
+      },
+      {
+        "type": "richtext",
+        "id": "pancake3",
+        "label": "Text",
+        "default": "<p>Add your text here!.</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Information pancakes",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}

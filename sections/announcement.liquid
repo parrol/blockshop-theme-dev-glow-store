@@ -3,7 +3,7 @@
   {{ settings.color--accent }}
 {% endcapture %}
 
-{% assign show_on_page = true %}
+{% assign show_on_page = false %}
 {% if section.settings.home-page-only and template != 'index' or template == 'password' %}
   {% assign show_on_page = false %}
 {% endif %}
