@@ -38,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
 
+    // set option description (ON HOVER)
     // sets default description visibility
     function setDefaultVisibility(event, isVisible) {
         let default_option_description = event.currentTarget.closest('[name = id ]').children
@@ -78,12 +79,41 @@ document.addEventListener("DOMContentLoaded", function(event) {
         current_button.classList.remove("reveal");
     }
 
+    function onRadioButtonClicked(radio_button) {
+        console.log(radio_button);
+
+        // get select element
+        let form = radio_button.closest("form");
+        let selects = form.getElementsByTagName("select")
+        let select_variant  = selects[0]
+
+        // get variant name
+        let variant = radio_button.getAttribute("aria-label");
+
+        // get variants option elements
+        let options_array = select_variant.getElementsByTagName('option')
+
+        // select option according to radio button selected
+        for (option of options_array) {
+            // delete white spaces
+            if (variant === option.innerText.replace(/\s/g, "")){
+                select_variant.value = option.getAttribute("value");
+            }
+        }
+
+        console.log(select_variant);
+    }
+
     // get class elements that'll be hovered
     let radios__buttons = document.getElementsByClassName('radios--swatch-button');
     // add event listeners for mouseover and mouseout to each radio button
     Array.prototype.forEach.call(radios__buttons, function(radio__button){
         radio__button.addEventListener("mouseover", showOptionDescription);
         radio__button.addEventListener("mouseout", hideOptionDescription);
+        radio__button.addEventListener("click", () => {onRadioButtonClicked(radio__button)});
+
     });
+
+
 
 });
