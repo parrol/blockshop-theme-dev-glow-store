@@ -40,6 +40,20 @@
   {% assign hover_image = false %}
 {% endif %}
 
+{%- comment -%} if has more than one variant, show all the variant images{%- endcomment -%}
+{% if product.variants.size > 1 %}
+  {% capture variant_image %}
+  <div class="product--color-image">
+    {% for variant in product.variants %}
+      {% if variant.image.attached_to_variant? %}
+        {% render 'framework--image', image: variant.image, full_width: true, preview: true %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endcapture %}
+{% endif %}
+
+
 {% if onboarding %}
   {% capture image %}
     {%
@@ -81,7 +95,7 @@
     {% assign compare_price = product.compare_at_price | money_without_trailing_zeros  %}
   {% else %}
     {% assign compare_price = false %}
-  {% endif %} 
+  {% endif %}
 
   {% assign excerpt = product.metafields.global.description_tag | newline_to_br %}
   {% if excerpt == blank %}
@@ -202,12 +216,13 @@
 
 {% form 'product', product %}
 
-{% comment %}{% endcomment%}
-<!-- <select id="select-variant" name="id" class="product--form--select-variant">
+{% comment %}
+<select id="select-variant" name="id" class="product--form--select-variant">
   {%- for variant in product.variants -%}
     <option selected="selected" value="{{ variant.id }}"></option>
   {%- endfor -%}
-</select> -->
+</select>
+{% endcomment%}
 
 <select class="product-form--variant-select" name="id">
   {% for variant in product.variants %}
@@ -251,7 +266,11 @@
 
         <div class="product--image-wrapper">
           <div class="product--image">
-            {{ image }}
+            {% if product.variants.size > 1 %}
+              {{ variant_image }}
+            {% else %}
+              {{ image }}
+            {% endif %}
           </div>
           {% if hover_image_enabled and hover_image %}
             {{ hover_image }}

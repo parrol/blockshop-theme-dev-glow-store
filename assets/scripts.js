@@ -1,11 +1,10 @@
-/**Change header to sticky*/
+/* Change header to sticky */
 document.addEventListener("DOMContentLoaded", function (event) {
     console.log("DOM fully loaded and parsed");
     // Get the header
     const announcementElement = document.querySelector("#shopify-section-announcement");
     const headerElement = document.querySelector("#shopify-section-header");
     const mainContentElement = document.querySelector("#main-content");
-    console.log(mainContentElement);
 
     // Get the offset position of the header
     let sticky = headerElement.offsetTop;
@@ -43,23 +42,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
     let isOptionSelected = false;
     let selected_variant = null;
 
+    // set visibility on selected option
     function setSelectedVisibility(isVisible) {
         if (isVisible) {
-            console.log("add reveal to selected variant");
-            console.log(selected_variant);
             selected_variant.classList.add("reveal");
             selected_variant.classList.remove("hidden");
         } else {
-            console.log("add hidden to selected variant");
             selected_variant.classList.add("hidden");
             selected_variant.classList.remove("reveal");
         }
     }
 
+    // hides all option descriptions
     function hideAll(event) {
-        let default_option_description = event.currentTarget.closest('[name = id ]').children
+        let option_descriptions = event.currentTarget.closest('[name = id ]').children
 
-        Array.prototype.forEach.call(default_option_description, function (child) {
+        Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-js-class") !== ("Radios")){
                 child.classList.add("hidden");
                 child.classList.remove("reveal");
@@ -68,10 +66,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         })
     }
 
+    // sets visibility for default option description message
     function setDefaultVisibility(event, isVisible) {
-        let default_option_description = event.currentTarget.closest('[name = id ]').children
+        let option_descriptions = event.currentTarget.closest('[name = id ]').children
 
-        Array.prototype.forEach.call(default_option_description, function (child) {
+        Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-value") === "default-option-description") {
 
                 if (isVisible) {
@@ -109,38 +108,55 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         if (isOptionSelected == false) {
             setDefaultVisibility(event, true);
-
-            console.log(`aria_label: ${aria_label}`);
             current_button.classList.add("hidden");
             current_button.classList.remove("reveal");
-        } else {
-            console.log("hide description, option selected true");
 
+        } else {
             hideAll(event);
-            // current_button.classList.add("hidden");
-            // current_button.classList.remove("reveal");
             setSelectedVisibility(true);
         }
 
     }
 
+    //sets global variant selected
     function selectOptionDescription(radio_button, name) {
-        console.log("selectOptionDescription");
         let option_descriptions = radio_button.closest('[name = id ]').children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
-            console.log(`name: ${name}`);
             if (child.getAttribute("data-value") === name) {
-
                 selected_variant = child;
-                console.log(`child`);
-                console.log(child);
             }
         });
     }
 
+    //sets visibility on image according to radio buttom clicked
+    function updateVariantImage(radio_button, color) {
+        let image_container = radio_button.closest('[data-product-view = grid]');
+
+        /* LOGS
+        console.log("image container: ", image_container); // product--root
+        console.log("child:", image_container.children[0]); // product--item
+        console.log("children 1:", image_container.children[0].children[0]); //product--image-wrapper
+        console.log("children 2:", image_container.children[0].children[0].children[0]); //product--image
+        console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
+        */
+
+        let color_images = image_container.children[0].children[0].children[0].children[0].children;
+
+        Array.prototype.forEach.call(color_images, function (image) {
+            image.style.display = "none";
+            let color_alt = image.children[0].children[0].getAttribute("alt");
+
+            //this seems like it's going to be legacy code :D
+            if ( color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0){
+                // alt = color;
+                image.style.display = "block";
+            }
+        })
+
+    }
+
     function onRadioButtonClicked(event, radio_button) {
-        console.log(radio_button);
 
         // get select element
         let form = radio_button.closest("form");
@@ -155,12 +171,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // select option according to radio button selected
         for (option of options_array) {
-            // delete white spaces
+            // delete white spaces in innertext
             if (variant === option.innerText.replace(/\s/g, "")) {
                 select_variant.value = option.getAttribute("value");
                 selectOptionDescription(radio_button, variant);
-                console.log(`selected_variant: ${selected_variant}`);
-                console.log(selected_variant);
+
+                let color = selected_variant.getAttribute("data-value");
+                updateVariantImage(radio_button, color);
             }
         }
 
@@ -178,6 +195,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     });
 
+    let radios__button = document.getElementsByClassName('radios--value-button');
+    Array.prototype.forEach.call(radios__button, function (radio__button) {
 
+        let filter = radio__button.innerText;
+        radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
+        //this is called once after page is loaded
+        filterThumbnails(event, radio__button, "NOVEMBER");
+    });
+
+    function filterThumbnails(event, radio_button, filter) {
+
+        let media_container = document.getElementsByClassName("product-media--thumb");
+
+        Array.prototype.forEach.call(media_container, function (media) {
+            media.parentElement.style.display = "block";
+            let data_thumbnail_color = media.getAttribute("data-thumbnail-color");
+
+            //hides every image apart from the one selected.
+            if (data_thumbnail_color !== filter){
+                media.parentElement.style.display = "none";
+            }
+        });
+    }
 
 });

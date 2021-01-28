@@ -48,43 +48,99 @@
   {% assign width = "100%" %}
 {% endif %}
 
-<div
-  class="image--root"
-  data-aspectratio="{{ image.aspect_ratio }}"
-  data-item="image"
-  {% if parallax %}
+{% capture display_images %}
+    <div
+    class="image--root"
+    data-aspectratio="{{ image.aspect_ratio }}"
+    data-item="image"
+    {% if parallax %}
     data-parallax="true"
-  {% endif %}
-  style="width: {{ width }};"
-  {{ custom_attributes }}
->
-  {% if parallax %}
+    {% endif %}
+    style="width: {{ width }};"
+    {{ custom_attributes }}
+    >
+    {% if parallax %}
     <div class="lazyload image--parallax"
-      data-expand="-150"
-      data-sizes="auto"
-      data-bgset="{{ bgset }}"
+        data-expand="-150"
+        data-sizes="auto"
+        data-bgset="{{ bgset }}"
     >
     </div>
-  {% else %}
+    {% else %}
     <div
-      class="image--container"
-      style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;"
+        class="image--container"
+        style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;"
     >
-      <img
+        <img
         class="{{ lazy_classes }}"
         data-src="{{ image_url }}"
         data-sizes="auto"
         data-widths="[{{ widths }}]"
         data-aspectratio="{{ image.aspect_ratio }}"
         alt="{{ image.alt | escape }}"
-      >
+        >
     </div>
+    {% endif %}
+
+    <noscript>
+    <img
+        src="{{ image | img_url: '1024x1024' }}"
+        alt="{{ image.alt | escape }}"
+    >
+    </noscript>
+    </div>
+{% endcapture %}
+
+
+{% if preview == true %}
+  {% comment %} if this is a preview hide all images other than November{% endcomment%}
+  {% if image.alt != "NOVEMBER"%}
+    <div
+    class="image--root hidden"
+    data-aspectratio="{{ image.aspect_ratio }}"
+    data-item="image"
+    {% if parallax %}
+      data-parallax="true"
+    {% endif %}
+    style="width: {{ width }};"
+    {{ custom_attributes }}
+    >
+      {% if parallax %}
+        <div class="lazyload image--parallax"
+          data-expand="-150"
+          data-sizes="auto"
+          data-bgset="{{ bgset }}"
+        >
+        </div>
+      {% else %}
+        <div
+          class="image--container"
+          style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;"
+        >
+          <img
+            class="{{ lazy_classes }}"
+            data-src="{{ image_url }}"
+            data-sizes="auto"
+            data-widths="[{{ widths }}]"
+            data-aspectratio="{{ image.aspect_ratio }}"
+            alt="{{ image.alt | escape }}"
+          >
+        </div>
+      {% endif %}
+
+      <noscript>
+        <img
+          src="{{ image | img_url: '1024x1024' }}"
+          alt="{{ image.alt | escape }}"
+        >
+      </noscript>
+    </div>
+
+  {% else %}
+    {% comment %} if images are not november, hide then {% endcomment%}
+    {{ display_images }}
   {% endif %}
 
-  <noscript>
-    <img
-      src="{{ image | img_url: '1024x1024' }}"
-      alt="{{ image.alt | escape }}"
-    >
-  </noscript>
-</div>
+{% else %}
+  {{ display_images }}
+{% endif %}
