@@ -18,21 +18,21 @@
         <div class="pan-container">
             {% if pancake1 != blank %}
             <article class="pan-container--pancake">
-                <div class="pancake--image happiness" style="filter: invert(1);"></div>
+                <div class="pancake--image {{ section.settings.icon1 }}" style="filter: invert(1);"></div>
                 <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake1 }}</p>
             </article>
             {% endif %}
 
             {% if pancake2 != blank %}
                 <article class="pan-container--pancake">
-                    <div class="pancake--image lipstick" style="filter: invert(1);"></div>
+                    <div class="pancake--image {{ section.settings.icon2 }}" style="filter: invert(1);"></div>
                     <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake2 }}</p>
                 </article>
             {% endif %}
 
             {% if pancake3 != blank %}
                 <article class="pan-container--pancake">
-                    <div class="pancake--image destello" style="filter: invert(1);"></div>
+                    <div class="pancake--image {{ section.settings.icon3 }}" style="filter: invert(1);"></div>
                     <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake3 }}</p>
                 </article>
             {% endif %}
@@ -41,21 +41,21 @@
         <div class="pan-container">
             {% if pancake1 != blank %}
             <article class="pan-container--pancake">
-                <div class="pancake--image happiness"></div>
+                <div class="pancake--image {{ section.settings.icon1 }}"></div>
                 <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake1 }}</p>
             </article>
             {% endif %}
 
             {% if pancake2 != blank %}
                 <article class="pan-container--pancake">
-                    <div class="pancake--image lipstick"></div>
+                    <div class="pancake--image {{ section.settings.icon2 }}"></div>
                     <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake2 }}</p>
                 </article>
             {% endif %}
 
             {% if pancake3 != blank %}
                 <article class="pan-container--pancake">
-                    <div class="pancake--image destello"></div>
+                    <div class="pancake--image {{ section.settings.icon3 }}"></div>
                     <p class="pancake--text" data-item="paragraph">{{ section.settings.pancake3 }}</p>
                 </article>
             {% endif %}
@@ -97,16 +97,58 @@
         "default": "Title, title, title!"
       },
       {
+        "id": "icon1",
+        "label": "Icon",
+        "type": "select",
+        "options": [
+          { "value": "spark", "label": "spark"},
+          { "value": "happiness", "label": "happiness"},
+          { "value": "lipstick", "label": "lipstick"},
+          { "value": "cherry", "label": "cherry"},
+          { "value": "peach", "label": "peach"},
+          { "value": "bunny", "label": "bunny"}
+        ],
+        "default": "spark"
+      },
+      {
         "type": "richtext",
         "id": "pancake1",
         "label": "Text",
         "default": "<p>Add your text here!</p>"
       },
       {
+        "id": "icon2",
+        "label": "Icon",
+        "type": "select",
+        "options": [
+          { "value": "spark", "label": "spark"},
+          { "value": "happiness", "label": "happiness"},
+          { "value": "lipstick", "label": "lipstick"},
+          { "value": "cherry", "label": "cherry"},
+          { "value": "peach", "label": "peach"},
+          { "value": "bunny", "label": "bunny"}
+        ],
+        "default": "spark"
+      },
+      {
         "type": "richtext",
         "id": "pancake2",
         "label": "Text",
         "default": "<p>Add your text here!.</p>"
+      },
+      {
+        "id": "icon3",
+        "label": "Icon",
+        "type": "select",
+        "options": [
+          { "value": "spark", "label": "spark"},
+          { "value": "happiness", "label": "happiness"},
+          { "value": "lipstick", "label": "lipstick"},
+          { "value": "cherry", "label": "cherry"},
+          { "value": "peach", "label": "peach"},
+          { "value": "bunny", "label": "bunny"}
+        ],
+        "default": "spark"
       },
       {
         "type": "richtext",
