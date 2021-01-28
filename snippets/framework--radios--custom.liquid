@@ -87,15 +87,15 @@
 
 {% for value in option.values%}
 {% if value == "November" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a sunny coral.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a sunny coral.</p>
 {% elsif value == "Foxtrot" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a bright poppy .</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a bright poppy .</p>
 {% elsif value == "Tango" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a frosty glitter.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a frosty glitter.</p>
 {% elsif value == "Charlie" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span>  is a soft peach.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span>  is a soft peach.</p>
 {% else value == "Romeo" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span> {{ value }} </span> is a hot raspberry pink.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a hot raspberry pink.</p>
 {% endif %}
 {% endfor %}
 <p class=" option-description__text reveal" data-value="default-option-description"> {{ colors_available_t }} </p>
