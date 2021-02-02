@@ -87,7 +87,7 @@
   {% assign vendor_url = product.vendor | url_for_vendor %}
   {% assign price = product.price | money_without_trailing_zeros  %}
 
-  <!-- split descriptions and assign as array  -->
+  {%- comment -%}  split descriptions and assign as array {%- endcomment -%}
   {% assign description_preview = description | split: '--' %}
 
 

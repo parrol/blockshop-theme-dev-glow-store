@@ -23,7 +23,7 @@
 {% assign show_unavailable_form = section.settings.product-unavailable-form-show %}
 {% assign show_vendor = settings.product--show-vendor %}
 {% assign variant_style = section.settings.variant-style %}
-  <!-- split descriptions and assign as array  -->
+{%- comment -%}  split descriptions and assign as array {%- endcomment -%}
 {% assign description_preview = product.description | split: '--' %}
 
 {% if collections[product_vendor_handle].handle == product_vendor_handle %}

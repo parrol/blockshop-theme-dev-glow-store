@@ -125,11 +125,11 @@
 
   <div class="divider bottom-margin"></div>
 
+  {%- comment -%} later, bro {%- endcomment -%}
+  {%- comment -%}
   <footer class="collection--bottom-row">
     {% if section.settings.collections-breadcrumbs-show %}
-      <div class="left columns">
         {% render 'framework--breadcrumbs' %}
-      </div>
     {% endif %}
     {% if paginate.pages > 1 %}
       <div class="right columns">
@@ -140,6 +140,7 @@
     {% endif %}
 
   </footer>
+  {%- endcomment -%}
 
 </div>
 

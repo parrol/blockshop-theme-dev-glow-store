@@ -223,22 +223,26 @@
         {% assign menu_alignment = 'center' %}
       {% endif %}
 
-      <div class="header--menu">
-        {%
-          render 'framework--x-menu',
-          js_class: 'XMenu',
-          align: menu_alignment,
-          overlap_parent: 1,
-          handle: section.settings.menu
-        %}
+      <div class="header--menu-wrapper">
+        <div class="header--menu">
+          {%
+            render 'framework--x-menu',
+            js_class: 'XMenu',
+            align: menu_alignment,
+            overlap_parent: 1,
+            handle: section.settings.menu
+          %}
+  
+          <div class="header--cart">
+            <div class="cart">
+              {% render 'snippet-cart', cart_icon: section.settings.cart--icon %}
+            </div>
+          </div>
+        </div>
       </div>
     {% endif %}
 
-    <div class="header--cart">
-      <div class="cart">
-        {% render 'snippet-cart', cart_icon: section.settings.cart--icon %}
-      </div>
-    </div>
+
 
   </div>
 
