@@ -320,6 +320,13 @@ a.header--cart-link{
 }
 
 /* Grid HTML Classes */
+
+/* section.slider {
+  background: linear-gradient(
+    90deg,
+   rgba(241,237,233,1) 0%, rgba(243,241,239,1) 50%, rgba(226,224,220,1) 70%, rgba(200,201,196,1) 79%);
+} */
+
 .row {
   max-width: var(--max-width);
 }
@@ -422,25 +429,6 @@ a.header--cart-link{
   }
 }
 
-@media only screen and (min-width: 1920px) {
-
-  .row {
-    max-width: var(--max-width-l);
-  }
-
-  .header--menu-wrapper {
-    max-width: var(--max-width-l);
-  }
-
-  .header--top-row {
-    max-width: var(--max-width-l);
-  }
-
-  .header--menu {
-    max-width: var(--max-width-l);
-  }
-}
-
 @media only screen and (min-width: 768px){
   .header--root {
     padding: 0;
@@ -473,6 +461,34 @@ a.header--cart-link{
   }
 }
 
+@media only screen and (min-width: 1920px) {
+
+  .row {
+    max-width: var(--max-width-l);
+  }
+
+  .header--menu-wrapper {
+    max-width: var(--max-width-l);
+  }
+
+  .header--top-row {
+    max-width: var(--max-width-l);
+  }
+
+  .header--menu {
+    max-width: var(--max-width-l);
+  }
+
+  .footer--blocks {
+    max-width: var(--max-width-l);
+  }
+}
+
+@media only screen and (max-height: 864px) and (max-width: 425px){
+  .slide--big-image {
+    height: auto;
+  }
+}
 /* text width larger than first defined */
 .featured-content--root[data-text-width='xl'] .featured-content--text {
   min-width: 90%;
