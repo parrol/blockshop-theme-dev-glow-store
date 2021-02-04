@@ -127,7 +127,7 @@
 
 {% capture display_variants %}
 {% if product.has_only_default_variant %}
-  <div class="product--select-variants" name="id" style="visibility: hidden;">
+  <div class="product--select-variants" name="id" style="display: none;">
     {% for option in product.options_with_values %}
     {%
       render 'framework--radios--custom',
@@ -279,8 +279,10 @@
       </a>
       <div class="product--details">
         {{ display_vendor }}
-        {{ display_title }}
-        {{ display_description }}
+        <div class="details--header">
+          {{ display_title }}
+          {{ display_description }}
+        </div>
         {{ display_variants }}
         {{ display_option_description }}
         {{ display_add_to_cart_button }}
@@ -347,8 +349,10 @@
       {% comment %} Featured collection {%endcomment%}
       <div class="product--details">
         {{ display_vendor }}
-        {{ display_title }}
-        {{ display_description }}
+        <div class="details--header">
+          {{ display_title }}
+          {{ display_description }}
+        </div>
         {{ display_variants }}
         {{ display_option_description }}
         {{ display_add_to_cart_button }}

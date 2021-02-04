@@ -177,7 +177,7 @@ a.header--cart-link{
   text-align: left;
   line-height: 1.1rem;
   color: var( --color-product-cards-description);
-  padding-bottom: 1rem !important;
+  /* padding-bottom: 1rem !important; */
 }
 
 /* C.Parra - 20/01/2021 - Customization */
@@ -215,6 +215,7 @@ a.header--cart-link{
   min-height: 180px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 /*This will override the rule of two items per row on "small" devices*/
@@ -249,6 +250,7 @@ a.header--cart-link{
 .option-description__text{
   color: #898989;
   text-align: left;
+  line-height: normal;
 }
 
 .bold {
@@ -262,7 +264,7 @@ a.header--cart-link{
 
 .radios--container {
 
-  padding: 5px 0px;
+  padding: 0;
   border-radius: 2px;
 }
 
@@ -379,6 +381,13 @@ a.header--cart-link{
   margin: 0 auto;
   max-width: var(--max-width-breadcrumbs);
 }
+
+
+/* product recommendations */
+.product-recommendations--body--container {
+  justify-content: center;
+}
+
 
 /* footer */
 .footer--blocks {
