@@ -1,5 +1,8 @@
-/* Change header to sticky */
+
 document.addEventListener("DOMContentLoaded", function (event) {
+    /////////////////////////////
+    /* Change header to sticky */
+    /////////////////////////////
     console.log("DOM fully loaded and parsed");
     // Get the header
     const announcementElement = document.querySelector("#shopify-section-announcement");
@@ -36,7 +39,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         }
     }
-
+    ////////////////////////////////////////////////////
+    /* Update selected variant with its product image */
+    ////////////////////////////////////////////////////
     // set option description (ON HOVER)
     // sets default description visibility
     let isOptionSelected = false;
@@ -218,5 +223,38 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         });
     }
+    //////////////////////////////////
+    /* Assign dropdown menu to menu */
+    //////////////////////////////////
+
+
+    let header_leve1_container = document.querySelector('#x-menu--level-1--container');
+    let header_links = header_leve1_container.children;
+    console.log(header_leve1_container);
+    console.log(header_links);
+
+    Array.prototype.forEach.call(header_links, function (link) {
+        // link.addEventListener("mouseover", showOptionDescription);
+        // link.addEventListener("mouseout", hideOptionDescription);
+        link.addEventListener("mouseover", (event) => { onMouseOverLink(event) });
+
+    });
+
+    function onMouseOverLink(event){
+        //get nav menu link name
+        let link_name = event.currentTarget.getAttribute('data-link-id');
+        //get dropdown collection element associated with nav menu link
+        let dropdown__collection = document.querySelector(`#link-${link_name}`);
+
+        dropdown__collection.parentElement.style.display = 'block';
+
+        dropdown__collection.parentElement.addEventListener("mouseleave", (event) => {onMouseLeaveDropdownCollection(event)});
+    }
+
+    function onMouseLeaveDropdownCollection(event){
+        console.log("ON MOUSE LEAVE");
+        event.currentTarget.style.display = 'none';
+    }
+
 
 });

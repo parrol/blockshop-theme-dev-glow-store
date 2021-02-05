@@ -1,0 +1,96 @@
+{% comment %} Variables {% endcomment %}
+{% assign collection = collections[section.settings.home-product-slider-collection] %}
+{% assign slider_limit = section.settings.max_products %}
+{% assign nav_menu_link = section.settings.nav_menu_link %}
+
+<div
+  id="link-{{ nav_menu_link }}"
+  class="product-slider{% if collection.products.size < 4 and collection.products.size != 0 %} disabled{% endif %} {{ settings.color-icons-theme }} length--{{ collection.products.size }}"
+  style="{% render 'framework--background-colors', bg_color: section.settings.background-color %}"
+>
+
+{%- comment -%}
+<div class="row header">
+  <div class="columns">
+    <h2 class="font--section-heading">
+      {% if collection.handle.size > 0 %}
+        {{ collection.title | link_to: collection.url }}
+      {% else %}
+        {{ 'home.onboarding.featured_collection' | t }}
+      {% endif %}
+    </h2>
+  </div>
+</div>
+{%- endcomment -%}
+  <div class="row content">
+    <div
+      class="product-grid--root"
+      data-js-class="ProductGrid"
+      data-in-slider="true"
+    >
+      {% if collection.products.size and collection.products.size > 0 %}
+        {% for product in collection.products limit: slider_limit %}
+          {%
+            render 'framework--product--item--form',
+            product: product,
+            view: 'slider'
+          %}
+        {% endfor %}
+      {% else %}
+        {% for i in (1..6) %}
+          {%
+            render 'framework--product--item--form',
+            view: 'slider',
+            onboarding: true,
+            index: i
+          %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Dropdown collection",
+  "class": "section--dropdown-collection",
+  "settings": [
+    {
+      "id": "background-color",
+      "label": "Background color",
+      "type": "select",
+      "options": [
+        { "label": "None", "value": "none" },
+        { "label": "Light grey", "value": "light" },
+        { "label": "Accent", "value": "accent" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "text",
+      "id": "nav_menu_link",
+      "label": "Choose nav menu link"
+    },
+    {
+      "type": "collection",
+      "id": "home-product-slider-collection",
+      "label": "Choose collection"
+    },
+    {
+      "label": "Amount of products to show",
+      "id": "max_products",
+      "type": "range",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 6
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dropdown collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
