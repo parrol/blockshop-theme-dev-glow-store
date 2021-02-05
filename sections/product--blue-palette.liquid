@@ -1,0 +1,438 @@
+{% comment %} Translations {% endcomment %}
+{% assign color_t = 'products.color' | t %}
+{% assign previous_item_t = 'products.previous_item' | t %}
+{% assign next_item_t = 'products.next_item' | t %}
+
+{% comment %} Variables {% endcomment %}
+{% assign form_position = section.settings.cart-form-position %}
+{% assign enable_image_zoom = section.settings.image-zoom-enabled %}
+{% assign enable_modal = section.settings.product-modal-enabled %}
+{% assign enable_smart_payment = section.settings.smart-payment-button %}
+{% assign enable_size_chart = section.settings.product-size-chart-enabled %}
+{% assign enable_video_looping = section.settings.loop-enabled %}
+{% assign enable_product_share = section.settings.product-share-show %}
+{% assign enable_facebook_share = section.settings.product-share-facebook %}
+{% assign enable_twitter_share = section.settings.product-share-twitter %}
+{% assign enable_pinterest_share = section.settings.product-share-pinterest %}
+{% assign size_chart_content = section.settings.product-size-chart-page-content %}
+{% assign size_chart_option = section.settings.product-size-chart-option %}
+{% assign swatches_enabled = section.settings.swatches-enabled %}
+{% assign low_stock_amount = section.settings.low-in-stock-amount %}
+{% assign product_vendor_handle = product.vendor | handle %}
+{% assign show_breadcrumbs = section.settings.product-breadcrumbs-show %}
+{% assign show_unavailable_form = section.settings.product-unavailable-form-show %}
+{% assign show_vendor = settings.product--show-vendor %}
+{% assign variant_style = section.settings.variant-style %}
+{% assign what_it_is = section.settings.what_it_is %}
+{% assign special_title = section.settings.special_title %}
+{% assign special_text = section.settings.special_text %}
+{% assign good_to_know_title = section.settings.good_to_know_title %}
+
+{%- comment -%}  split descriptions and assign as array {%- endcomment -%}
+{% assign description_preview = product.description | split: '--' %}
+
+{% if collections[product_vendor_handle].handle == product_vendor_handle %}
+  {% assign vendor_url = collections[product_vendor_handle].url %}
+{% else %}
+  {% assign vendor_url = product.vendor | url_for_vendor %}
+{% endif %}
+
+{% comment %} View {% endcomment %}
+<div
+  class="product-page--root"
+  data-js-class="Product"
+  data-section-id="{{ section.id }}"
+  data-section-type="product_page"
+  data-product-modal-enabled="{{ enable_modal }}"
+  data-cart-form-position="{{ form_position }}"
+>
+  <header class="product-page--header">
+    {% if show_breadcrumbs %}
+      {% render 'framework--breadcrumbs' %}
+    {% endif %}
+
+    {% if collection.previous_product or collection.next_product %}
+      <div class="product-page--previous-next">
+
+        {% if collection.previous_product %}
+          <a
+            class="product-page--previous"
+            data-item="accent-text"
+            title="{{ collection.previous_product.title }}"
+            href="{{ collection.previous_product.url }}"
+          >
+            {%
+              render 'framework--icons',
+              icon: 'arrow-left'
+            %} {{ previous_item_t }}
+          </a>
+        {% endif %}
+
+        {% if collection.next_product %}
+          <a
+            class="product-page--next"
+            data-item="accent-text"
+            href="{{ collection.next_product.url }}"
+            title="{{ collection.next_product.title }}"
+          >
+            {{ next_item_t }}
+            {% render 'framework--icons', icon: 'arrow-right' %}
+          </a>
+        {% endif %}
+
+      </div>
+    {% endif %}
+
+  </header>
+
+  <article
+    class="product-page--container"
+    itemscope
+    itemtype="https://schema.org/Product"
+  >
+    <div class="product-page--main-content">
+
+      <div class="product-page--title-n-vendor">
+        <h1 class="product-page--title" itemprop="name" data-item="section-heading">
+          {{ product.title }}
+        </h1>
+        {% if show_vendor %}
+          <div class="product-page--vendor" itemprop="brand">
+            <a data-item="light-accent-text" href="{{ product.vendor | url_for_vendor }}">
+              {{ product.vendor }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="product-page--cart-form">
+        {%
+          render "framework--product--form",
+          product: product,
+          enable_callback: true,
+          enable_smart_payment: enable_smart_payment,
+          enable_swatches: swatches_enabled,
+          variant_style: variant_style,
+          low_stock_amount: low_stock_amount,
+          enable_size_chart: enable_size_chart,
+          size_chart_content: size_chart_content,
+          size_chart_option: size_chart_option,
+          show_unavailable_form: show_unavailable_form
+        %}
+
+        {% if product.media.size > 1 %}
+          <div class="product-page--thumbs" data-position="cart-form-column">
+            {%
+              render "framework--product--media",
+              view: "thumbs",
+              product: product
+            %}
+          </div>
+        {% endif %}
+      </div>
+
+
+      {%- comment -%}
+      <div class="product-page--description">
+        <div class="rte-content" data-item="paragraph" itemprop="description">
+          {{ product.description }}
+        </div>
+      </div>
+      {%- endcomment -%}
+
+
+      <div class="product-page--description">
+        <div class="description--paragraph"> {{ what_it_is }} </div>
+        <div class="description--title"> {{ special_title }} </div>
+        <div class="description--paragraph"> {{ special_text }} </div>
+        <div class="description--title"> {{ good_to_know_title }} </div>
+        <div class="features--container">
+          {% for block in section.blocks %}
+            <div class="feature">
+              <div class="feature--image {{ block.settings.icon }}"></div>
+              <div> {{ block.settings.good_to_know_list }} </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if product.media.size > 0 %}
+        <div class="product-page--media">
+          <div class="product-media--wrapper" data-zoom-enabled="{{ enable_image_zoom }}">
+            <div class="modal--root" data-js-class="FrameworkModal">
+              {% for media in product.media %}
+
+                {% if enable_modal and media.media_type == 'image' %}
+                  <div class="modal--link">
+                {% endif %}
+
+                {%
+                  render "framework--product--media",
+                  view: "featured",
+                  product_media: media,
+                  enable_video_looping: enable_video_looping,
+                  enable_image_zoom: enable_image_zoom
+                %}
+
+                {% if enable_modal and media.media_type == 'image' %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+              {% if enable_modal %}
+                <div class="product-page--modal-media">
+                  {% for media in product.media %}
+                    {% if media.media_type == 'image' %}
+                      <div class="modal--content">
+                        {% render "framework--image", image: media.preview_image %}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+            </div>
+          </div>
+
+          {%
+            render "framework--product--media",
+            view: "media-dependencies",
+            product: product
+          %}
+
+          {% if product.media.size > 1 %}
+            <div class="product-page--thumbs" data-position="image-column">
+              {%
+                render "framework--product--media",
+                view: "thumbs",
+                product: product
+              %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+    </div>
+  </article>
+
+</div>
+
+{% if enable_product_share %}
+  {%
+    render 'snippet-product-share',
+    product: product,
+    share_twitter: enable_twitter_share,
+    share_facebook: enable_facebook_share,
+    share_pinterest: enable_pinterest_share
+  %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product pages",
+  "class": "section--products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "product-breadcrumbs-show",
+      "label": "Show breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "variant-style",
+      "label": "Product variant style",
+      "options": [
+        { "label": "Dropdowns", "value": "dropdowns" },
+        { "label": "Buttons", "value": "buttons" }
+      ],
+      "default": "dropdowns"
+    },
+    {
+      "type": "checkbox",
+      "id": "swatches-enabled",
+      "label": "Enable color swatches",
+      "default": false,
+      "info": "Automatically turn color options into swatches. [Learn more](https://support.troopthemes.com/guide/color-swatch-guide)"
+    },
+    {
+      "type": "checkbox",
+      "id": "smart-payment-button",
+      "label": "Show dynamic checkout button",
+      "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product-unavailable-form-show",
+      "label": "Show notification form when product is unavailable"
+    },
+    {
+      "label": "Show low in stock notice when quantity is",
+      "id": "low-in-stock-amount",
+      "type": "range",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 0,
+      "info": "Set to 0 to disable this feature. Updated for each variant."
+    },
+    {
+      "type": "header",
+      "content": "Product description"
+    },
+    {
+      "type": "richtext",
+      "id": "what_it_is",
+      "label": "What it is",
+      "default": "<p> what it is </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_title",
+      "label": "Title",
+      "default": "<p> WHY IT'S SPECIAL </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_text",
+      "label": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "good_to_know_title",
+      "label": "Title",
+      "default": "<p> GOOD TO KNOW </p>"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "paragraph",
+      "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)."
+    },
+    {
+      "type": "checkbox",
+      "id": "product-modal-enabled",
+      "label": "Enable modal popup",
+      "default": true,
+      "info": "Triggers when you click the selected media"
+    },
+    {
+      "type": "checkbox",
+      "id": "image-zoom-enabled",
+      "label": "Enable image zoom",
+      "default": true,
+      "info": "Triggers when you roll your mouse over an image"
+    },
+    {
+      "type": "checkbox",
+      "id": "loop-enabled",
+      "label": "Enable video looping",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Positions"
+    },
+    {
+      "type": "paragraph",
+      "content": "Screens under 1280px wide will rearrange the columns automatically to prevent content from getting squished."
+    },
+    {
+      "id": "cart-form-position",
+      "label": "Cart form",
+      "type": "radio",
+      "options": [
+        { "value": "left", "label": "Left"},
+        { "value": "right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Size chart"
+    },
+    {
+      "type": "checkbox",
+      "id": "product-size-chart-enabled",
+      "label": "Enable",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "product-size-chart-option",
+      "label": "Link from option",
+      "default": "size"
+    },
+    {
+      "type": "page",
+      "id": "product-size-chart-page-content",
+      "label": "Page content"
+    },
+    {
+      "type": "header",
+      "content": "Social media panel"
+    },
+    {
+      "type": "checkbox",
+      "id": "product-share-show",
+      "label": "Show",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product-share-twitter",
+      "label": "Share on Twitter",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product-share-facebook",
+      "label": "Share on Facebook",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "product-share-pinterest",
+      "label": "Share on Pinterest",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Good to know",
+      "type": "list",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "good_to_know_list",
+          "label": "Good to know"
+        },
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "select",
+          "options": [
+            { "value": "spark-bold", "label": "spark"},
+            { "value": "happiness-bold", "label": "happiness"},
+            { "value": "lipstick-bold", "label": "lipstick"},
+            { "value": "cherry-bold", "label": "cherry"},
+            { "value": "peach-bold", "label": "peach"},
+            { "value": "bunny-bold", "label": "bunny"},
+            { "value": "hand-made-bold", "label": "hand-made"},
+            { "value": "eco-friendly-bold", "label": "eco-friendly"},
+            { "value": "paraben-free-bold", "label": "paraben-free"},
+            { "value": "enhancing-bold", "label": "enhancing"},
+            { "value": "easy-bold", "label": "easy"},
+            { "value": "vegan-bold", "label": "vegan"},
+            { "value": "nourishing-bold", "label": "nourishing"},
+            { "value": "longwearing-bold", "label": "longwearing"}
+            ],
+          "default": "spark-bold"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
