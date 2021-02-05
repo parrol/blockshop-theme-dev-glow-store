@@ -23,6 +23,11 @@
 {% assign show_unavailable_form = section.settings.product-unavailable-form-show %}
 {% assign show_vendor = settings.product--show-vendor %}
 {% assign variant_style = section.settings.variant-style %}
+{% assign what_it_is = section.settings.what_it_is %}
+{% assign special_title = section.settings.special_title %}
+{% assign special_text = section.settings.special_text %}
+{% assign good_to_know_title = section.settings.good_to_know_title %}
+
 {%- comment -%}  split descriptions and assign as array {%- endcomment -%}
 {% assign description_preview = product.description | split: '--' %}
 
@@ -126,15 +131,28 @@
         {% endif %}
       </div>
 
-      <!--  show detailed description only -->
+
+      {%- comment -%}
       <div class="product-page--description">
         <div class="rte-content" data-item="paragraph" itemprop="description">
-          {% assign description_size = description_preview.size %}
-          {% if description_size > 1 %}
-            {{ description_preview[1] | strip}}
-          {% else %}
-            {{ description_preview }}
-          {% endif %}
+          {{ product.description }}
+        </div>
+      </div>
+      {%- endcomment -%}
+
+
+      <div class="product-page--description">
+        <div class="description--paragraph"> {{ what_it_is }} </div>
+        <div class="description--title"> {{ special_title }} </div>
+        <div class="description--paragraph"> {{ special_text }} </div>
+        <div class="description--title"> {{ good_to_know_title }} </div>
+        <div class="features--container">
+          {% for block in section.blocks %}
+            <div class="feature">
+              <div class="feature--image {{ block.settings.icon }}"></div>
+              <div> {{ block.settings.good_to_know_list }} </div>
+            </div>
+          {% endfor %}
         </div>
       </div>
 
@@ -261,6 +279,33 @@
     },
     {
       "type": "header",
+      "content": "Product description"
+    },
+    {
+      "type": "richtext",
+      "id": "what_it_is",
+      "label": "What it is",
+      "default": "<p> what it is </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_title",
+      "label": "Title",
+      "default": "<p> WHY IT'S SPECIAL </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_text",
+      "label": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "good_to_know_title",
+      "label": "Title",
+      "default": "<p> GOOD TO KNOW </p>"
+    },
+    {
+      "type": "header",
       "content": "Media"
     },
     {
@@ -352,6 +397,41 @@
       "id": "product-share-pinterest",
       "label": "Share on Pinterest",
       "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Good to know",
+      "type": "list",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "good_to_know_list",
+          "label": "Good to know"
+        },
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "select",
+          "options": [
+            { "value": "spark-bold", "label": "spark"},
+            { "value": "happiness-bold", "label": "happiness"},
+            { "value": "lipstick-bold", "label": "lipstick"},
+            { "value": "cherry-bold", "label": "cherry"},
+            { "value": "peach-bold", "label": "peach"},
+            { "value": "bunny-bold", "label": "bunny"},
+            { "value": "hand-made-bold", "label": "hand-made"},
+            { "value": "eco-friendly-bold", "label": "eco-friendly"},
+            { "value": "paraben-free-bold", "label": "paraben-free"},
+            { "value": "enhancing-bold", "label": "enhancing"},
+            { "value": "easy-bold", "label": "easy"},
+            { "value": "vegan-bold", "label": "vegan"},
+            { "value": "nourishing-bold", "label": "nourishing"},
+            { "value": "longwearing-bold", "label": "longwearing"}
+            ],
+          "default": "spark-bold"
+        }
+      ]
     }
   ]
 }
