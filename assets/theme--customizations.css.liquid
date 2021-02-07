@@ -92,6 +92,124 @@ a.header--cart-link{
 /* DROPDOWN COLLECTION */
 .section--dropdown-collection {
   display: none;
+  position: fixed;
+  margin: 0 auto;
+  z-index: 2;
+  width: 100%;
+  background: white;
+}
+
+.product-root-container-dropdown {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.product-grid--root--container-dropdown {
+  padding: 2rem 6rem;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.product--root-dropdown {
+  width: 180px;
+  margin: 1rem;
+}
+
+.product--image-wrapper-dropdown {
+  width: 100%;
+  max-width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+}
+
+.product--image-dropdown {
+  width: 100%;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.product--hover-image-dropdown {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  overflow: hidden;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.image--root-dropdown {
+  position: relative;
+  max-width: 100%;
+}
+
+.image--container-dropdown {
+  max-width: 100%;
+  position: relative;
+}
+
+.image--root-dropdown img {
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
+  visibility: hidden;
+  width: 100%;
+}
+
+.image--root-dropdown img.lazyloaded {
+  visibility: visible;
+  opacity: 1;
+}
+
+.product--details-dropdown {
+  padding-top: 1rem;
+}
+
+.product--title-dropdown {
+  text-align: center;
+  font-weight: bold;
+  line-height: normal;
+  padding-bottom: 1rem;
+}
+
+.product--description-dropdown {
+  text-align: center;
+  line-height: 1.1rem;
+  color: var( --color-product-cards-description);
+}
+
+.view-all-products-dropdown {
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 1rem;
 }
 
 /* INFORMATION PANCAKES */

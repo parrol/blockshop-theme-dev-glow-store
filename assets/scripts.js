@@ -236,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     Array.prototype.forEach.call(header_links, function (link) {
         // link.addEventListener("mouseover", showOptionDescription);
         // link.addEventListener("mouseout", hideOptionDescription);
+        
         link.addEventListener("mouseover", (event) => { onMouseOverLink(event) });
 
     });

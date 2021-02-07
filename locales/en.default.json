@@ -126,6 +126,7 @@
   },
   "products": {
     "products_available": "5 colors available",
+    "view_all_products": "View all products",
     "add_to_cart": "Add to Cart",
     "color": "color",
     "empty_page_content_html": "You haven't linked a page yet. To configure this you'll need to go to your {{ size_chart_path }} section.",

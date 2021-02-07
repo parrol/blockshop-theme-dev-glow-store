@@ -105,21 +105,21 @@
 {% endif %}
 
 {% capture display_title %}
-  <h3 class="product--title" data-item="paragraph">
+  <h3 class="product--title-dropdown" data-item="paragraph">
     {{ title }}
   </h3>
 {% endcapture %}
 
 <!--  show preview description only -->
 {% capture display_description %}
-  <h3 class="product--description" data-item="paragraph">
+  <h3 class="product--description-dropdown" data-item="paragraph">
     {{ description_preview[0] | strip_html}}
   </h3>
 {% endcapture %}
 
 {% capture display_vendor %}
   {% if show_vendor %}
-    <div class="product--vendor" data-item="light-accent-text">
+    <div class="product--vendor-dropdown" data-item="light-accent-text">
       {{ vendor }}
     </div>
   {% endif %}
@@ -127,7 +127,7 @@
 
 {% capture display_variants %}
 {% if product.has_only_default_variant %}
-  <div class="product--select-variants" name="id" style="display: none;">
+  <div class="product--select-variants-dropdown" name="id" style="display: none;">
     {% for option in product.options_with_values %}
     {%
       render 'framework--radios--custom',
@@ -139,7 +139,7 @@
     {% endfor %}
   </div>
 {% else %}
-  <div class="product--select-variants" name="id">
+  <div class="product--select-variants-dropdown" name="id">
     {% for option in product.options_with_values %}
     {%
       render 'framework--radios--custom',
@@ -244,8 +244,9 @@
   {% endfor %}
 </select>
   <div
-  class="product--root"
+  class="product--root-dropdown"
   data-product-view="{{ view }}"
+  {%- comment -%}{%- endcomment -%}
   {% if hover_image_enabled and hover_image %}
     data-hover-image="true"
   {% endif %}
@@ -264,8 +265,8 @@
           </div>
         {% endunless %}
 
-        <div class="product--image-wrapper">
-          <div class="product--image">
+        <div class="product--image-wrapper-dropdown">
+          <div class="product--image-dropdown">
             {% if product.variants.size > 1 %}
               {{ variant_image }}
             {% else %}
@@ -277,15 +278,12 @@
           {% endif %}
         </div>
       </a>
-      <div class="product--details">
+      <div class="product--details-dropdown">
         {{ display_vendor }}
-        <div class="details--header">
+        <div class="details--header-dropdown">
           {{ display_title }}
           {{ display_description }}
         </div>
-        {{ display_variants }}
-        {{ display_option_description }}
-        {{ display_add_to_cart_button }}
       </div>
 
     {% when 'list' %}
@@ -295,7 +293,7 @@
         </a>
       </div>
 
-      <div class="product--details">
+      <div class="product--details-dropdown">
         {% unless product.available or onboarding %}
           <div class="product--sold-out" data-item="accent-text">
             {{ sold_out_t }}
@@ -337,8 +335,8 @@
       {% endunless %}
 
       <a href="{{ url }}" aria-label="{{ product.title }}">
-        <div class="product--image-wrapper">
-          <div class="product--image">
+        <div class="product--image-wrapper-dropdown">
+          <div class="product--image-dropdown">
             {{ image }}
           </div>
           {% if hover_image_enabled and hover_image %}
@@ -347,15 +345,12 @@
         </div>
       </a>
       {% comment %} Featured collection {%endcomment%}
-      <div class="product--details">
+      <div class="product--details-dropdown">
         {{ display_vendor }}
-        <div class="details--header">
+        <div class="details--header-dropdown">
           {{ display_title }}
           {{ display_description }}
         </div>
-        {{ display_variants }}
-        {{ display_option_description }}
-        {{ display_add_to_cart_button }}
       </div>
 
   {% endcase %}
