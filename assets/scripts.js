@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (state === "closed") {
 
             if (window.pageYOffset > sticky) {
-                //announcementElement.classList.add("section--header-sticky");
+                announcementElement.classList.add("section--header-sticky");
                 headerElement.classList.add("section--header-sticky");
 
                 //headerElement.style.top = announcementHeight;
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
-        let image_container = radio_button.closest('[data-product-view = grid]');
+        let image_container = radio_button.closest('#image-container--product-root');
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -249,11 +249,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // get all dropdown collections
         let dropdown_children = dropdown_container.children;
 
-        if (window.pageYOffset > sticky) {
-        dropdown_container.style.paddingTop = headerHeight;
+        if (window.pageYOffset == 0) {
+            dropdown_container.style.paddingTop = 0;
+            headerElement.classList.remove("section--header-sticky");
 
         } else {
-            dropdown_container.style.paddingTop = 0;
+            dropdown_container.style.paddingTop = headerHeight;
+            headerElement.classList.add("section--header-sticky");
+        }
+
+        window.onscroll = () => {
+            if (window.pageYOffset == 0) {
+                dropdown_container.style.paddingTop = 0;
+                headerElement.classList.remove("section--header-sticky");
+
+            } else {
+                dropdown_container.style.paddingTop = headerHeight;
+                headerElement.classList.add("section--header-sticky");
+            }
+
         }
 
         Array.prototype.forEach.call(dropdown_children, function (collection){

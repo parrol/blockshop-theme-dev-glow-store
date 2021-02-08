@@ -42,6 +42,7 @@
 
 {%- comment -%} if has more than one variant, show all the variant images{%- endcomment -%}
 {% if product.variants.size > 1 %}
+  {% assign hover_image = false %}
   {% capture variant_image %}
   <div class="product--color-image">
     {% for variant in product.variants %}
@@ -244,6 +245,7 @@
   {% endfor %}
 </select>
   <div
+  id="image-container--product-root"
   class="product--root"
   data-product-view="{{ view }}"
   {% if hover_image_enabled and hover_image %}
@@ -326,25 +328,29 @@
       </div>
 
     {% when 'slider' %}
-      {% unless product.available or onboarding %}
-        <div class="product--sold-out" data-item="accent-text">
-          {{ sold_out_t }}
-        </div>
-      {% elsif compare_price and onboarding == false and show_sale_label %}
-        <div class="product--sale" data-item="accent-text">
-          {{ sale_t }}
-        </div>
-      {% endunless %}
-
-      <a href="{{ url }}" aria-label="{{ product.title }}">
-        <div class="product--image-wrapper">
-          <div class="product--image">
-            {{ image }}
+      <a class="product--item" href="{{ url }}" aria-label="{{ product.title }}">
+        {% unless product.available or onboarding %}
+          <div class="product--sold-out" data-item="accent-text">
+            {{ sold_out_t }}
           </div>
-          {% if hover_image_enabled and hover_image %}
-            {{ hover_image }}
-          {% endif %}
-        </div>
+        {% elsif compare_price and onboarding == false and show_sale_label %}
+          <div class="product--sale" data-item="accent-text">
+            {{ sale_t }}
+          </div>
+        {% endunless %}
+
+          <div class="product--image-wrapper">
+            <div class="product--image">
+              {% if product.variants.size > 1 %}
+                {{ variant_image }}
+              {% else %}
+                {{ image }}
+              {% endif %}
+            </div>
+            {% if hover_image_enabled and hover_image %}
+              {{ hover_image }}
+            {% endif %}
+          </div>
       </a>
       {% comment %} Featured collection {%endcomment%}
       <div class="product--details">
