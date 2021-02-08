@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Get the offset position of the header
     let sticky = headerElement.offsetTop;
-
+    // Get heights
+    //let announcementHeight = window.getComputedStyle(announcementElement, null).getPropertyValue("height");
+    let headerHeight = window.getComputedStyle(headerElement, null).getPropertyValue("height");
     // Select the node that will be observed for mutations
     const offCanvasViewport = document.querySelector('#off-canvas--viewport');
 
@@ -20,9 +22,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
     function stickyheader(state) {
-        // Get heights
-        //let announcementHeight = window.getComputedStyle(announcementElement, null).getPropertyValue("height");
-        let headerHeight = window.getComputedStyle(headerElement, null).getPropertyValue("height");
+
         if (state === "closed") {
 
             if (window.pageYOffset > sticky) {
@@ -248,6 +248,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let dropdown_container = dropdown_collection.parentElement;
         // get all dropdown collections
         let dropdown_children = dropdown_container.children;
+
+        if (window.pageYOffset > sticky) {
+        dropdown_container.style.paddingTop = headerHeight;
+
+        } else {
+            dropdown_container.style.paddingTop = 0;
+        }
 
         Array.prototype.forEach.call(dropdown_children, function (collection){
             // hide every collection
