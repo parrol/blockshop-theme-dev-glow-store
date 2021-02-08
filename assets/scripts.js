@@ -12,13 +12,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Get the offset position of the header
     let sticky = headerElement.offsetTop;
     // Get heights
-    //let announcementHeight = window.getComputedStyle(announcementElement, null).getPropertyValue("height");
+    let announcementHeight = window.getComputedStyle(announcementElement, null).getPropertyValue("height");
     let headerHeight = window.getComputedStyle(headerElement, null).getPropertyValue("height");
     // Select the node that will be observed for mutations
     const offCanvasViewport = document.querySelector('#off-canvas--viewport');
 
     // When the user scrolls the page with both sidebars closed, execute stickyheader
-    window.onscroll = function () { stickyheader(offCanvasViewport.getAttribute('data-off-canvas--state')) };
+    window.onscroll = () => { stickyheader(offCanvasViewport.getAttribute('data-off-canvas--state')) };
 
     // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
     function stickyheader(state) {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 announcementElement.classList.add("section--header-sticky");
                 headerElement.classList.add("section--header-sticky");
 
-                //headerElement.style.top = announcementHeight;
+                headerElement.style.top = announcementHeight;
                 mainContentElement.style.paddingTop = headerHeight;
 
             } else {
@@ -266,6 +266,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
             } else {
                 dropdown_container.style.paddingTop = headerHeight;
                 headerElement.classList.add("section--header-sticky");
+            }
+
+            if (window.pageYOffset > sticky) {
+                announcementElement.classList.add("section--header-sticky");
+                headerElement.classList.add("section--header-sticky");
+
+                headerElement.style.top = announcementHeight;
+                mainContentElement.style.paddingTop = headerHeight;
+
+            } else {
+                announcementElement.classList.remove("section--header-sticky");
+                headerElement.classList.remove("section--header-sticky");
+                mainContentElement.style.paddingTop = 0;
             }
 
         }
