@@ -223,20 +223,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         });
     }
+
+
     //////////////////////////////////
     /* Assign dropdown menu to menu */
     //////////////////////////////////
 
-
     let header_leve1_container = document.querySelector('#x-menu--level-1--container');
     let header_links = header_leve1_container.children;
-    console.log(header_leve1_container);
-    console.log(header_links);
 
     Array.prototype.forEach.call(header_links, function (link) {
         // link.addEventListener("mouseover", showOptionDescription);
         // link.addEventListener("mouseout", hideOptionDescription);
-        
         link.addEventListener("mouseover", (event) => { onMouseOverLink(event) });
 
     });
@@ -245,11 +243,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
         //get nav menu link name
         let link_name = event.currentTarget.getAttribute('data-link-id');
         //get dropdown collection element associated with nav menu link
-        let dropdown__collection = document.querySelector(`#link-${link_name}`);
+        let dropdown_collection = document.querySelector(`#link-${link_name}`);
+        // get dropdown collections container
+        let dropdown_container = dropdown_collection.parentElement;
+        // get all dropdown collections
+        let dropdown_children = dropdown_container.children;
 
-        dropdown__collection.parentElement.style.display = 'block';
+        Array.prototype.forEach.call(dropdown_children, function (collection){
+            // hide every collection
+            collection.style.display = 'none';
 
-        dropdown__collection.parentElement.addEventListener("mouseleave", (event) => {onMouseLeaveDropdownCollection(event)});
+            let collection_id = collection.id;
+
+            // show collection hovered
+            if (collection_id === ('link-' +  link_name)){
+                collection.style.display = 'block';
+            }
+        })
+        //show collections container
+        dropdown_container.style.display = 'block';
+
+        dropdown_container.addEventListener("mouseleave", (event) => {onMouseLeaveDropdownCollection(event)});
     }
 
     function onMouseLeaveDropdownCollection(event){
