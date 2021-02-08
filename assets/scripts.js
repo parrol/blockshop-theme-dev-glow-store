@@ -136,7 +136,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
-        let image_container = radio_button.closest('#image-container--product-root');
+        // let image_container = radio_button.closest('#image-container--product-root');
+        let image_container = radio_button.closest('[data-product-view = grid]');
 
         /* LOGS
         console.log("image container: ", image_container); // product--root

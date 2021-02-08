@@ -328,41 +328,38 @@
       </div>
 
     {% when 'slider' %}
-      <a class="product--item" href="{{ url }}" aria-label="{{ product.title }}">
-        {% unless product.available or onboarding %}
-          <div class="product--sold-out" data-item="accent-text">
-            {{ sold_out_t }}
-          </div>
-        {% elsif compare_price and onboarding == false and show_sale_label %}
-          <div class="product--sale" data-item="accent-text">
-            {{ sale_t }}
-          </div>
-        {% endunless %}
+      {% unless product.available or onboarding %}
+        <div class="product--sold-out" data-item="accent-text">
+          {{ sold_out_t }}
+        </div>
+      {% elsif compare_price and onboarding == false and show_sale_label %}
+        <div class="product--sale" data-item="accent-text">
+          {{ sale_t }}
+        </div>
+      {% endunless %}
 
+      <a href="{{ url }}" aria-label="{{ product.title }}">
           <div class="product--image-wrapper">
             <div class="product--image">
-              {% if product.variants.size > 1 %}
-                {{ variant_image }}
-              {% else %}
-                {{ image }}
-              {% endif %}
+              {{ image }}
             </div>
             {% if hover_image_enabled and hover_image %}
               {{ hover_image }}
             {% endif %}
           </div>
-      </a>
-      {% comment %} Featured collection {%endcomment%}
-      <div class="product--details">
-        {{ display_vendor }}
-        <div class="details--header">
-          {{ display_title }}
-          {{ display_description }}
+
+        {% comment %} Featured collection {%endcomment%}
+        <div class="product--details">
+          {{ display_vendor }}
+          <div class="details--header">
+            {{ display_title }}
+            {{ display_description }}
+          </div>
+          {{ display_variants }}
+          {{ display_option_description }}
+          {{ display_add_to_cart_button }}
         </div>
-        {{ display_variants }}
-        {{ display_option_description }}
-        {{ display_add_to_cart_button }}
-      </div>
+      </a>
 
   {% endcase %}
   </div>
