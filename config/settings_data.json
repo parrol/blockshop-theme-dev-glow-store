@@ -22,8 +22,6 @@
     "color-slider-nav": "#212121",
     "color-tabs-accordions": "#f7f7f7",
     "color-product-cards": "#fafafa",
-    "color-product-cards-description": "#707070",
-    "color-product-cards-border": "#ABABAB",
     "typography--heading": "roboto_n5",
     "typography--heading--uppercase": false,
     "typography--heading--size": "small",
@@ -36,7 +34,7 @@
     "hover-image-enabled": true,
     "product--show-vendor": false,
     "product--label-color": "accent-light-text",
-    "product--show-sale-label": true,
+    "product--show-sale-label": false,
     "search--show-in-header": true,
     "search--show-articles": true,
     "search--show-pages": true,
@@ -74,6 +72,8 @@
     "checkout_accent_color": "#197bbd",
     "checkout_button_color": "#197bbd",
     "checkout_error_color": "#e32c2b",
+    "color-product-cards-description": "#707070",
+    "color-product-cards-border": "#ABABAB",
     "sections": {
       "header": {
         "type": "header",
@@ -135,7 +135,7 @@
           "product-breadcrumbs-show": true,
           "variant-style": "dropdowns",
           "swatches-enabled": false,
-          "smart-payment-button": true,
+          "smart-payment-button": false,
           "product-unavailable-form-show": true,
           "low-in-stock-amount": 0,
           "product-modal-enabled": true,
@@ -148,7 +148,7 @@
           "product-share-show": true,
           "product-share-twitter": true,
           "product-share-facebook": true,
-          "product-share-pinterest": true
+          "product-share-pinterest": false
         }
       },
       "collection": {
@@ -302,7 +302,7 @@
       "1519177181912": {
         "type": "featured-collection",
         "settings": {
-          "background-color": "light",
+          "background-color": "none",
           "home-product-slider-collection": "makeup",
           "max_products": 8
         }
@@ -490,13 +490,155 @@
       },
       "product--custom": {
         "type": "product--custom",
+        "blocks": {
+          "0eb99c8c-81f8-4507-b55c-d3d23e1efedf": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "5fbd8936-78d9-4226-b006-e2c5a25e18f9": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "5d18fd25-5442-416a-a7c8-776260b691b8": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Nourishing<\/p>",
+              "icon": "nourishing-bold"
+            }
+          },
+          "0964eef0-6cb6-44dd-8503-c08333021d1a": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "cc28c1dc-ccb0-45d0-8bd6-58f81cc4eb66": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "0eb99c8c-81f8-4507-b55c-d3d23e1efedf",
+          "5fbd8936-78d9-4226-b006-e2c5a25e18f9",
+          "5d18fd25-5442-416a-a7c8-776260b691b8",
+          "0964eef0-6cb6-44dd-8503-c08333021d1a",
+          "cc28c1dc-ccb0-45d0-8bd6-58f81cc4eb66"
+        ],
         "settings": {
           "product-breadcrumbs-show": true,
           "variant-style": "dropdowns",
           "swatches-enabled": false,
-          "smart-payment-button": true,
+          "smart-payment-button": false,
           "product-unavailable-form-show": false,
           "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is:<\/strong> 35 colors that are divided into matte pigments as well as sparkly. Colors are highly pigmented, with a texture smooth and easy to mix.<\/p>",
+          "special_title": "<p><strong> WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>With this palette you can do a complete makeup: eyebrows, blush, highligther, eyeshadow and bronzer. Essential Palette light your way thanks to its intensely pigmented colors that last all day.<\/p>",
+          "good_to_know_title": "<p><strong> GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": true,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
+        }
+      },
+      "framework--product-recommendations": {
+        "type": "framework--product-recommendations",
+        "settings": {
+          "product-similar-products-show": true,
+          "product-similar-products-heading": "You may also like"
+        }
+      },
+      "1612307839d9b0e350": {
+        "type": "framework--info",
+        "settings": {
+          "background-color": "light",
+          "color": false,
+          "heading": "About Glow",
+          "icon1": "peach-bold",
+          "pancake1": "<p>For us, Glow Beauty Aids is a community, which is why we love to listen to and materialize the ideas of our clients and in this way bring new product lines to the market.<\/p>",
+          "icon2": "cherry-bold",
+          "pancake2": "<p>Glow is a new approach to beauty. It&#x27;s all about functionality, fun and enhancing your own attributes.<\/p>",
+          "icon3": "bunny-bold",
+          "pancake3": "<p>Our products are vegan, cruelty free, paraben free, ecofriendly and handmade.<\/p>"
+        }
+      },
+      "1612308313cc0d9a3d": {
+        "type": "framework--info",
+        "settings": {
+          "background-color": "light",
+          "color": false,
+          "heading": "About Glow",
+          "icon1": "happiness-bold",
+          "pancake1": "<p>As makeup creators we focus on bringing quality products to your bag, trendy and at an affordable price.<\/p>",
+          "icon2": "lipstick-bold",
+          "pancake2": "<p>It is a line of products designed by our team of Venezuelan entrepreneurs, who wanted to bring products to the market to highlight your natural beauty.<\/p>",
+          "icon3": "spark-bold",
+          "pancake3": "<p>We make products inspired by the daily life of women and how to highlight their natural beauty, without complicating their routine too much.<\/p>"
+        }
+      },
+      "1612467647030626d4": {
+        "type": "dropdown-collection",
+        "disabled": true,
+        "settings": {}
+      },
+      "dropdown-collection": {
+        "type": "dropdown-collection",
+        "blocks": {
+          "ea83c140-e273-4a0b-847a-bfef5b144207": {
+            "type": "quote",
+            "settings": {
+              "background-color": "none",
+              "nav_menu_link": "Makeup",
+              "nav-menu-collection": "makeup",
+              "max_products": 6
+            }
+          },
+          "c48e0503-76fd-48b6-bc38-f3ce6fae5486": {
+            "type": "quote",
+            "settings": {
+              "background-color": "none",
+              "nav_menu_link": "Shop all",
+              "nav-menu-collection": "all",
+              "max_products": 6
+            }
+          }
+        },
+        "block_order": [
+          "ea83c140-e273-4a0b-847a-bfef5b144207",
+          "c48e0503-76fd-48b6-bc38-f3ce6fae5486"
+        ],
+        "settings": {}
+      },
+      "product--ziploc-bag": {
+        "type": "product--ziploc-bag",
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is:<\/strong> Carry it all, with a ziploc-type main compartment, it’s roomy enough for all your beauty product needs.In a transparent black white shade, stamped with our signature Glow logo.<\/p><p><strong>Materials:<\/strong> 100% plastic.<\/p>",
+          "special_title": "",
+          "special_text": "",
+          "good_to_know_title": "",
           "product-modal-enabled": true,
           "image-zoom-enabled": true,
           "loop-enabled": false,
@@ -510,18 +652,324 @@
           "product-share-pinterest": true
         }
       },
-      "framework--product-recommendations": {
-        "type": "framework--product-recommendations",
+      "product--purple-palette": {
+        "type": "product--purple-palette",
+        "blocks": {
+          "7b51c2a4-ee99-4b0c-96f7-de73d32036c5": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "c4b7f9b4-db43-4ec1-9bbd-a1c04e464521": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "5f2aa11f-eb45-464e-89d0-590f37bd7d2b": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "f6e3f5a6-b0e9-48cf-8715-ae52fb7f5e16": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "7b51c2a4-ee99-4b0c-96f7-de73d32036c5",
+          "c4b7f9b4-db43-4ec1-9bbd-a1c04e464521",
+          "5f2aa11f-eb45-464e-89d0-590f37bd7d2b",
+          "f6e3f5a6-b0e9-48cf-8715-ae52fb7f5e16"
+        ],
         "settings": {
-          "product-similar-products-show": true,
-          "product-similar-products-heading": "You may also like"
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is: <\/strong>nine colors highly pigmented, with a texture smooth and easy to mix.<\/p>",
+          "special_title": "<p><strong> WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>It is made up of six chrome shades and three matte shades in stunning mauve shades and violet. The paddle is compact and lightweight so it&#x27;s easy to carry wherever go.<\/p>",
+          "good_to_know_title": "<p><strong> GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": false,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
+        }
+      },
+      "product--glowstick": {
+        "type": "product--glowstick",
+        "blocks": {
+          "ee808204-0e2c-44b2-b0ca-e11f14c11916": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "b45ca5dd-587c-47a0-8142-2436d909203c": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "abccae9b-f5f7-4c5e-a2ea-fef29871e020": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "6a1233d0-8e5b-4742-8144-c35afe533eb6": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "ee808204-0e2c-44b2-b0ca-e11f14c11916",
+          "b45ca5dd-587c-47a0-8142-2436d909203c",
+          "abccae9b-f5f7-4c5e-a2ea-fef29871e020",
+          "6a1233d0-8e5b-4742-8144-c35afe533eb6"
+        ],
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is:<\/strong> A comfortable, long-wearing lip gloss with a glassy finish<\/p>",
+          "special_title": "<p><strong> WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>Fuzzy doe-foot applicator scoops up just the right amount of gloss, giving you instant shine in one swipe.<\/p>",
+          "good_to_know_title": "<p><strong> GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": false,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
+        }
+      },
+      "product--essential-palette": {
+        "type": "product--essential-palette",
+        "blocks": {
+          "cb84442d-fda7-44df-95f2-4cf0afb779ff": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "d356f83a-4a3b-4bce-8dcf-1b76c9bbb441": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "e156901d-e6be-40a2-82d8-f5d63f971679": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Nourishing<\/p>",
+              "icon": "nourishing-bold"
+            }
+          },
+          "86cbf7d1-4350-4277-8f82-73cbffa47fb8": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "b963b9ef-79bb-4b0d-94f0-1c5a5e25e77e": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "cb84442d-fda7-44df-95f2-4cf0afb779ff",
+          "d356f83a-4a3b-4bce-8dcf-1b76c9bbb441",
+          "e156901d-e6be-40a2-82d8-f5d63f971679",
+          "86cbf7d1-4350-4277-8f82-73cbffa47fb8",
+          "b963b9ef-79bb-4b0d-94f0-1c5a5e25e77e"
+        ],
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is: <\/strong>35 colors that are divided into matte pigments as well as sparkly. Colors are highly pigmented, with a texture smooth and easy to mix.  <\/p>",
+          "special_title": "<p><strong> WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>With this palette you can do a complete makeup: eyebrows, blush, highligther, eyeshadow and bronzer. Essential Palette light your way thanks to its intensely pigmented colors that last all day. <\/p>",
+          "good_to_know_title": "<p><strong> GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": false,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
+        }
+      },
+      "product--brush-14": {
+        "type": "product--brush-14",
+        "blocks": {
+          "c084cd47-7e3a-4e1f-b568-0b3ba6c6c1a1": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Hand-made<\/p>",
+              "icon": "hand-made-bold"
+            }
+          },
+          "915eed4a-c06b-4999-b8c0-3f42d73aafbe": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Eco-friendly<\/p>",
+              "icon": "eco-friendly-bold"
+            }
+          }
+        },
+        "block_order": [
+          "c084cd47-7e3a-4e1f-b568-0b3ba6c6c1a1",
+          "915eed4a-c06b-4999-b8c0-3f42d73aafbe"
+        ],
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is:<\/strong> Big eye shadow brush. The round shape of this brush allow you to pack shadows and pigments on the lid with concentrated control. <\/p>",
+          "special_title": "<p><strong>WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>This tapered crease brush has just the right amount of fullness and firmness for a perfect blend and smooth transitions between colors. This brush is a great choice for makeup lovers of all skill levels. <\/p><p>Our makeup brush is 100% cruelty free. <\/p><p>Bristles: 3\/4&quot;<\/p><p>Full Length: 7&quot;<\/p><p>Bristle Type: Natural<\/p>",
+          "good_to_know_title": "<p><strong>GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": false,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
+        }
+      },
+      "product--blue-palette": {
+        "type": "product--blue-palette",
+        "blocks": {
+          "b90f2df8-50ab-466b-a292-71e256d5ff99": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "03db67f1-9994-4d7a-b5cd-8ea3e73feda7": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "c5ccdd1f-7c54-4283-b169-744d2a94e140": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Nourishing<\/p>",
+              "icon": "nourishing-bold"
+            }
+          },
+          "766e7e2e-46c8-473f-91a4-a54abe388eca": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "f8fcece3-047e-4a4d-9fb6-955fa58a7c20": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "b90f2df8-50ab-466b-a292-71e256d5ff99",
+          "03db67f1-9994-4d7a-b5cd-8ea3e73feda7",
+          "c5ccdd1f-7c54-4283-b169-744d2a94e140",
+          "766e7e2e-46c8-473f-91a4-a54abe388eca",
+          "f8fcece3-047e-4a4d-9fb6-955fa58a7c20"
+        ],
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "swatches-enabled": false,
+          "smart-payment-button": false,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "what_it_is": "<p><strong>What it is: <\/strong>nine colors highly pigmented, with a texture smooth and easy to mix. <\/p>",
+          "special_title": "<p><strong>WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>It is made up of  five chrome shades and four matte shades in live aquamarine and others cool tones.The palette is compact and light, in addition to have a mirror. <\/p>",
+          "good_to_know_title": "<p><strong>GOOD TO KNOW:<\/strong><\/p>",
+          "product-modal-enabled": false,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": false
         }
       }
     },
     "content_for_index": [
+      "1612467647030626d4",
       "1519177052247",
       "1519177181912",
+      "1612308313cc0d9a3d",
       "1610486410d5bc1a84",
+      "1612307839d9b0e350",
       "1519177108222",
       "1519177136360",
       "1519177213210",
