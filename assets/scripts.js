@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let option_descriptions = event.currentTarget.closest('[name = id ]').children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
-            if (child.getAttribute("data-js-class") !== ("Radios")){
+            if (child.getAttribute("data-js-class") !== ("Radios")) {
                 child.classList.add("hidden");
                 child.classList.remove("reveal");
 
@@ -136,8 +136,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
-        // let image_container = radio_button.closest('#image-container--product-root');
-        let image_container = radio_button.closest('[data-product-view = grid]');
+        let image_container = radio_button.closest('#image-container--product-root');
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -154,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let color_alt = image.children[0].children[0].getAttribute("alt");
 
             //this seems like it's going to be legacy code :D
-            if ( color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0){
+            if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
                 // alt = color;
                 image.style.display = "block";
             }
@@ -191,16 +190,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
         isOptionSelected = true;
     }
 
-    // get class elements that'll be hovered
-    let radios__buttons = document.getElementsByClassName('radios--swatch-button');
-    // add event listeners for mouseover and mouseout to each radio button
-    Array.prototype.forEach.call(radios__buttons, function (radio__button) {
-        radio__button.addEventListener("mouseover", showOptionDescription);
-        radio__button.addEventListener("mouseout", hideOptionDescription);
-        radio__button.addEventListener("click", (event) => { onRadioButtonClicked(event, radio__button) });
+    var intervalID = window.setInterval(addListeners, 1000);
 
-    });
+    function addListeners() {
+        console.log("World!");
 
+        // get class elements that'll be hovered
+        let radios__buttons = document.getElementsByClassName('radios--swatch-button');
+        console.log('radios_buttons', radios__buttons);
+
+        const empty_object = [];
+        if (radios__buttons.length === 0) {
+            console.log("Oh my, it's empty");
+        } else {
+            console.log("It's not!");
+            clearInterval(intervalID);
+        }
+
+        // add event listeners for mouseover and mouseout to each radio button
+        Array.prototype.forEach.call(radios__buttons, function (radio__button) {
+            radio__button.addEventListener("mouseover", showOptionDescription);
+            radio__button.addEventListener("mouseout", hideOptionDescription);
+            radio__button.addEventListener("click", (event) => { onRadioButtonClicked(event, radio__button) });
+        });
+    }
+
+
+    //image filterr
     let radios__button = document.getElementsByClassName('radios--value-button');
     Array.prototype.forEach.call(radios__button, function (radio__button) {
 
@@ -219,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let data_thumbnail_color = media.getAttribute("data-thumbnail-color");
 
             //hides every image apart from the one selected.
-            if (data_thumbnail_color !== filter){
+            if (data_thumbnail_color !== filter) {
                 media.parentElement.style.display = "none";
             }
         });
@@ -240,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     });
 
-    function onMouseOverLink(event){
+    function onMouseOverLink(event) {
         //get nav menu link name
         let link_name = event.currentTarget.getAttribute('data-link-id');
         //get dropdown collection element associated with nav menu link
@@ -284,24 +300,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         }
 
-        Array.prototype.forEach.call(dropdown_children, function (collection){
+        Array.prototype.forEach.call(dropdown_children, function (collection) {
             // hide every collection
             collection.style.display = 'none';
 
             let collection_id = collection.id;
 
             // show collection hovered
-            if (collection_id === ('link-' +  link_name)){
+            if (collection_id === ('link-' + link_name)) {
                 collection.style.display = 'block';
             }
         })
         //show collections container
         dropdown_container.style.display = 'block';
 
-        dropdown_container.addEventListener("mouseleave", (event) => {onMouseLeaveDropdownCollection(event)});
+        dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
     }
 
-    function onMouseLeaveDropdownCollection(event){
+    function onMouseLeaveDropdownCollection(event) {
         console.log("ON MOUSE LEAVE");
         event.currentTarget.style.display = 'none';
     }

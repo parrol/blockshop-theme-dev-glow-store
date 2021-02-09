@@ -474,7 +474,7 @@
         "type": "framework--featured-product",
         "settings": {
           "background-color": "none",
-          "smart_payment_button": true,
+          "smart_payment_button": false,
           "heading": "Essential Palette",
           "featured_product": "essential-palete",
           "show_vendor": false,
