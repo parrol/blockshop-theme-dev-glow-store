@@ -313,6 +313,52 @@ a.header--cart-link{
   }
 }
 
+/* PRODUCT DETAILS - SWATCHES*/
+.radios--swatch-button-details {
+  position: relative;
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  padding-bottom: 0;
+  background-size: cover;
+}
+
+.radios--swatch-button-details:hover {
+  cursor: pointer;
+}
+
+.radios--swatch-button-details::after {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 1px solid var(--color--body--light);
+  position: absolute;
+  top: auto;
+  left: -1px;
+}
+
+.radios--input[type='radio']:checked + .radios--swatch-button-details::after,
+.radios--input[type='radio']:hover + .radios--swatch-button-details::after {
+  content: '';
+}
+
+.radios--input[type='radio']:checked + .radios--value-button > *,
+.radios--input[type='radio']:hover + .radios--value-button > * {
+  border-color: var(--color--body--light);
+  color: var(--color-text);
+  background: transparent;
+}
+
+.radios--input[type='radio']:focus + .radios--swatch-button-details::after,
+.radios--input[type='radio']:focus + .radios--value-button > * {
+  -webkit-box-shadow: 0 0 0 3px Highlight;
+  box-shadow: 0 0 0 3px Highlight;
+}
+
+
 
 /* PRODUCT DETAILS - DESCRIPTION*/
 .features--container {

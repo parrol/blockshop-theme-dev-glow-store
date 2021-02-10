@@ -193,17 +193,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
     var intervalID = window.setInterval(addListeners, 1000);
 
     function addListeners() {
-        console.log("World!");
 
         // get class elements that'll be hovered
         let radios__buttons = document.getElementsByClassName('radios--swatch-button');
-        console.log('radios_buttons', radios__buttons);
 
         const empty_object = [];
         if (radios__buttons.length === 0) {
-            console.log("Oh my, it's empty");
+
         } else {
-            console.log("It's not!");
             clearInterval(intervalID);
         }
 
@@ -318,7 +315,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function onMouseLeaveDropdownCollection(event) {
-        console.log("ON MOUSE LEAVE");
         event.currentTarget.style.display = 'none';
     }
 
