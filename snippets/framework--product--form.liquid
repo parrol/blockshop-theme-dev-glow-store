@@ -101,7 +101,7 @@
 
         {% endunless %}
 
-        <select class="product-form--variant-select" name="id">
+        <select id="product-form--variant-select-{{ product.title | downcase }}" class="product-form--variant-select" name="id">
           {% for variant in product.variants %}
             <option
               value="{{ variant.id }}"

@@ -213,15 +213,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
 
-    //image filterr
-    let radios__button = document.getElementsByClassName('radios--value-button');
-    Array.prototype.forEach.call(radios__button, function (radio__button) {
+    //Image filterr
+    let radio__buttons = document.getElementsByClassName('radios--value-button');
+    let swatch__buttons = document.getElementsByClassName('radios--swatch-button-details');
+    let selected__button__container = document.getElementById('product-form--variant-select-glowstick');
+    let selected__button = selected__button__container.options[selected__button__container.selectedIndex].innerText.toUpperCase().trim()
 
-        let filter = radio__button.innerText;
-        radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
-        //this is called once after page is loaded
-        filterThumbnails(event, radio__button, "NOVEMBER");
-    });
+    //Value buttons
+    if (radio__buttons.length > 0) {
+
+        Array.prototype.forEach.call(radio__buttons, function (radio__button) {
+
+            let filter = radio__button.innerText;
+            radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
+            //this is called once after page is loaded
+            filterThumbnails(event, radio__button, selected__button);
+        });
+        //Swatch buttons
+    } else if (swatch__buttons.length > 0) {
+
+        Array.prototype.forEach.call(swatch__buttons, function (swatch__button) {
+
+            let filter = swatch__button.getAttribute("aria-label");
+            console.log('filter', filter);
+            swatch__button.addEventListener("click", (event) => { filterThumbnails(event, swatch__buttons, filter.toUpperCase()) });
+            //this is called once after page is loaded
+            filterThumbnails(event, swatch__button, selected__button);
+        });
+    } else {
+        console.warn('there are no radio buttons for color selection')
+    }
 
     function filterThumbnails(event, radio_button, filter) {
 
