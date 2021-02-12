@@ -76,7 +76,7 @@
 
       <div class="product-form--variants">
         {% unless product.has_only_default_variant %}
-
+          <div id="has-variants"></div>
           {% for option in product.options_with_values %}
             {% assign option_name = option.name | trim | downcase %}
 
@@ -86,7 +86,7 @@
                 option: option,
                 id: product.id,
                 is_swatches: true,
-                has_header: true,
+                has_header: false,
                 product_form: true
               %}
             {% else %}

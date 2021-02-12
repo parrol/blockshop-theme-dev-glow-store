@@ -128,17 +128,19 @@
 
 {% capture display_variants %}
 {% if product.has_only_default_variant %}
-  <div class="product--select-variants" name="id" style="display: none;">
-    {% for option in product.options_with_values %}
-    {%
-      render 'framework--radios--custom',
-      option: option,
-      id: product.id,
-      is_swatches: true,
-      has_header: false
-    %}
-    {% endfor %}
-  </div>
+{%- comment -%}
+<div class="product--select-variants" name="id" style="display: none;">
+  {% for option in product.options_with_values %}
+  {%
+    render 'framework--radios--custom',
+    option: option,
+    id: product.id,
+    is_swatches: true,
+    has_header: false
+  %}
+  {% endfor %}
+</div>
+{%- endcomment -%}
 {% else %}
   <div class="product--select-variants" name="id">
     {% for option in product.options_with_values %}

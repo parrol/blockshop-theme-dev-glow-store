@@ -16,26 +16,29 @@
 {%- endcapture -%}
 
 <div
+  id="radios--root"
   claºs="radios--root"
   data-js-class="Radios"
   data-is-swatches="{{ is_swatches }}"
 >
-{%if has_header %}
-  <div class="radios--header">
-      <label class="radios--option-label" data-item="accent-text" id="{{ radios_name }}">
-        {{ option.name | escape }}
-      </label>
+{% if has_header %}
+{%- comment -%}
+<div class="radios--header">
+    <label class="radios--option-label" data-item="accent-text" id="{{ radios_name }}">
+      {{ option.name | escape }}
+    </label>
 
-      {% if is_swatches %}
-        <span class="radios--option-current" data-item="light-accent-text">
-          {% for value in option.values %}
-            {% if value == option.selected_value %}
-              {{ value | escape }}
-            {% endif %}
-          {% endfor %}
-        </span>
-      {% endif %}
-  </div>
+    {% if is_swatches %}
+      <span class="radios--option-current" data-item="light-accent-text">
+        {% for value in option.values %}
+          {% if value == option.selected_value %}
+            {{ value | escape }}
+          {% endif %}
+        {% endfor %}
+      </span>
+    {% endif %}
+</div>
+{%- endcomment -%}
 {% endif %}
 
   <div

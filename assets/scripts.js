@@ -60,7 +60,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // hides all option descriptions
     function hideAll(event) {
-        let option_descriptions = event.currentTarget.closest('[name = id ]').children
+        // let option_descriptions = event.currentTarget.closest('[name = id ]').children
+        let option_descriptions = event.currentTarget.closest('#radios--root').parentElement.children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-js-class") !== ("Radios")) {
@@ -73,7 +74,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // sets visibility for default option description message
     function setDefaultVisibility(event, isVisible) {
-        let option_descriptions = event.currentTarget.closest('[name = id ]').children
+        // let option_descriptions = event.currentTarget.closest('[name = id ]').children
+        let option_descriptions = event.currentTarget.closest('#radios--root').parentElement.children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-value") === "default-option-description") {
@@ -125,8 +127,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //sets global variant selected
     function selectOptionDescription(radio_button, name) {
-        let option_descriptions = radio_button.closest('[name = id ]').children
+        // let option_descriptions = radio_button.closest('[name = id ]').children
+        let option_descriptions = radio_button.closest('#radios--root').parentElement.children
 
+        console.log('option_descriptions: ', option_descriptions);
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-value") === name) {
                 selected_variant = child;
@@ -137,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
         let image_container = radio_button.closest('#image-container--product-root');
+        let has_variants = document.querySelector('#has-variants');
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -146,18 +151,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
         */
 
-        let color_images = image_container.children[0].children[0].children[0].children[0].children;
+        if (!has_variants) {
+            let color_images = image_container.children[0].children[0].children[0].children[0].children;
 
-        Array.prototype.forEach.call(color_images, function (image) {
-            image.style.display = "none";
-            let color_alt = image.children[0].children[0].getAttribute("alt");
+            Array.prototype.forEach.call(color_images, function (image) {
+                image.style.display = "none";
+                let color_alt = image.children[0].children[0].getAttribute("alt");
 
-            //this seems like it's going to be legacy code :D
-            if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
-                // alt = color;
-                image.style.display = "block";
-            }
-        })
+                //this seems like it's going to be legacy code :D
+                if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
+                    // alt = color;
+                    image.style.display = "block";
+                }
+            })
+        }
 
     }
 
@@ -194,12 +201,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function addListeners() {
 
-        // get class elements that'll be hovered
-        let radios__buttons = document.getElementsByClassName('radios--swatch-button');
+        // get elements that'll be hovered
+        // container of the elements
+        let radios__buttons__container = document.getElementsByClassName('radios--main');
+        let radios__buttons = [];
 
-        const empty_object = [];
+        // take each container, get the element inside and create push them to a new array
+        Array.prototype.forEach.call(radios__buttons__container, function (radio__button__container) {
+            radios__buttons.push(radio__button__container.children[1]);
+        })
+
         if (radios__buttons.length === 0) {
-
+            return;
         } else {
             clearInterval(intervalID);
         }
@@ -280,20 +293,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         //get dropdown collection element associated with nav menu link
         let dropdown_collection = document.querySelector(`#link-${link_name}`);
         // get dropdown collections container
-        let dropdown_container = dropdown_collection.parentElement;
-        // get all dropdown collections
-        let dropdown_children = dropdown_container.children;
+        let dropdown_container;
+        let dropdown_children;
+        try {
+            dropdown_container = dropdown_collection.parentElement;
 
-        if (window.pageYOffset == 0) {
-            dropdown_container.style.paddingTop = 0;
-            headerElement.classList.remove("section--header-sticky");
+            // get all dropdown collections
+            dropdown_children = dropdown_container.children;
 
-        } else {
-            dropdown_container.style.paddingTop = headerHeight;
-            headerElement.classList.add("section--header-sticky");
-        }
-
-        window.onscroll = () => {
             if (window.pageYOffset == 0) {
                 dropdown_container.style.paddingTop = 0;
                 headerElement.classList.remove("section--header-sticky");
@@ -303,36 +310,49 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 headerElement.classList.add("section--header-sticky");
             }
 
-            if (window.pageYOffset > sticky) {
-                announcementElement.classList.add("section--header-sticky");
-                headerElement.classList.add("section--header-sticky");
+            window.onscroll = () => {
+                if (window.pageYOffset == 0) {
+                    dropdown_container.style.paddingTop = 0;
+                    headerElement.classList.remove("section--header-sticky");
 
-                headerElement.style.top = announcementHeight;
-                mainContentElement.style.paddingTop = headerHeight;
+                } else {
+                    dropdown_container.style.paddingTop = headerHeight;
+                    headerElement.classList.add("section--header-sticky");
+                }
 
-            } else {
-                announcementElement.classList.remove("section--header-sticky");
-                headerElement.classList.remove("section--header-sticky");
-                mainContentElement.style.paddingTop = 0;
+                if (window.pageYOffset > sticky) {
+                    announcementElement.classList.add("section--header-sticky");
+                    headerElement.classList.add("section--header-sticky");
+
+                    headerElement.style.top = announcementHeight;
+                    mainContentElement.style.paddingTop = headerHeight;
+
+                } else {
+                    announcementElement.classList.remove("section--header-sticky");
+                    headerElement.classList.remove("section--header-sticky");
+                    mainContentElement.style.paddingTop = 0;
+                }
+
             }
 
+            Array.prototype.forEach.call(dropdown_children, function (collection) {
+                // hide every collection
+                collection.style.display = 'none';
+
+                let collection_id = collection.id;
+
+                // show collection hovered
+                if (collection_id === ('link-' + link_name)) {
+                    collection.style.display = 'block';
+                }
+            })
+            //show collections container
+            dropdown_container.style.display = 'block';
+
+            dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
+        } catch (error) {
+            console.log(`${link_name} doesn't have a dropdown menu`);
         }
-
-        Array.prototype.forEach.call(dropdown_children, function (collection) {
-            // hide every collection
-            collection.style.display = 'none';
-
-            let collection_id = collection.id;
-
-            // show collection hovered
-            if (collection_id === ('link-' + link_name)) {
-                collection.style.display = 'block';
-            }
-        })
-        //show collections container
-        dropdown_container.style.display = 'block';
-
-        dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
     }
 
     function onMouseLeaveDropdownCollection(event) {
