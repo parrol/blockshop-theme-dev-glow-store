@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     /////////////////////////////
     /* Change header to sticky */
     /////////////////////////////
-    console.log("DOM fully loaded and parsed");
     // Get the header
     const announcementElement = document.querySelector("#shopify-section-announcement");
     const headerElement = document.querySelector("#shopify-section-header");
@@ -46,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // sets default description visibility
     let isOptionSelected = false;
     let selected_variant = null;
+    let has_variants = document.querySelector('#has-variants');
 
     // set visibility on selected option
     function setSelectedVisibility(isVisible) {
@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // let option_descriptions = radio_button.closest('[name = id ]').children
         let option_descriptions = radio_button.closest('#radios--root').parentElement.children
 
-        console.log('option_descriptions: ', option_descriptions);
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-value") === name) {
                 selected_variant = child;
@@ -141,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
         let image_container = radio_button.closest('#image-container--product-root');
-        let has_variants = document.querySelector('#has-variants');
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -160,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 //this seems like it's going to be legacy code :D
                 if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
-                    // alt = color;
                     image.style.display = "block";
                 }
             })
@@ -227,35 +224,38 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     //Image filterr
-    let radio__buttons = document.getElementsByClassName('radios--value-button');
-    let swatch__buttons = document.getElementsByClassName('radios--swatch-button-details');
-    let selected__button__container = document.getElementById('product-form--variant-select-glowstick');
-    let selected__button = selected__button__container.options[selected__button__container.selectedIndex].innerText.toUpperCase().trim()
+    if (has_variants) {
+        let radio__buttons = document.getElementsByClassName('radios--value-button');
+        let swatch__buttons = document.getElementsByClassName('radios--swatch-button-details');
+        let selected__button__container;
+        let selected__button;
+        selected__button__container = document.getElementById('product-form--variant-select-glowstick');
+        selected__button = selected__button__container.options[selected__button__container.selectedIndex].innerText.toUpperCase().trim()
+        //Value buttons
+        if (radio__buttons.length > 0) {
 
-    //Value buttons
-    if (radio__buttons.length > 0) {
+            Array.prototype.forEach.call(radio__buttons, function (radio__button) {
 
-        Array.prototype.forEach.call(radio__buttons, function (radio__button) {
+                let filter = radio__button.innerText;
+                radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
+                //this is called once after page is loaded
+                filterThumbnails(event, radio__button, selected__button);
+            });
+            //Swatch buttons
+        } else if (swatch__buttons.length > 0) {
 
-            let filter = radio__button.innerText;
-            radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
-            //this is called once after page is loaded
-            filterThumbnails(event, radio__button, selected__button);
-        });
-        //Swatch buttons
-    } else if (swatch__buttons.length > 0) {
+            Array.prototype.forEach.call(swatch__buttons, function (swatch__button) {
 
-        Array.prototype.forEach.call(swatch__buttons, function (swatch__button) {
-
-            let filter = swatch__button.getAttribute("aria-label");
-            console.log('filter', filter);
-            swatch__button.addEventListener("click", (event) => { filterThumbnails(event, swatch__buttons, filter.toUpperCase()) });
-            //this is called once after page is loaded
-            filterThumbnails(event, swatch__button, selected__button);
-        });
-    } else {
-        console.warn('there are no radio buttons for color selection')
+                let filter = swatch__button.getAttribute("aria-label");
+                swatch__button.addEventListener("click", (event) => { filterThumbnails(event, swatch__buttons, filter.toUpperCase()) });
+                //this is called once after page is loaded
+                filterThumbnails(event, swatch__button, selected__button);
+            });
+        } else {
+            console.warn('there are no radio buttons for color selection')
+        }
     }
+
 
     function filterThumbnails(event, radio_button, filter) {
 
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
         } catch (error) {
-            console.log(`${link_name} doesn't have a dropdown menu`);
+            // console.log(`${link_name} doesn't have a dropdown menu`);
         }
     }
 
