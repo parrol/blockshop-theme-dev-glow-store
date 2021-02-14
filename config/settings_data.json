@@ -112,8 +112,8 @@
           "footer--subscribe": {
             "type": "subscribe",
             "settings": {
-              "newsletter--heading": "Subscribirse",
-              "newsletter--info": "<p>Registrarse en nuestra lista de correos<\/p>",
+              "newsletter--heading": "Subscribe",
+              "newsletter--info": "<p>We also make emails.<\/p><p>Receive email updates on stuff you’ll probably want to know about, including products, launches, and ebooks. Unsubscribe anytime.<\/p>",
               "subscribe--show-newsletter": true
             }
           }
@@ -755,7 +755,7 @@
         "settings": {
           "product-breadcrumbs-show": true,
           "variant-style": "dropdowns",
-          "swatches-enabled": false,
+          "swatches-enabled": true,
           "smart-payment-button": false,
           "product-unavailable-form-show": false,
           "low-in-stock-amount": 0,
