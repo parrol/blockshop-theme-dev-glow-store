@@ -88,7 +88,7 @@
           "show-locale-selector": false,
           "header-logo-center": true,
           "logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
-          "logo-height": 100
+          "logo-height": 75
         }
       },
       "framework--footer": {

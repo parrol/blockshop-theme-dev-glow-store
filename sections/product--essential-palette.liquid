@@ -105,6 +105,16 @@
         {% endif %}
       </div>
 
+      {% if product.media.size > 1 %}
+        <div class="product-page--thumbs" data-position="cart-form-column">
+          {%
+            render "framework--product--media",
+            view: "thumbs",
+            product: product
+          %}
+        </div>
+      {% endif %}
+
       <div class="product-page--cart-form">
         {%
           render "framework--product--form",
@@ -120,15 +130,6 @@
           show_unavailable_form: show_unavailable_form
         %}
 
-        {% if product.media.size > 1 %}
-          <div class="product-page--thumbs" data-position="cart-form-column">
-            {%
-              render "framework--product--media",
-              view: "thumbs",
-              product: product
-            %}
-          </div>
-        {% endif %}
       </div>
 
 

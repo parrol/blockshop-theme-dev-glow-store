@@ -1,21 +1,4 @@
-{% comment %}
-  Here's an example of a customization
-  You can paste this at the bottom of the page to see how it works
 
-  /* Author - Date - Customization */
-  /* E.g. Troop Themes - 12th November .... - Changed paragraph colors */
-  @media only screen and (max-width: 767px) { /* mobile */
-    body {
-      color: blue;
-    }
-  }
-
-  @media only screen and (min-width: 768px) { /* desktop */
-    body {
-      color: green;
-    }
-  }
-{% endcomment %}
 
 
 /* VARIABLES*/
@@ -313,7 +296,59 @@ a.header--cart-link{
   }
 }
 
-/* PRODUCT DETAILS - SWATCHES*/
+/* PRODUCT */
+
+.main-content {
+  padding-top: 10px;
+}
+
+.breadcrumbs--root {
+  max-width: var(--max-width-breadcrumbs);
+  margin: 0 auto;
+}
+
+.product-page--previous-next {
+  margin-left: auto;
+  max-width: var(--max-width-breadcrumbs);
+  margin-right: auto;
+}
+
+.product-page--container {
+  max-width: var(--max-width-breadcrumbs);
+  margin: 0 auto;
+}
+
+.product-page--media {
+  padding: 0 32px 0 0;
+  text-align: center;
+  max-width: 100%;
+}
+
+.product-page--thumbs[data-position='cart-form-column'] {
+  padding: unset;
+}
+
+.product-media--thumb-container {
+  position: relative;
+  max-width: 60px;
+  width: 100px;
+}
+
+.product-form--price-container {
+  padding-top: 16px;
+  padding-bottom: 0px;
+}
+
+
+.product-page--cart-form {
+  grid-row: 4;
+  max-width: 400px;
+}
+
+.product-form--unit-price-container {
+  padding-top: 0px;
+}
+
 .radios--swatch-button-details {
   position: relative;
   display: inline-block;
@@ -338,6 +373,120 @@ a.header--cart-link{
   position: absolute;
   top: auto;
   left: -1px;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .product-page--container {
+    margin: 0 auto;
+  }
+
+  .product-page--media {
+    padding: 0px;
+  }
+
+  .product-page--root .product-page--thumbs {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .product-page--container {
+    margin: 0px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .product-page--main-content {
+    grid-template-columns: minmax(60%, 60%) minmax(40%, 40%);
+    justify-content: center;
+  }
+
+  .product-page--cart-form {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .product-page--description {
+    grid-column: 2;
+  }
+
+  .product-media--thumbs {
+    flex-direction: row;
+  }
+
+  .product-page--root .product-page--thumbs {
+    margin: 0 auto;
+  }
+
+}
+
+@media only screen and (min-width: 980px) {
+  .product-media--thumb-container {
+    max-width: 50px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .product-page--main-content {
+    grid-template-columns: minmax(10%, 10%) minmax(40%, 40%) minmax(45%, 45%);
+    justify-content: center;
+  }
+
+  .product-page--title-n-vendor {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .product-page--description {
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  .product-page--cart-form {
+    grid-column: 3;
+  }
+
+  .product-page--media {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+  }
+
+  .product-media--thumb-container {
+    max-width: 50px;
+  }
+
+  .product-page--root .product-page--thumbs {
+    margin: 0 10px 0 auto;
+  }
+
+  .product-page--thumbs {
+    grid-row: 3 span;
+    grid-column: 1;
+  }
+
+  .product-media--thumbs {
+    flex-direction: column;
+  }
+
+  .product-page--thumbs[data-position='cart-form-column'] {
+    display: block;
+  }
+
+  .product-page--thumbs[data-position='image-column'] {
+    display: none;
+    flex-direction: row;
+    margin: 0 auto;
+  }
+}
+
+
+@media only screen and (min-width: 1280px) {
+  .product-page--main-content {
+    grid-template-columns: minmax(10%, 10%) minmax(30%, 30%) minmax(30%, 30%);
+    justify-content: center;
+  }
+
 }
 
 .radios--input[type='radio']:checked + .radios--swatch-button-details::after,
@@ -378,9 +527,9 @@ a.header--cart-link{
 
 .feature--image {
   background-repeat: no-repeat;
-  background-size: 25px;
+  background-size: 20px;
   background-position: center;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 
