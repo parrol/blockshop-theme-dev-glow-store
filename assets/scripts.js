@@ -360,4 +360,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
 
+    // prevent the submit form to trigger when using quantity buttons
+    let quantity_buttons = document.getElementsByClassName('quantity--button');
+    for (i = 0; i < quantity_buttons.length; i++) {
+        quantity_buttons[i].addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+    }
+
 });

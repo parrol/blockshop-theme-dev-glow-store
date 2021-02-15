@@ -20,6 +20,8 @@
 {% assign title = product.title %}
 {% assign vendor = product.vendor %}
 {% assign vendor_url = product.vendor | url_for_vendor %}
+{% assign quantity_enabled = section.settings.quantity-enabled %}
+
 
 {% comment %} Onboarding {% endcomment %}
 {% assign onboarding = true %}
@@ -123,7 +125,7 @@
             </a>
           {% else %}
             {%
-              render "framework--product--form",
+              render "framework--product--form--custom",
               product: product,
               enable_smart_payment: enable_smart_payment,
               enable_swatches: enable_swatches,
@@ -132,7 +134,8 @@
               enable_size_chart: enable_size_chart,
               size_chart_content: size_chart_content,
               size_chart_option: size_chart_option,
-              show_unavailable_form: show_unavailable_form
+              show_unavailable_form: show_unavailable_form,
+              quantity_enabled : quantity_enabled
             %}
           {% endif %}
 
@@ -198,6 +201,13 @@
         "label": "Enable color swatches",
         "default": false,
         "info": "Automatically turn color options into swatches. [Learn more](https://support.troopthemes.com/guide/color-swatch-guide)"
+      },
+      {
+        "type": "checkbox",
+        "id": "quantity-enabled",
+        "label": "Enable quantity selector",
+        "default": true,
+        "info": "Lets the user pick the quantity to add to the cart."
       },
       {
         "type": "checkbox",

@@ -121,45 +121,55 @@
           {% endfor %}
         </select>
 
-        {% comment %}
-        <input type="hidden" name="quantity" value="1">
-          NOTE: to add quantity field, remove input above this line and uncomment block below
-        {% endcomment %}
 
-        {% comment %}
-        {% endcomment %}
-        <div class="product-form--quantity">
-          <label for="product-quantity">{{ quantity_t }}</label>
-          <input
+      </div>
+
+      {% if low_stock_amount > 0 and sold_out == false %}
+      <div class='product-form--low-stock' data-item='paragraph'></div>
+      {% endif %}
+
+      <div class="product-form--add-to-cart-container">
+        {% if quantity_enabled %}
+
+          <div class="product-form--quantity">
+            <label for="product-quantity" style="display: none;">{{ quantity_t }}</label>
+            <button class="quantity--button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" > - </button>
+            <input
             id="quantity"
             type="number"
             name="quantity"
             min="1"
             value="1"
-            style="width: 64px"
-          />
-        </div>
-      </div>
+            />
+            <button class="quantity--button" onclick="this.parentElement.querySelector('input[type=number]').stepUp()"> + </button>
+          </div>
 
-      {% if low_stock_amount > 0 and sold_out == false %}
-        <div class='product-form--low-stock' data-item='paragraph'></div>
-      {% endif %}
-
-      <div class="product-form--button-container"
-        data-enabled="true"
-        {% if enable_smart_payment %}
-          data-item='secondary-button'
         {% else %}
-          data-item='button'
+
+          <input type="hidden" name="quantity" value="1">
+          {% comment %}
+            NOTE: to add quantity field, remove input above this line and uncomment block below
+          {% endcomment %}
+
         {% endif %}
-      >
-        <button class="product-form--add-to-cart">
-          <span class="product-form--text">{{ add_to_cart_t }}</span>
-          <span
-            class="fw--loading_animation tiny"
-            data-js-class="FrameworkLoadingAnimation"
-          ></span>
-        </button>
+
+        <div class="product-form--button-container"
+          data-enabled="true"
+          {% if enable_smart_payment %}
+            data-item='secondary-button'
+          {% else %}
+            data-item='button'
+          {% endif %}
+        >
+          <button class="product-form--add-to-cart">
+            <span class="product-form--text"> {{ add_to_cart_t }} — {{ current_variant.price | times: 1 | money }} </span>
+
+            <span
+              class="fw--loading_animation tiny"
+              data-js-class="FrameworkLoadingAnimation"
+            ></span>
+          </button>
+        </div>
       </div>
 
       {% if enable_smart_payment and sold_out == false %}
