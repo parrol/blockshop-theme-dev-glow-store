@@ -31,7 +31,8 @@
 
   {% when 'thumbs' %}
 
-    <div class="product-media--thumbs">
+    <div class="product-media--thumbs" {% if flex_row %} data-flex-row="true" {% endif %}>
+
       {% for media in product.media %}
         {% assign active_media = false %}
 

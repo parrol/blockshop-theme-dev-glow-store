@@ -77,11 +77,20 @@
           %}
 
           {% if product.media.size > 1 %}
+            {% if section.settings.flex-row %}
             {%
               render "framework--product--media",
               view: "thumbs",
+              flex_row: true,
               product: product
             %}
+            {% else %}
+              {%
+                render "framework--product--media",
+                view: "thumbs",
+                product: product
+              %}
+            {% endif %}
           {% endif %}
         </div>
 
@@ -212,6 +221,13 @@
       {
         "type": "paragraph",
         "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)."
+      },
+      {
+        "type": "checkbox",
+        "id": "flex-row",
+        "label": "flex-row",
+        "default": true,
+        "info": "Changes product thumbnails flex direction"
       },
       {
         "type": "checkbox",
