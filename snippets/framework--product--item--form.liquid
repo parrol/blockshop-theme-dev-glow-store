@@ -201,7 +201,9 @@
 {% endcapture %}
 
 {% capture display_add_to_cart_button %}
-<button type="submit" {% unless product.available %} disabled="disabled"{% endunless %} class="product-form--add-to-cart-preview">
+<button type="submit" {% unless product.available %} disabled="disabled"{% endunless %} class="product-form--add-to-cart-preview {% if recommendation %}
+  eightpx-padding
+{% endif %} ">
 
   {%- if product.available -%}
   <span class="product-form--text">{{ add_to_cart_t }}</span>
@@ -281,7 +283,10 @@
           {% endif %}
         </div>
       </a>
-      <div class="product--details">
+      <div class="product--details
+      {% if recommendation %} half-rem-padding {% endif %}
+      {% if product.variants.size > 1 %} min-height-unset {% endif %}"
+      >
         {{ display_vendor }}
         <div class="details--header">
           {{ display_title }}

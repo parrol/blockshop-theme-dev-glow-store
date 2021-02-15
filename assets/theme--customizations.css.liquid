@@ -691,9 +691,6 @@ a.header--cart-link{
   left: -2px;
 }
 
-.product-recommendations--body--container {
-  align-items: flex-start;
-}
 
 .cart--checkout-button button[disabled] .cart-button--text {
   display: block;
@@ -766,10 +763,35 @@ a.header--cart-link{
 
 
 /* product recommendations */
+
 .product-recommendations--body--container {
   justify-content: center;
+  align-items: flex-start;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 850px){
+  .half-rem-padding {
+    padding: 0.5rem;
+  }
+
+  .eightpx-padding {
+    padding: 0 8px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .half-rem-padding {
+    padding: 0.5rem;
+  }
+
+  .min-height-unset {
+    min-height: unset;
+  }
+
+  .eightpx-padding {
+    padding: 0 8px;
+  }
+}
 
 /* footer */
 .footer--blocks {
