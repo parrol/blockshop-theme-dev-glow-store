@@ -133,7 +133,7 @@
 
           <div class="product-form--quantity">
             <label for="product-quantity" style="display: none;">{{ quantity_t }}</label>
-            <button class="quantity--button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" > - </button>
+            <button id="quantity-minus" class="quantity--button"> - </button>
             <input
             id="quantity"
             type="number"
@@ -141,7 +141,7 @@
             min="1"
             value="1"
             />
-            <button class="quantity--button" onclick="this.parentElement.querySelector('input[type=number]').stepUp()"> + </button>
+            <button id="quantity-plus" class="quantity--button"> + </button>
           </div>
 
         {% else %}
@@ -162,7 +162,9 @@
           {% endif %}
         >
           <button class="product-form--add-to-cart">
-            <span class="product-form--text"> {{ add_to_cart_t }} — {{ current_variant.price | times: 1 | money }} </span>
+            <span class="product-form--text"> {{ add_to_cart_t }} —
+              <span id="total-price" data-price="{{ current_variant.price | money_without_currency  }}"> {{ current_variant.price | times: 1 | money }} </span> 
+            </span>
 
             <span
               class="fw--loading_animation tiny"

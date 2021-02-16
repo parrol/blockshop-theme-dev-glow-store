@@ -360,11 +360,43 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
 
-    // prevent the submit form to trigger when using quantity buttons
-    let quantity_buttons = document.getElementsByClassName('quantity--button');
-    for (i = 0; i < quantity_buttons.length; i++) {
-        quantity_buttons[i].addEventListener('click', function (e) {
+    //////////////////////////////////////////////////////
+    //update total price when using the quantity buttons//
+    //////////////////////////////////////////////////////
+    const quantity = document.getElementById('quantity');
+    if (quantity != null) {
+
+        let quantity_plus = document.getElementById('quantity-plus');
+        let quantity_minus = document.getElementById('quantity-minus');
+        let total_price = document.getElementById('total-price')
+        let unit_price = total_price.getAttribute('data-price');
+
+
+        function operateStrings(a, b) {
+            let num1 = Number.parseInt(a);
+            let num2 = b
+            return (num1 + num2);
+        }
+
+        function updateTotalPrice(unit_price, quantity) {
+            total_price.innerText = "$" + (unit_price * quantity).toFixed(2);
+        }
+
+        quantity_plus.addEventListener('click', function (e) {
             e.preventDefault();
+            quantity.value = operateStrings(quantity.value, 1);
+            updateTotalPrice(unit_price, quantity.value);
+        });
+
+        quantity_minus.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (quantity.value <= 2) {
+                quantity.value = 1;
+                updateTotalPrice(unit_price, quantity.value);
+            } else {
+                quantity.value = operateStrings(quantity.value, -1);
+                updateTotalPrice(unit_price, quantity.value);
+            }
         });
     }
 
