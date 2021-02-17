@@ -28,6 +28,7 @@
 {% assign special_text = section.settings.special_text %}
 {% assign good_to_know_title = section.settings.good_to_know_title %}
 {% assign quantity_enabled = section.settings.quantity-enabled %}
+{% assign measures_text = section.settings.measures_text %}
 
 {%- comment -%}  split descriptions and assign as array {%- endcomment -%}
 {% assign description_preview = product.description | split: '--' %}
@@ -134,17 +135,8 @@
 
       </div>
 
-
-      {%- comment -%}
       <div class="product-page--description">
-        <div class="rte-content" data-item="paragraph" itemprop="description">
-          {{ product.description }}
-        </div>
-      </div>
-      {%- endcomment -%}
-
-
-      <div class="product-page--description">
+        <div class="description--paragraph measures"> {{ measures_text }} </div>
         <div class="description--paragraph"> {{ what_it_is }} </div>
         <div class="description--title"> {{ special_title }} </div>
         <div class="description--paragraph"> {{ special_text }} </div>
@@ -293,15 +285,21 @@
     },
     {
       "type": "richtext",
+      "id": "measures_text",
+      "label": "Measures",
+      "default": "<p>what it is</p>"
+    },
+    {
+      "type": "richtext",
       "id": "what_it_is",
       "label": "What it is",
-      "default": "<p> what it is </p>"
+      "default": "<p>what it is </p>"
     },
     {
       "type": "richtext",
       "id": "special_title",
       "label": "Title",
-      "default": "<p> WHY IT'S SPECIAL </p>"
+      "default": "<p>WHY IT'S SPECIAL </p>"
     },
     {
       "type": "richtext",
@@ -312,7 +310,7 @@
       "type": "richtext",
       "id": "good_to_know_title",
       "label": "Title",
-      "default": "<p> GOOD TO KNOW </p>"
+      "default": "<p>GOOD TO KNOW </p>"
     },
     {
       "type": "header",
