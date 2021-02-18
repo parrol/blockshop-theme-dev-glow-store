@@ -76,6 +76,9 @@ a.header--cart-link{
   z-index: 1;
 }
 
+.owl-carousel .owl-wrapper {
+  align-items: flex-start;
+}
 /* DROPDOWN COLLECTION */
 .section--dropdown-collection {
   display: none;
@@ -631,13 +634,14 @@ input[type=number] {
 .product--title {
   text-align: left;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .product--description {
   text-align: left;
   line-height: 1.1rem;
   color: var( --color-product-cards-description);
-  /* padding-bottom: 1rem !important; */
+  padding-bottom: 5px;
 }
 
 /* C.Parra - 20/01/2021 - Customization */
@@ -672,8 +676,8 @@ input[type=number] {
 .product--details {
   padding: 1rem;
   background-color: var(--color-product-cards);
-  min-height: 180px;
-  display: flex;
+  /* min-height: 180px; */
+  /* display: flex; */
   flex-direction: column;
 }
 
@@ -711,6 +715,7 @@ input[type=number] {
   color: #898989;
   text-align: left;
   line-height: normal;
+  font-size: 14px;
 }
 
 .bold {
@@ -737,8 +742,8 @@ input[type=number] {
 }
 
 .radios--swatch-button {
-  height: 15px;
-  width: 15px;
+  height: 19px;
+  width: 19px;
 }
 
 .November{
@@ -763,8 +768,8 @@ input[type=number] {
 
 
 .radios--swatch-button::after {
-  height: 17px;
-  width: 17px;
+  height: 21px;
+  width: 21px;
   top: -2px;
   left: -2px;
 }

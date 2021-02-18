@@ -872,11 +872,39 @@
               "good_to_know_list": "<p>Eco-friendly<\/p>",
               "icon": "eco-friendly-bold"
             }
+          },
+          "6323f03c-f58c-4f6c-bbc3-0afe6cb36ab1": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p>Our make brush is 100% cruelty free.<\/p>"
+            }
+          },
+          "92269857-5936-41c9-83e2-7e5b94fcf091": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p>Bristles: 3\/4&quot;<\/p>"
+            }
+          },
+          "ac6693ec-ca4d-4e16-9c20-41b29a68b70a": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p>Full Length: 7&quot;<\/p>"
+            }
+          },
+          "28a35fb5-840e-4c3e-91d5-2ffee84c53e3": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p>Bristle Type: natural.<\/p>"
+            }
           }
         },
         "block_order": [
           "c084cd47-7e3a-4e1f-b568-0b3ba6c6c1a1",
-          "915eed4a-c06b-4999-b8c0-3f42d73aafbe"
+          "915eed4a-c06b-4999-b8c0-3f42d73aafbe",
+          "6323f03c-f58c-4f6c-bbc3-0afe6cb36ab1",
+          "92269857-5936-41c9-83e2-7e5b94fcf091",
+          "ac6693ec-ca4d-4e16-9c20-41b29a68b70a",
+          "28a35fb5-840e-4c3e-91d5-2ffee84c53e3"
         ],
         "settings": {
           "product-breadcrumbs-show": true,
@@ -889,7 +917,7 @@
           "measures_text": "",
           "what_it_is": "<p><strong>What it is:<\/strong> Big eye shadow brush. The round shape of this brush allow you to pack shadows and pigments on the lid with concentrated control. <\/p>",
           "special_title": "<p><strong>WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
-          "special_text": "<p>This tapered crease brush has just the right amount of fullness and firmness for a perfect blend and smooth transitions between colors. This brush is a great choice for makeup lovers of all skill levels. <\/p><p>Our makeup brush is 100% cruelty free. <\/p><p>Bristles: 3\/4&quot;<\/p><p>Full Length: 7&quot;<\/p><p>Bristle Type: Natural<\/p>",
+          "special_text": "<p>This tapered crease brush has just the right amount of fullness and firmness for a perfect blend and smooth transitions between colors. This brush is a great choice for makeup lovers of all skill levels. <\/p>",
           "good_to_know_title": "<p><strong>GOOD TO KNOW:<\/strong><\/p>",
           "product-modal-enabled": false,
           "image-zoom-enabled": true,
