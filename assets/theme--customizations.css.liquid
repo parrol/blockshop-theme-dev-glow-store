@@ -299,6 +299,32 @@ a.header--cart-link{
   }
 }
 
+/* GRID COLLECTION WITH IMAGE */
+
+.collection-image-root-container {
+  padding: 1rem 0 1rem 0;
+}
+
+.collection-image-grid-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  margin: 0 auto;
+  max-width: 1312px;
+}
+
+.collection-image-grid-container__product-grid-root-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 240px));
+  justify-content: center;
+}
+
+.collection-image-grid-container__image-container {
+  width: 100%;
+}
+
+.collection-image-grid-container__image {
+  background-size: cover;
+}
 /* PRODUCT */
 
 .main-content {
@@ -679,6 +705,14 @@ input[type=number] {
   /* min-height: 180px; */
   /* display: flex; */
   flex-direction: column;
+}
+
+.product--details-grid-image {
+  padding: 1rem;
+  background-color: var(--color-product-cards);
+  flex-direction: column;
+  min-height: 193px;
+  display: flex;
 }
 
 /*This will override the rule of two items per row on "small" devices*/

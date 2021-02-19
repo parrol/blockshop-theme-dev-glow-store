@@ -1,0 +1,93 @@
+{%- comment -%} Translations {%- endcomment -%}
+{% assign view_all_products = 'products.view_all_products' | t %}
+
+
+{% comment %} Variables {% endcomment %}
+{% assign collection = collections[section.settings.grid-collection] %}
+
+{% capture display_background %}
+{% render 'framework--background-colors', bg_color: section.settings.background-color %}
+{% endcapture %}
+
+<div >
+
+    <div class="collection-image-root-container">
+        <div class="collection-image-grid-container">
+            <div class="collection-image-grid-container__product-grid-root-container">
+                {% if collection.products.size and collection.products.size > 0 %}
+                    {% for product in collection.products %}
+                        {%
+                            render 'framework--product--item--form',
+                            product: product,
+                            view: 'grid',
+                            view_grid: true
+                        %}
+                    {% endfor %}
+                {% else %}
+                    {% for i in (1..6) %}
+                        {%
+                            render 'framework--product--item--form',
+                            view: 'grid',
+                            onboarding: true,
+                            index: i
+                        %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="collection-image-grid-container__image-container">
+                {% capture collection_image %}
+                    {{ section.settings.image | img_url: '1728x2592'}}
+                {% endcapture %}
+                {% capture image_syles %}
+                    background: url({{ collection_image }});
+                    height: 100%;
+                    background-size: cover;
+                    background-position: right;
+                {% endcapture %}
+                <div
+                style="{{ image_syles }}"
+                class="collection-image-grid-container__image"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Grid image collection",
+  "settings": [
+    {
+      "id": "background-color",
+      "label": "Background color",
+      "type": "select",
+      "options": [
+        { "label": "None", "value": "none" },
+        { "label": "Light grey", "value": "light" },
+        { "label": "Accent", "value": "accent" }
+      ],
+      "default": "none"
+    },
+    {
+        "type": "header",
+        "content": "Content"
+    },
+    {
+      "id": "grid-collection",
+      "label": "Choose collection",
+      "type": "collection"
+    },
+    {
+      "id": "image",
+      "label": "Choose image",
+      "type": "image_picker"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Grid image collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

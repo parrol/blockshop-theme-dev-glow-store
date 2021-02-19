@@ -284,6 +284,7 @@
         </div>
       </a>
       <div class="product--details
+      {% if view_grid %} product--details-grid-image {% endif %}
       {% if recommendation %} half-rem-padding {% endif %}
       {% if product.variants.size > 1 %} min-height-unset {% endif %}"
       >

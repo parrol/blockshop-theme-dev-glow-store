@@ -215,174 +215,12 @@
           "rotate-frequency-range": 6
         }
       },
-      "1519177108222": {
-        "type": "framework--featured-content",
-        "disabled": true,
-        "settings": {
-          "full-width": true,
-          "background-color": "accent",
-          "text-position": "right",
-          "text-width": "small",
-          "overlap": false,
-          "transparent-overlap": false,
-          "alternative-color": false,
-          "title": "Image with text",
-          "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-text": ""
-        }
-      },
-      "1519177136360": {
-        "type": "framework--featured-grid",
-        "disabled": true,
-        "blocks": {
-          "1519177136360-0": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          },
-          "1519177136360-1": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          },
-          "1519177136360-2": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          },
-          "1519177136360-3": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          },
-          "1521155794713": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          },
-          "1521155797117": {
-            "type": "image",
-            "settings": {
-              "title": "Grid image",
-              "link-text": "View more"
-            }
-          }
-        },
-        "block_order": [
-          "1519177136360-0",
-          "1519177136360-1",
-          "1519177136360-2",
-          "1519177136360-3",
-          "1521155794713",
-          "1521155797117"
-        ],
-        "settings": {
-          "background-color": "none",
-          "spacing": true,
-          "alternative-color": false,
-          "text-position": "center",
-          "container-width": 4,
-          "width": 3,
-          "mobile-width": "2",
-          "title": "Featured grid",
-          "subtitle": "",
-          "link-text": ""
-        }
-      },
       "1519177181912": {
         "type": "featured-collection",
         "settings": {
           "background-color": "none",
           "home-product-slider-collection": "makeup",
           "max_products": 8
-        }
-      },
-      "1519177213210": {
-        "type": "framework--featured-content",
-        "disabled": true,
-        "settings": {
-          "full-width": true,
-          "background-color": "light",
-          "text-position": "center",
-          "text-width": "large",
-          "overlap": true,
-          "transparent-overlap": true,
-          "alternative-color": false,
-          "title": "Image with text",
-          "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-text": ""
-        }
-      },
-      "1519177316120": {
-        "type": "framework--newsletter",
-        "disabled": true,
-        "settings": {
-          "background-color": "none",
-          "heading": "Subscribe to our newsletter",
-          "newsletter--subheading": "<p>A short sentence describing what someone will receive by subscribing<\/p>"
-        }
-      },
-      "1521155965634": {
-        "type": "framework--featured-text",
-        "disabled": true,
-        "settings": {
-          "background-color": "none",
-          "heading": "Talk about your brand",
-          "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
-        }
-      },
-      "1521155972652": {
-        "type": "framework--featured-video",
-        "disabled": true,
-        "settings": {
-          "video-url": "",
-          "full-width": true,
-          "background-color": "light",
-          "section-height": "regular",
-          "darken-video": true,
-          "alt-text": true,
-          "heading": "",
-          "sub-heading": "Add a subheading here",
-          "button-text": "button"
-        }
-      },
-      "1521155992953": {
-        "type": "framework--map",
-        "disabled": true,
-        "settings": {
-          "api-key": "",
-          "map-address": "391 Sutter St, San Francisco",
-          "background-color": "light",
-          "theme": "grayscale",
-          "heading": "Map",
-          "address": "<p>391 Sutter St,<br\/>San Francisco<br\/>CA 94108, USA<br\/><br\/>(555) 555-5555<\/p>",
-          "hours": "<p>Monday - Friday<br\/>10am - 6pm<br\/><br\/>Saturday - Sunday<br\/>12pm - 5pm<\/p>"
-        }
-      },
-      "1521156071253": {
-        "type": "framework--featured-content",
-        "disabled": true,
-        "settings": {
-          "full-width": false,
-          "background-color": "light",
-          "text-position": "left",
-          "text-width": "small",
-          "overlap": true,
-          "transparent-overlap": false,
-          "alternative-color": false,
-          "title": "Image with text",
-          "description": "<p>Use a combination of image and text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store<\/p>",
-          "link-text": ""
         }
       },
       "announcement": {
@@ -452,22 +290,6 @@
           "logo-height-range": 50,
           "show-mailing-list": true,
           "mailing-list--title": "<p>Sign up to our mailing list<\/p>"
-        }
-      },
-      "1602083674865": {
-        "type": "framework--featured-video",
-        "disabled": true,
-        "settings": {
-          "video-url": "",
-          "image": "shopify:\/\/shop_images\/video-1-how-Sara-keeps-her-skin-hydrated-all-long.png",
-          "full-width": true,
-          "background-color": "none",
-          "section-height": "regular",
-          "darken-video": true,
-          "alt-text": true,
-          "heading": "Video",
-          "sub-heading": "Add a subheading here",
-          "button-text": "button"
         }
       },
       "1610486410d5bc1a84": {
@@ -594,11 +416,6 @@
           "icon3": "spark-bold",
           "pancake3": "<p>We make products inspired by the daily life of women and how to highlight their natural beauty, without complicating their routine too much.<\/p>"
         }
-      },
-      "1612467647030626d4": {
-        "type": "dropdown-collection",
-        "disabled": true,
-        "settings": {}
       },
       "dropdown-collection": {
         "type": "dropdown-collection",
@@ -1003,25 +820,33 @@
           "product-share-facebook": true,
           "product-share-pinterest": false
         }
+      },
+      "161365574166df1038": {
+        "type": "grid-collection-with-image",
+        "settings": {
+          "background-color": "none",
+          "grid-collection": "",
+          "image": "shopify:\/\/shop_images\/IMG_6423.jpg"
+        }
+      },
+      "161365698707018b81": {
+        "type": "grid-collection-with-image",
+        "settings": {
+          "background-color": "none",
+          "grid-collection": "all",
+          "image": "shopify:\/\/shop_images\/IMG_6423.jpg"
+        }
       }
     },
     "content_for_index": [
-      "1612467647030626d4",
       "1519177052247",
       "1519177181912",
       "1612308313cc0d9a3d",
       "1610486410d5bc1a84",
       "1612307839d9b0e350",
-      "1519177108222",
-      "1519177136360",
-      "1519177213210",
-      "1521155965634",
-      "1521155972652",
-      "1521156071253",
       "1599542427196",
-      "1521155992953",
-      "1519177316120",
-      "1602083674865"
+      "161365574166df1038",
+      "161365698707018b81"
     ]
   },
   "presets": {
