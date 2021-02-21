@@ -201,9 +201,12 @@
 {% endcapture %}
 
 {% capture display_add_to_cart_button %}
-<button type="submit" {% unless product.available %} disabled="disabled"{% endunless %} class="product-form--add-to-cart-preview {% if recommendation %}
-  eightpx-padding
-{% endif %} ">
+<button
+type="submit"
+{% unless product.available %} disabled="disabled"{% endunless %}
+class="product-form--add-to-cart-preview
+{% if view_grid %} flex-column-center {% endif %}
+{% if recommendation %} eightpx-padding {% endif %} ">
 
   {%- if product.available -%}
   <span class="product-form--text">{{ add_to_cart_t }}</span>
@@ -219,7 +222,18 @@
 </button>
 {% endcapture%}
 
-{% form 'product', product %}
+{% if view_grid and product.type == 'Kits' %}
+  {% capture display_class %}
+    hidden-grid-image-collection
+  {% endcapture %}
+{% else %}
+  {% capture display_class %}
+    product-form
+  {% endcapture %}
+
+{% endif %}
+
+{% form 'product', product, class: display_class %}
 
 {% comment %}
 <select id="select-variant" name="id" class="product--form--select-variant">

@@ -825,16 +825,8 @@
         "type": "grid-collection-with-image",
         "settings": {
           "background-color": "none",
-          "grid-collection": "",
-          "image": "shopify:\/\/shop_images\/IMG_6423.jpg"
-        }
-      },
-      "161365698707018b81": {
-        "type": "grid-collection-with-image",
-        "settings": {
-          "background-color": "none",
           "grid-collection": "all",
-          "image": "shopify:\/\/shop_images\/IMG_6423.jpg"
+          "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
         }
       }
     },
@@ -845,8 +837,7 @@
       "1610486410d5bc1a84",
       "1612307839d9b0e350",
       "1599542427196",
-      "161365574166df1038",
-      "161365698707018b81"
+      "161365574166df1038"
     ]
   },
   "presets": {
