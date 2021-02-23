@@ -149,7 +149,8 @@
       option: option,
       id: product.id,
       is_swatches: true,
-      has_header: false
+      has_header: false,
+      view_grid: view_grid
     %}
     {% endfor %}
   </div>
@@ -243,7 +244,7 @@ class="product-form--add-to-cart-preview
 </select>
 {% endcomment%}
 
-<select class="product-form--variant-select" name="id">
+<select class="product-form--variant-select" data-is-option-selected="false" name="id">
   {% for variant in product.variants %}
     <option
       value="{{ variant.id }}"

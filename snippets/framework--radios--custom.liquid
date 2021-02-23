@@ -55,7 +55,13 @@
           <input
             class="radios--input"
             type="radio"
+
+            {% if view_grid %}
+            id="{{ radios_name }}-{{ value | downcase | remove: ' ' }}-view_grid"
+            {% else %}
             id="{{ radios_name }}-{{ value | downcase | remove: ' ' }}"
+            {% endif %}
+
             name="{{ radios_name }}"
             value="{{ value | escape }}"
             data-item="radio"
@@ -65,13 +71,18 @@
           />
 
           {% if is_swatches %}
-            <label
+            <label 
               {% if product_form %}
                 class="radios--swatch-button-details {{ value }}"
               {% else %}
                 class="radios--swatch-button {{ value }}"
               {% endif %}
+
+              {% if view_grid %}
+              for="{{ radios_name }}-{{ value | downcase | remove: ' ' }}-view_grid"
+              {% else %}
               for="{{ radios_name }}-{{ value | downcase | remove: ' ' }}"
+              {% endif %}
               aria-label="{{ value | escape }}"
             ></label>
 
@@ -94,15 +105,15 @@
 
 {% for value in option.values%}
 {% if value == "November" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a sunny coral.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a sunny coral.</p>
 {% elsif value == "Foxtrot" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a bright poppy .</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a bright poppy.</p>
 {% elsif value == "Tango" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a frosty glitter.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a frosty glitter.</p>
 {% elsif value == "Charlie" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span>  is a soft peach.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span>  is a soft peach.</p>
 {% else value == "Romeo" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a hot raspberry pink.</p>
+    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a hot raspberry pink.</p>
 {% endif %}
 {% endfor %}
 <p class=" option-description__text reveal" data-value="default-option-description"> {{ colors_available_t }} </p>

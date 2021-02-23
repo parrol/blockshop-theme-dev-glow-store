@@ -1,3 +1,50 @@
+/**
+ * Determine whether a node's text content is entirely whitespace.
+ *
+ * @param nod  A node implementing the |CharacterData| interface (i.e.,
+ *             a |Text|, |Comment|, or |CDATASection| node
+ * @return     True if all of the text content of |nod| is whitespace,
+ *             otherwise false.
+ */
+function is_all_ws(nod) {
+    // Use ECMA-262 Edition 3 String and RegExp features
+    return !(/[^\t\n\r ]/.test(nod.textContent));
+}
+/**
+ * Determine if a node should be ignored by the iterator functions.
+ *
+ * @param nod  An object implementing the DOM1 |Node| interface.
+ * @return     true if the node is:
+ *                1) A |Text| node that is all whitespace
+ *                2) A |Comment| node
+ *             and otherwise false.
+ */
+
+function is_ignorable(nod) {
+    return (nod.nodeType == 8) || // A comment node
+        ((nod.nodeType == 3) && is_all_ws(nod)); // a text node, all ws
+}
+
+/**
+ * Version of |previousSibling| that skips nodes that are entirely
+ * whitespace or comments.  (Normally |previousSibling| is a property
+ * of all DOM nodes that gives the sibling node, the node that is
+ * a child of the same parent, that occurs immediately before the
+ * reference node.)
+ *
+ * @param sib  The reference node.
+ * @return     Either:
+ *               1) The closest previous sibling to |sib| that is not
+ *                  ignorable according to |is_ignorable|, or
+ *               2) null if no such node exists.
+ */
+function node_before(sib) {
+    while ((sib = sib.previousSibling)) {
+        if (!is_ignorable(sib)) return sib;
+    }
+    return null;
+}
+
 
 document.addEventListener("DOMContentLoaded", function (event) {
     /////////////////////////////
@@ -43,12 +90,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ////////////////////////////////////////////////////
     // set option description (ON HOVER)
     // sets default description visibility
-    let isOptionSelected = false;
-    let selected_variant = null;
     let has_variants = document.querySelector('#has-variants');
 
+    //gets selected variant
+    function getSelectedVariant(radio_button) {
+        let selected_variant = null;
+        let option_descriptions = radio_button.closest('#radios--root').parentElement.children
+
+        Array.prototype.forEach.call(option_descriptions, function (child) {
+
+            if (child.dataset.isSelectedVariant == 'true') {
+                selected_variant = child;
+            } else {
+            }
+        });
+
+        return selected_variant;
+    }
+
     // set visibility on selected option
-    function setSelectedVisibility(isVisible) {
+    function setSelectedVisibility(isVisible, radio_button) {
+        let selected_variant = getSelectedVariant(radio_button);
+
         if (isVisible) {
             selected_variant.classList.add("reveal");
             selected_variant.classList.remove("hidden");
@@ -67,14 +130,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
             if (child.getAttribute("data-js-class") !== ("Radios")) {
                 child.classList.add("hidden");
                 child.classList.remove("reveal");
-
             }
         })
     }
 
     // sets visibility for default option description message
     function setDefaultVisibility(event, isVisible) {
-        // let option_descriptions = event.currentTarget.closest('[name = id ]').children
         let option_descriptions = event.currentTarget.closest('#radios--root').parentElement.children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
@@ -92,47 +153,58 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     // shows the hovered option's description
-    function showOptionDescription(event) {
+    function showOptionDescription(event, radio_button) {
 
-        let aria_label = event.currentTarget.getAttribute("aria-label");
-        let current_button = document.getElementById("option--" + aria_label);
+        // get select element
+        let form = radio_button.closest("form");
+        let selects = form.getElementsByTagName("select")
 
-        if (isOptionSelected == false) {
+        let aria_label = radio_button.getAttribute("aria-label");
+        let current_button = form.querySelector("#option--" + aria_label);
+
+        if (selects[0].dataset.isOptionSelected == 'false') {
             setDefaultVisibility(event, false);
             current_button.classList.add("reveal");
             current_button.classList.remove("hidden");
         } else {
-            setSelectedVisibility(false);
+            setSelectedVisibility(false, radio_button);
             current_button.classList.add("reveal");
             current_button.classList.remove("hidden");
         }
     }
 
     // hides option description and shows default description
-    function hideOptionDescription(event) {
-        let aria_label = event.currentTarget.getAttribute("aria-label");
-        let current_button = document.getElementById("option--" + aria_label);
+    function hideOptionDescription(event, radio_button) {
 
-        if (isOptionSelected == false) {
+        // get select element
+        let form = event.currentTarget.closest("form");
+        let selects = form.getElementsByTagName("select")
+
+        let aria_label = event.currentTarget.getAttribute("aria-label");
+        let current_button = form.querySelector("#option--" + aria_label);
+
+        if (selects[0].dataset.isOptionSelected == 'false') {
             setDefaultVisibility(event, true);
             current_button.classList.add("hidden");
             current_button.classList.remove("reveal");
 
         } else {
             hideAll(event);
-            setSelectedVisibility(true);
+            setSelectedVisibility(true, radio_button);
         }
 
     }
 
     //sets global variant selected
-    function selectOptionDescription(radio_button, name) {
-        // let option_descriptions = radio_button.closest('[name = id ]').children
+    function selectOptionDescription(radio_button, name, radio_input) {
         let option_descriptions = radio_button.closest('#radios--root').parentElement.children
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-value") === name) {
-                selected_variant = child;
+                child.dataset.isSelectedVariant = true;
+                radio_input.checked = true;
+            } else {
+                child.dataset.isSelectedVariant = false;
             }
         });
     }
@@ -167,9 +239,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function onRadioButtonClicked(event, radio_button) {
 
+        let radio_input = node_before(radio_button);
+
         // get select element
         let form = radio_button.closest("form");
         let selects = form.getElementsByTagName("select")
+
         let select_variant = selects[0]
 
         // get variant name
@@ -177,21 +252,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // get variants option elements
         let options_array = select_variant.getElementsByTagName('option')
+        console.log('options_array: ', options_array);
 
         // select option according to radio button selected
         for (option of options_array) {
             // delete white spaces in innertext
             if (variant === option.innerText.replace(/\s/g, "")) {
                 select_variant.value = option.getAttribute("value");
-                selectOptionDescription(radio_button, variant);
+                selectOptionDescription(radio_button, variant, radio_input);
 
+                let selected_variant = getSelectedVariant(radio_button);
                 let color = selected_variant.getAttribute("data-value");
                 updateVariantImage(radio_button, color);
             }
         }
 
-        showOptionDescription(event);
-        isOptionSelected = true;
+        showOptionDescription(event, radio_button);
+        selects[0].dataset.isOptionSelected = true;
     }
 
     var intervalID = window.setInterval(addListeners, 1000);
@@ -200,56 +277,56 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // get elements that'll be hovered
         // container of the elements
-        let radios__buttons__container = document.getElementsByClassName('radios--main');
-        let radios__buttons = [];
+        let radios_buttons_container = document.getElementsByClassName('radios--main');
+        let radios_buttons = [];
 
         // take each container, get the element inside and create push them to a new array
-        Array.prototype.forEach.call(radios__buttons__container, function (radio__button__container) {
-            radios__buttons.push(radio__button__container.children[1]);
+        Array.prototype.forEach.call(radios_buttons_container, function (radio_button_container) {
+            radios_buttons.push(radio_button_container.children[1]);
         })
 
-        if (radios__buttons.length === 0) {
+        if (radios_buttons.length === 0) {
             return;
         } else {
             clearInterval(intervalID);
         }
 
         // add event listeners for mouseover and mouseout to each radio button
-        Array.prototype.forEach.call(radios__buttons, function (radio__button) {
-            radio__button.addEventListener("mouseover", showOptionDescription);
-            radio__button.addEventListener("mouseout", hideOptionDescription);
-            radio__button.addEventListener("click", (event) => { onRadioButtonClicked(event, radio__button) });
+        Array.prototype.forEach.call(radios_buttons, function (radio_button) {
+            radio_button.addEventListener("mouseover", (event) => { showOptionDescription(event, radio_button) });
+            radio_button.addEventListener("mouseout", (event) => { hideOptionDescription(event, radio_button) });
+            radio_button.addEventListener("click", (event) => { onRadioButtonClicked(event, radio_button); event.preventDefault() });
         });
     }
 
 
     //Image filterr
     if (has_variants) {
-        let radio__buttons = document.getElementsByClassName('radios--value-button');
-        let swatch__buttons = document.getElementsByClassName('radios--swatch-button-details');
+        let radio_buttons = document.getElementsByClassName('radios--value-button');
+        let swatch_buttons = document.getElementsByClassName('radios--swatch-button-details');
         let selected__button__container;
         let selected__button;
         selected__button__container = document.getElementById('product-form--variant-select-glowstick');
         selected__button = selected__button__container.options[selected__button__container.selectedIndex].innerText.toUpperCase().trim()
         //Value buttons
-        if (radio__buttons.length > 0) {
+        if (radio_buttons.length > 0) {
 
-            Array.prototype.forEach.call(radio__buttons, function (radio__button) {
+            Array.prototype.forEach.call(radio_buttons, function (radio_button) {
 
-                let filter = radio__button.innerText;
-                radio__button.addEventListener("click", (event) => { filterThumbnails(event, radio__button, filter) });
+                let filter = radio_button.innerText;
+                radio_button.addEventListener("click", (event) => { filterThumbnails(event, radio_button, filter) });
                 //this is called once after page is loaded
-                filterThumbnails(event, radio__button, selected__button);
+                filterThumbnails(event, radio_button, selected__button);
             });
             //Swatch buttons
-        } else if (swatch__buttons.length > 0) {
+        } else if (swatch_buttons.length > 0) {
 
-            Array.prototype.forEach.call(swatch__buttons, function (swatch__button) {
+            Array.prototype.forEach.call(swatch_buttons, function (swatch_button) {
 
-                let filter = swatch__button.getAttribute("aria-label");
-                swatch__button.addEventListener("click", (event) => { filterThumbnails(event, swatch__buttons, filter.toUpperCase()) });
+                let filter = swatch_button.getAttribute("aria-label");
+                swatch_button.addEventListener("click", (event) => { filterThumbnails(event, swatch_buttons, filter.toUpperCase()) });
                 //this is called once after page is loaded
-                filterThumbnails(event, swatch__button, selected__button);
+                filterThumbnails(event, swatch_button, selected__button);
             });
         } else {
             console.warn('there are no radio buttons for color selection')
