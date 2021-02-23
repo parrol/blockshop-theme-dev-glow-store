@@ -821,11 +821,11 @@
           "product-share-pinterest": false
         }
       },
-      "161365574166df1038": {
+      "1614058103802416c6": {
         "type": "grid-collection-with-image",
         "settings": {
           "background-color": "none",
-          "grid-collection": "all",
+          "grid-collection": "makeup",
           "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
         }
       }
@@ -835,9 +835,9 @@
       "1519177181912",
       "1612308313cc0d9a3d",
       "1610486410d5bc1a84",
-      "161365574166df1038",
       "1612307839d9b0e350",
-      "1599542427196"
+      "1599542427196",
+      "1614058103802416c6"
     ]
   },
   "presets": {

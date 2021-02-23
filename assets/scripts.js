@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             if (child.dataset.isSelectedVariant == 'true') {
                 selected_variant = child;
             } else {
+                // console.log('no selected variant i.e. null');
             }
         });
 
@@ -240,6 +241,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function onRadioButtonClicked(event, radio_button) {
 
         let radio_input = node_before(radio_button);
+        radio_input.click();
 
         // get select element
         let form = radio_button.closest("form");
@@ -252,12 +254,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // get variants option elements
         let options_array = select_variant.getElementsByTagName('option')
-        console.log('options_array: ', options_array);
+        let option_text;
 
         // select option according to radio button selected
         for (option of options_array) {
+            option_text = option.innerText.replace(/\s/g, "")
             // delete white spaces in innertext
-            if (variant === option.innerText.replace(/\s/g, "")) {
+            if (variant === option_text) {
                 select_variant.value = option.getAttribute("value");
                 selectOptionDescription(radio_button, variant, radio_input);
 
