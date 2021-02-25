@@ -193,7 +193,7 @@
           "1519177052247-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/DSC_0770.jpg",
+              "image": "shopify:\/\/shop_images\/IMG_6346sRGB.jpg",
               "slide-title": "Trendy",
               "slide-tagline": "We design our products according to the latest trends",
               "slide-link-url": "shopify:\/\/products\/purple-palette",
@@ -825,7 +825,10 @@
         "type": "grid-collection-with-image",
         "settings": {
           "background-color": "none",
-          "grid-collection": "makeup",
+          "title": "Glow your way",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent iaculis aliquet quam, eu mattis risus ultrices sed. Ut turpis augue, ultrices vel tristique eu, cursus vel sapien",
+          "button_text": "Shop our products",
+          "grid-collection": "all",
           "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
         }
       }
