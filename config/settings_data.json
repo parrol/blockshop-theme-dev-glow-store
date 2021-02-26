@@ -24,7 +24,7 @@
     "color-product-cards": "#fafafa",
     "typography--heading": "roboto_n5",
     "typography--heading--uppercase": false,
-    "typography--heading--size": "small",
+    "typography--heading--size": "medium",
     "typography--header--menu": "montserrat_n6",
     "typography--header--menu--uppercase": true,
     "typography--header--menu--size": "medium",
