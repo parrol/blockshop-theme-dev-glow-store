@@ -470,7 +470,7 @@ a.header--cart-link{
 
 .product-page--cart-form {
   grid-row: 4;
-  max-width: 400px;
+  max-width: 100%;
   padding-top: 16px;
 }
 
@@ -494,6 +494,10 @@ button.product-form--add-to-cart {
 .product-form--quantity:hover {
   border: 1px solid black;
   transition: all 0.15s linear 0s;
+  -webkit-transition: all 0.15s linear 0s;
+  -moz-transition: all 0.15s linear 0s;
+  -o-transition: all 0.15s linear 0s;
+  transition: all 0.15s linear 0s;
 }
 
 input#quantity {
@@ -516,6 +520,48 @@ button.quantity--button {
   padding-top: 0;
 }
 
+.review-icon {
+  align-self: center;
+}
+
+.icon-plus {
+  width: 16px;
+  height: 16px;
+}
+
+/* PRODUCT REVIEWS */
+
+#shopify-product-reviews-container {
+  border-top: 2px solid var(--color-border);
+  border-bottom: 2px solid var(--color-border);
+  margin: 1rem 0;
+  padding: 1rem 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#shopify-product-reviews-container:active{
+  background-color: none;
+}
+
+
+#review-count-container{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
+  cursor: pointer;
+}
+
+#review-count-container :active{
+  background-color: none;
+}
+
+.accordion-active {
+  display: block !important;
+}
+
+.accordion-hidden {
+  display: none !important;
+}
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

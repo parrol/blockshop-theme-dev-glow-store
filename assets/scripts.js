@@ -85,6 +85,34 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
         }
     }
+
+    ////////////////////////////////////////////////////
+    /* Add accordion functionality                    */
+    ////////////////////////////////////////////////////
+
+    let review_accordion = document.getElementById('review-count-container')
+    if (review_accordion) {
+
+        let plus = document.getElementById('review-icon-plus')
+        let minus = document.getElementById('review-icon-minus')
+        let product_reviews = review_accordion.nextElementSibling;
+        product_reviews.classList.add('accordion-hidden');
+
+        review_accordion.addEventListener("click", (event) => {
+            event.preventDefault();
+
+
+            plus.classList.toggle('accordion-hidden');
+            plus.classList.toggle('accordion-active');
+
+            minus.classList.toggle('accordion-hidden');
+            minus.classList.toggle('accordion-active');
+
+            product_reviews.classList.toggle('accordion-hidden');
+            product_reviews.classList.toggle('accordion-active');
+        });
+    }
+
     ////////////////////////////////////////////////////
     /* Update selected variant with its product image */
     ////////////////////////////////////////////////////
