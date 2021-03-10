@@ -182,7 +182,7 @@
 
       <div id="shopify-product-reviews-container">
         <div id="review-count-container" class="review-accordion">
-          <div class="review-count"> review count</div>
+          <div class="review-count"> Customer reviews</div>
           <svg id="review-icon-plus" class="review-icon accordion-active" width="16px" height="16px">
             <path d="M14,7.25H8.75V2a.75.75,0,0,0-1.5,0V7.25H2a.75.75,0,0,0,0,1.5H7.25V14a.75.75,0,0,0,1.5,0V8.75H14a.75.75,0,0,0,0-1.5Z"></path>
           </svg>
@@ -193,6 +193,7 @@
         <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
       </div>
     {% endform %}
+
 
     {% if show_unavailable_form %}
       <div class="product-form--unavailable">

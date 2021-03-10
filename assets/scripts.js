@@ -45,6 +45,45 @@ function node_before(sib) {
     return null;
 }
 
+Element.prototype.isOverFlown = function () {
+    return this.clientHeight < this.scrollHeight;
+}
+
+function calculateLineHeight(element) {
+
+    var lineHeight = parseInt(window.getComputedStyle(element, null).getPropertyValue("line-height"), 10);
+    var clone;
+    var singleLineHeight;
+    var doubleLineHeight;
+
+    if (isNaN(lineHeight)) {
+        clone = element.cloneNode();
+        clone.innerHTML = '<br>';
+        element.appendChild(clone);
+        singleLineHeight = clone.offsetHeight;
+        clone.innerHTML = '<br><br>';
+        doubleLineHeight = clone.offsetHeight;
+        element.removeChild(clone);
+        lineHeight = doubleLineHeight - singleLineHeight;
+    }
+
+    return lineHeight;
+}
+
+// Function to count total
+// number of lines
+function countLines(element) {
+    // Get total height of the content
+    let divHeight = element.offsetHeight
+    // console.log('divHeight', divHeight);
+
+    // height of one line
+    let lineHeight = calculateLineHeight(element);
+    // console.log('lineHeight', lineHeight);
+
+    let lines = divHeight / lineHeight;
+    // console.log("Lines: " + lines);
+}
 
 document.addEventListener("DOMContentLoaded", function (event) {
     /////////////////////////////
@@ -86,32 +125,102 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     }
 
+
     ////////////////////////////////////////////////////
     /* Add accordion functionality                    */
     ////////////////////////////////////////////////////
 
-    let review_accordion = document.getElementById('review-count-container')
+
+    let review_accordion = document.getElementById('review-count-container');
+    let review_icon_plus = document.getElementById('review-icon-plus');
     if (review_accordion) {
-
-        let plus = document.getElementById('review-icon-plus')
-        let minus = document.getElementById('review-icon-minus')
-        let product_reviews = review_accordion.nextElementSibling;
-        product_reviews.classList.add('accordion-hidden');
-
-        review_accordion.addEventListener("click", (event) => {
-            event.preventDefault();
-
-
-            plus.classList.toggle('accordion-hidden');
-            plus.classList.toggle('accordion-active');
-
-            minus.classList.toggle('accordion-hidden');
-            minus.classList.toggle('accordion-active');
-
-            product_reviews.classList.toggle('accordion-hidden');
-            product_reviews.classList.toggle('accordion-active');
-        });
+        review_accordion.style.color = 'gray';
+        review_icon_plus.style.fill = 'gray';
+        review_accordion.setAttribute("disabled", "");
     }
+
+    function addPaginationListeners() {
+        let pagination_next = document.getElementsByClassName('spr-pagination-next')[0];
+        let pagination_prev = document.getElementsByClassName('spr-pagination-prev')[0];
+
+        //Both buttons needs to wait 0.5s before they can be selected and listened to.
+        //Then, when they're available to be clicked, the new reviews are clamped and whe can listen to their events.
+        if (pagination_next) {
+            pagination_next.addEventListener("click", (event) => {
+                setTimeout(function () {
+                    clamp_reviews();
+                    addPaginationListeners();
+                }, 500);
+            });
+        }
+
+        if (pagination_prev) {
+            pagination_prev.addEventListener("click", (event) => {
+                setTimeout(function () {
+                    clamp_reviews();
+                    addPaginationListeners();
+                }, 500);
+            });
+        }
+    }
+
+
+    function addAcordionListeners() {
+        let review_accordion = document.getElementById('review-count-container');
+        if (review_accordion) {
+
+            //TODO: this needs to be change to some asynchronous code to be more effective.
+            setTimeout(function () {
+                review_accordion.style.color = 'unset';
+                review_icon_plus.style.fill = 'black';
+                review_accordion.setAttribute("disabled", false);
+            }, 2000);
+
+
+            let plus = document.getElementById('review-icon-plus')
+            let minus = document.getElementById('review-icon-minus')
+            let product_reviews = review_accordion.nextElementSibling;
+            product_reviews.classList.add('accordion-hidden');
+
+            review_accordion.addEventListener("click", (event) => {
+                event.preventDefault();
+
+                plus.classList.toggle('accordion-hidden');
+                plus.classList.toggle('accordion-active');
+
+                minus.classList.toggle('accordion-hidden');
+                minus.classList.toggle('accordion-active');
+
+                product_reviews.classList.toggle('accordion-hidden');
+                product_reviews.classList.toggle('accordion-active');
+                clamp_reviews();
+                addPaginationListeners();
+            });
+        }
+    }
+
+    window.addEventListener('load', (event) => {
+        console.log('page is fully loaded');
+        addAcordionListeners();
+    });
+
+    ////////////////////////////////////////////////////
+    /* Add clamp to product reviews content           */
+    ////////////////////////////////////////////////////
+
+    function toggleClamp(event, element) {
+        element.classList.toggle('clamp');
+        element.classList.toggle('no_clamp');
+    }
+
+    function clamp_reviews() {
+        let reviews_text = document.getElementsByClassName('spr-review-content-body');
+
+        for (let i = 0; i < reviews_text.length; i++) {
+            reviews_text[i].addEventListener("click", (event) => { toggleClamp(event, reviews_text[i]) });
+        }
+    }
+
 
     ////////////////////////////////////////////////////
     /* Update selected variant with its product image */

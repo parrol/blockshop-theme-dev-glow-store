@@ -12,12 +12,18 @@
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px;
   margin: 16px 0;
+  border-radius: 3px;
+}
+
+.review-count {
+  font-weight: 500;
 }
 
 .spr-header-title {
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
+  display: none;
 }
 
 .spr-summary-actions-newreview {
@@ -50,8 +56,18 @@
   padding-bottom: 16px !important;
 }
 
+.spr-review-content-body {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+}
+
 .spr-reviews {
   margin: 0;
+
 }
 
 .spr-header {
