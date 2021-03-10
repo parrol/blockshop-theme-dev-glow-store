@@ -180,6 +180,7 @@
         </div>
       {% endif %}
 
+      {% unless feature_product %}
       <div id="shopify-product-reviews-container">
         <div id="review-count-container" class="review-accordion">
           <div class="review-count"> Customer reviews</div>
@@ -192,6 +193,7 @@
         </div>
         <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
       </div>
+      {% endunless %}
     {% endform %}
 
 

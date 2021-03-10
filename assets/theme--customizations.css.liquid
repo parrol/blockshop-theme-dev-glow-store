@@ -621,17 +621,41 @@ input[type=number] {
 
 
 @media only screen and (max-width: 767px) {
+
   .product-page--container {
     margin: 0 auto;
   }
 
+  .product-page--title-n-vendor {
+    padding-top: 8px;
+    max-width: 400px;
+  }
+
+  .featured-section-heading {
+    text-align: left;
+  }
+
   .product-page--media {
     padding: 0px;
+    grid-row: 1;
+  }
+
+  .product-page--description {
+    padding-top: 0;
+    text-align: left;
+    grid-row: 4;
+  }
+
+  .product-page--cart-form {
+    grid-row: 5;
+    max-width: 100%;
+    padding-top: 16px;
   }
 
   .product-page--root .product-page--thumbs {
     margin: 0 auto;
   }
+
 }
 
 @media only screen and (max-width: 500px) {
@@ -766,6 +790,10 @@ input[type=number] {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
   grid-gap: .5em;
+}
+
+.product-page--description {
+  margin: 0;
 }
 
 .description--paragraph {
