@@ -54,7 +54,7 @@
     "popup--social-icons--enabled": true,
     "popup--seconds-range": 1,
     "popup--days-range": 7,
-    "favicon": "shopify:\/\/shop_images\/CleanShot_2021-01-12_at_18.08.31.png",
+    "favicon": "shopify:\/\/shop_images\/favicon.png",
     "hide-tags": "featured, pinned",
     "cart--type": "drawer",
     "cart--show-note": true,
@@ -193,13 +193,13 @@
           "1519177052247-0": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/IMG_6346sRGB.jpg",
+              "image": "shopify:\/\/shop_images\/IMG_6346sRGB_crop.jpg",
               "slide-title": "Trendy",
               "slide-tagline": "We design our products according to the latest trends",
               "slide-link-url": "shopify:\/\/products\/blue-palette",
               "slide-link-title": "CHECK OUR EYE SHADOWS",
               "slide-y-pos": "bottom",
-              "slide-x-pos": "left",
+              "slide-x-pos": "right",
               "slide-text-pos": "text-left"
             }
           }
@@ -294,6 +294,50 @@
       },
       "1610486410d5bc1a84": {
         "type": "framework--featured-product",
+        "blocks": {
+          "a75cac65-3c4a-430f-b0d3-8997c51c6bf7": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Longwearing<\/p>",
+              "icon": "longwearing-bold"
+            }
+          },
+          "a6dd2be2-cf9b-4593-af3a-862803973cf3": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Enhancing<\/p>",
+              "icon": "enhancing-bold"
+            }
+          },
+          "9e4f3ad7-4fcf-415e-ad85-ca02ead905a7": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Nourishing<\/p>",
+              "icon": "nourishing-bold"
+            }
+          },
+          "a090c628-7c7b-4c76-ba9a-3268d4a1275c": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Vegan<\/p>",
+              "icon": "vegan-bold"
+            }
+          },
+          "bb538b19-cce9-4565-b643-b11b7dd0464c": {
+            "type": "list",
+            "settings": {
+              "good_to_know_list": "<p>Cruelty free<\/p>",
+              "icon": "bunny-bold"
+            }
+          }
+        },
+        "block_order": [
+          "a75cac65-3c4a-430f-b0d3-8997c51c6bf7",
+          "a6dd2be2-cf9b-4593-af3a-862803973cf3",
+          "9e4f3ad7-4fcf-415e-ad85-ca02ead905a7",
+          "a090c628-7c7b-4c76-ba9a-3268d4a1275c",
+          "bb538b19-cce9-4565-b643-b11b7dd0464c"
+        ],
         "settings": {
           "background-color": "none",
           "smart_payment_button": false,
@@ -305,6 +349,11 @@
           "quantity-enabled": true,
           "product-unavailable-form-show": false,
           "low-in-stock-amount": 0,
+          "measures_text": "<p>Eyeshadow glow 35 colors<\/p>",
+          "what_it_is": "<p><strong>What it is: <\/strong>35 colors that are divided into matte pigments as well as sparkly. Colors are highly pigmented, with a texture smooth and easy to mix.<\/p>",
+          "special_title": "<p><strong>WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
+          "special_text": "<p>With this palette you can do a complete makeup: eyebrows, blush, highligther, eyeshadow and bronzer. Essential Palette light your way thanks to its intensely pigmented colors that last all day. <\/p>",
+          "good_to_know_title": "<p><strong>GOOD TO KNOW:<\/strong><\/p>",
           "flex-row": true,
           "loop-enabled": false,
           "product-size-chart-enabled": false,
@@ -830,6 +879,33 @@
           "button_text": "Shop our products",
           "grid-collection": "all",
           "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
+        }
+      },
+      "about-us": {
+        "type": "about-us",
+        "blocks": {
+          "61dbbd3d-70fd-470f-8f92-92795f0ab0ad": {
+            "type": "list",
+            "settings": {
+              "image_left": "shopify:\/\/shop_images\/about_01.de04bf2a.jpg",
+              "image_right": "shopify:\/\/shop_images\/about_02.583c144c.jpg"
+            }
+          },
+          "d23a8c97-aa21-4dae-9427-ca2c7d1c0410": {
+            "type": "list",
+            "settings": {
+              "image_left": "shopify:\/\/shop_images\/about_04.2e21e031.jpg",
+              "image_right": "shopify:\/\/shop_images\/5.jpg"
+            }
+          }
+        },
+        "block_order": [
+          "61dbbd3d-70fd-470f-8f92-92795f0ab0ad",
+          "d23a8c97-aa21-4dae-9427-ca2c7d1c0410"
+        ],
+        "settings": {
+          "center-content--enabled": true,
+          "header": "Hi, Welcome to Glow Beauty Aids!"
         }
       }
     },
