@@ -884,14 +884,14 @@
       "about-us": {
         "type": "about-us",
         "blocks": {
-          "61dbbd3d-70fd-470f-8f92-92795f0ab0ad": {
+          "de6fffa1-1530-4b74-875c-5746160179e2": {
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/about_01.de04bf2a.jpg",
               "image_right": "shopify:\/\/shop_images\/about_02.583c144c.jpg"
             }
           },
-          "d23a8c97-aa21-4dae-9427-ca2c7d1c0410": {
+          "221b713b-0aef-4ec6-b4f1-ae50613e7d3d": {
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/about_04.2e21e031.jpg",
@@ -900,8 +900,8 @@
           }
         },
         "block_order": [
-          "61dbbd3d-70fd-470f-8f92-92795f0ab0ad",
-          "d23a8c97-aa21-4dae-9427-ca2c7d1c0410"
+          "de6fffa1-1530-4b74-875c-5746160179e2",
+          "221b713b-0aef-4ec6-b4f1-ae50613e7d3d"
         ],
         "settings": {
           "center-content--enabled": true,
