@@ -34,11 +34,14 @@
     data-low-stock-amount="{{ low_stock_amount }}"
   {% endif %}
 >
-  <div class="modal--root" data-js-class="FrameworkModal">
+  <div class="modal--root 
+  {% if product_kit %}
+  modal--root--kit
+  {% endif %}"
+  data-js-class="FrameworkModal">
 
     {% form 'product', product, class: 'product-form--container' %}
       <div class="product-form--price-container">
-
         <div
           class="product-form--price-wrapper"
           itemprop="offers"
@@ -71,7 +74,6 @@
             </span>
           {% endif %}
         </div>
-
       </div>
 
       <div class="product-form--variants">
@@ -96,9 +98,7 @@
                 id: product.id
               %}
             {% endif %}
-
           {% endfor %}
-
         {% endunless %}
 
         <select id="product-form--variant-select-{{ product.title | downcase }}" class="product-form--variant-select" data-is-option-selected="false" name="id">
@@ -120,8 +120,6 @@
             </option>
           {% endfor %}
         </select>
-
-
       </div>
 
       {% if low_stock_amount > 0 and sold_out == false %}
@@ -196,6 +194,26 @@
       {% endunless %}
     {% endform %}
 
+    {%- if product_kit -%}
+    <section class="viewport-wrapper">
+      <div class="kit-wrapper">
+        <ul class="unordered-list-flat">
+          {% if collection_kit.products.size and collection_kit.products.size > 0 %}
+            {% for product in collection_kit.products %}
+              <li class="unordered-list-flat--item-preview">
+                {%
+                  render 'product--item--preview--kit',
+                  product: product,
+                  view: 'grid',
+                  view_grid: true
+                %}
+              </li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
+    </section>
+    {%- endif -%}
 
     {% if show_unavailable_form %}
       <div class="product-form--unavailable">

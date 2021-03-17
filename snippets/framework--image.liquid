@@ -50,7 +50,7 @@
 
 {% capture display_images %}
     <div
-    class="image--root"
+    class="image--root {% if kit %} image--root--preview-kit {% endif %}"
     data-aspectratio="{{ image.aspect_ratio }}"
     data-item="image"
     {% if parallax %}
@@ -96,7 +96,7 @@
   {% comment %} if this is a preview hide all images other than November{% endcomment%}
   {% if image.alt != "NOVEMBER"%}
     <div
-    class="image--root hidden"
+    class="image--root hidden {% if kit %} image--root--preview-kit {% endif %}"
     data-aspectratio="{{ image.aspect_ratio }}"
     data-item="image"
     {% if parallax %}

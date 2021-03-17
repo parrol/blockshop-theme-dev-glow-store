@@ -4,6 +4,7 @@
 {% assign from_t = 'products.from' | t %}
 {% assign add_to_cart_t = 'products.add_to_cart' | t %}
 
+
 {% comment %} Variables {% endcomment %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 {% assign hover_image_enabled = settings.hover-image-enabled %}
@@ -33,7 +34,7 @@
 {% if product.media.size > 1 %}
   {% capture hover_image %}
     <div class="product--hover-image">
-      {% render 'framework--image', image: product.media[1].preview_image %}
+      {% render 'framework--image', image: product.media[1].preview_image, kit: true %}
     </div>
   {% endcapture %}
 {% else %}
@@ -47,7 +48,7 @@
   <div class="product--color-image">
     {% for variant in product.variants %}
       {% if variant.image.attached_to_variant? %}
-        {% render 'framework--image', image: variant.image, full_width: true, preview: true %}
+        {% render 'framework--image', image: variant.image, full_width: true, preview: true, kit: true %}
       {% endif %}
     {% endfor %}
   </div>
@@ -77,7 +78,8 @@
     {%
       render 'framework--image',
       image: product.featured_media.preview_image,
-      full_width: true
+      full_width: true,
+      kit: true
     %}
   {% endcapture %}
 
@@ -106,14 +108,14 @@
 {% endif %}
 
 {% capture display_title %}
-  <h3 class="product--title" data-item="paragraph">
+  <h3 class="product--title preview-kit--title" data-item="paragraph">
     {{ title }}
   </h3>
 {% endcapture %}
 
 <!--  show preview description only -->
 {% capture display_description %}
-  <h3 class="product--description" data-item="paragraph">
+  <h3 class="product--description preview-kit--description" data-item="paragraph">
     {{ description_preview[0] | strip_html}}
   </h3>
 {% endcapture %}
@@ -142,7 +144,7 @@
 </div>
 {%- endcomment -%}
 {% else %}
-  <div class="product--select-variants" name="id">
+  <div class="product--select-variants product--select-variants-preview-kit" name="id">
     {% for option in product.options_with_values %}
     {%
       render 'framework--radios--custom',
@@ -150,7 +152,8 @@
       id: product.id,
       is_swatches: true,
       has_header: false,
-      view_grid: view_grid
+      view_grid: view_grid,
+      radios_kit: true
     %}
     {% endfor %}
   </div>
@@ -265,7 +268,7 @@ class="product-form--add-to-cart-preview
 </select>
   <div
   id="image-container--product-root"
-  class="product--root"
+  class="product--root product--root--preview-kit"
   data-product-view="{{ view }}"
   {% if hover_image_enabled and hover_image %}
     data-hover-image="true"
@@ -274,7 +277,7 @@ class="product-form--add-to-cart-preview
   >
   {% case view %}
     {% when 'grid' %}
-      <a class="product--item" href="{{ url }}" aria-label="{{ product.title }}">
+      <a class="product--item product--item-preview-kit" href="{{ url }}" aria-label="{{ product.title }}">
         {% unless product.available or onboarding %}
           <div class="product--sold-out" data-item="accent-text">
             {{ sold_out_t }}
@@ -299,18 +302,19 @@ class="product-form--add-to-cart-preview
         </div>
       </a>
       <div class="product--details
-      {% if view_grid %} product--details-grid-image {% endif %}
+      {% if view_grid %} product--details-preview-kit {% endif %}
       {% if recommendation %} half-rem-padding {% endif %}
       {% if product.variants.size > 1 %} min-height-unset {% endif %}"
       >
         {{ display_vendor }}
         <div class="details--header">
-          {{ display_title }}
+          <a href="{{ url }}">
+            {{ display_title }}
+          </a>
           {{ display_description }}
         </div>
         {{ display_variants }}
         {{ display_option_description }}
-        {{ display_add_to_cart_button }}
       </div>
 
     {% when 'list' %}

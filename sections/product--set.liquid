@@ -23,6 +23,17 @@
 {% assign show_unavailable_form = section.settings.product-unavailable-form-show %}
 {% assign show_vendor = settings.product--show-vendor %}
 {% assign variant_style = section.settings.variant-style %}
+{% assign what_it_is = section.settings.what_it_is %}
+{% assign special_title = section.settings.special_title %}
+{% assign special_text = section.settings.special_text %}
+{% assign good_to_know_title = section.settings.good_to_know_title %}
+{% assign quantity_enabled = section.settings.quantity-enabled %}
+{% assign measures_text = section.settings.measures_text %}
+{% assign collection_kit = collections[section.settings.collection_kit] %}
+
+
+{%- comment -%}  split descriptions and assign as array {%- endcomment -%}
+{% assign description_preview = product.description | split: '--' %}
 
 {% if collections[product_vendor_handle].handle == product_vendor_handle %}
   {% assign vendor_url = collections[product_vendor_handle].url %}
@@ -85,6 +96,7 @@
   >
     <div class="product-page--main-content">
 
+
       <div class="product-page--title-n-vendor">
         <h1 class="product-page--title" itemprop="name" data-item="section-heading">
           {{ product.title }}
@@ -98,9 +110,19 @@
         {% endif %}
       </div>
 
+      {% if product.media.size > 1 %}
+        <div class="product-page--thumbs" data-position="cart-form-column">
+          {%
+            render "framework--product--media",
+            view: "thumbs",
+            product: product
+          %}
+        </div>
+      {% endif %}
+
       <div class="product-page--cart-form">
         {%
-          render "framework--product--form",
+          render "framework--product--form--custom",
           product: product,
           enable_callback: true,
           enable_smart_payment: enable_smart_payment,
@@ -110,23 +132,38 @@
           enable_size_chart: enable_size_chart,
           size_chart_content: size_chart_content,
           size_chart_option: size_chart_option,
-          show_unavailable_form: show_unavailable_form
+          show_unavailable_form: show_unavailable_form,
+          quantity_enabled: quantity_enabled,
+          product_kit: true,
+          collection_kit: collection_kit
         %}
 
-        {% if product.media.size > 1 %}
-          <div class="product-page--thumbs" data-position="cart-form-column">
-            {%
-              render "framework--product--media",
-              view: "thumbs",
-              product: product
-            %}
-          </div>
-        {% endif %}
       </div>
 
       <div class="product-page--description">
-        <div class="rte-content" data-item="paragraph" itemprop="description">
-          {{ product.description }}
+        <div class="description--paragraph measures"> {{ measures_text }} </div>
+        <div class="description--paragraph"> {{ what_it_is }} </div>
+        <div class="description--title"> {{ special_title }} </div>
+        <div class="description--paragraph"> {{ special_text }} </div>
+        <div class="description--paragraph">
+          <ul class="bullet-list">
+          {% for block in section.blocks %}
+            {% if block.type == 'bullet-list' %}
+              <li class="bullet-list--item"> {{ block.settings.bullet_list }} </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="description--title"> {{ good_to_know_title }} </div>
+        <div class="features--container">
+          {% for block in section.blocks %}
+            {% if block.type == 'list' %}
+            <div class="feature">
+              <div class="feature--image {{ block.settings.icon }}"></div>
+              <div> {{ block.settings.good_to_know_list }} </div>
+            </div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
 
@@ -223,11 +260,23 @@
       "default": "dropdowns"
     },
     {
+      "id": "collection_kit",
+      "label": "Choose collection with available products in this kit",
+      "type": "collection"
+    },
+    {
       "type": "checkbox",
       "id": "swatches-enabled",
       "label": "Enable color swatches",
       "default": false,
       "info": "Automatically turn color options into swatches. [Learn more](https://support.troopthemes.com/guide/color-swatch-guide)"
+    },
+    {
+      "type": "checkbox",
+      "id": "quantity-enabled",
+      "label": "Enable quantity selector",
+      "default": true,
+      "info": "Lets the user pick the quantity to add to the cart."
     },
     {
       "type": "checkbox",
@@ -250,6 +299,39 @@
       "step": 1,
       "default": 0,
       "info": "Set to 0 to disable this feature. Updated for each variant."
+    },
+    {
+      "type": "header",
+      "content": "Product description"
+    },
+    {
+      "type": "richtext",
+      "id": "measures_text",
+      "label": "Measures",
+      "default": "<p>what it is</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "what_it_is",
+      "label": "What it is",
+      "default": "<p>what it is </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_title",
+      "label": "Title",
+      "default": "<p>WHY IT'S SPECIAL </p>"
+    },
+    {
+      "type": "richtext",
+      "id": "special_text",
+      "label": "Paragraph"
+    },
+    {
+      "type": "richtext",
+      "id": "good_to_know_title",
+      "label": "Title",
+      "default": "<p>GOOD TO KNOW </p>"
     },
     {
       "type": "header",
@@ -344,6 +426,52 @@
       "id": "product-share-pinterest",
       "label": "Share on Pinterest",
       "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Good to know",
+      "type": "list",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "good_to_know_list",
+          "label": "Good to know"
+        },
+        {
+          "id": "icon",
+          "label": "Icon",
+          "type": "select",
+          "options": [
+            { "value": "spark-bold", "label": "spark"},
+            { "value": "happiness-bold", "label": "happiness"},
+            { "value": "lipstick-bold", "label": "lipstick"},
+            { "value": "cherry-bold", "label": "cherry"},
+            { "value": "peach-bold", "label": "peach"},
+            { "value": "bunny-bold", "label": "bunny"},
+            { "value": "hand-made-bold", "label": "hand-made"},
+            { "value": "eco-friendly-bold", "label": "eco-friendly"},
+            { "value": "paraben-free-bold", "label": "paraben-free"},
+            { "value": "enhancing-bold", "label": "enhancing"},
+            { "value": "easy-bold", "label": "easy"},
+            { "value": "vegan-bold", "label": "vegan"},
+            { "value": "nourishing-bold", "label": "nourishing"},
+            { "value": "longwearing-bold", "label": "longwearing"}
+            ],
+          "default": "spark-bold"
+        }
+      ]
+    },
+    {
+      "name": "Bullet list element",
+      "type": "bullet-list",
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "bullet_list",
+          "label": "Bullet list"
+        }
+      ]
     }
   ]
 }

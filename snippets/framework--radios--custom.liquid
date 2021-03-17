@@ -42,7 +42,7 @@
 {% endif %}
 
   <div
-    class="radios--container"
+    class="radios--container {% if radios_kit %} radios--container--preview-kit {% endif %}"
     role="radiogroup"
     aria-labelledby="{{ radios_name }}"
   >
@@ -75,7 +75,7 @@
               {% if product_form %}
                 class="radios--swatch-button-details {{ value }}"
               {% else %}
-                class="radios--swatch-button {{ value }}"
+                class="radios--swatch-button {{ value }} {% if radios_kit %} radios--swatch-button--preview-kit {% endif %}"
               {% endif %}
 
               {% if view_grid %}
