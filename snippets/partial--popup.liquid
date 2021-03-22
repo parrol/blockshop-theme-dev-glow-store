@@ -1,12 +1,30 @@
+{% assign heading = settings.popup--newsletter--heading %}
+{% assign paragraph = settings.popup--newsletter--paragraph %}
+{% assign logo = settings.popup.popup--newsletter--logo %}
+
 {% if settings.popup--enabled %}
   <div class="popup--root">
-    {% if settings.popup--newsletter--heading != blank %}
+
+
+    <div class="popup--logo"></div>
+
+
+    {% if heading != blank %}
       <div class="popup--heading font--block-heading">
-        {{ settings.popup--newsletter--heading }}
+        {{ heading }}
       </div>
     {% endif %}
 
-    {% form 'customer' %}
+    {% if paragraph != blank %}
+      <div class="popup--paragraph" data-item="paragraph">
+        {{ paragraph }}
+      </div>
+    {% endif %}
+
+    <div id="popup--newsletter--button-affirmative" class="font--button popup--button"> {{ "yes, please" | upcase }} </div>
+    <p id="popup--newsletter--no-thanks" class="popup--no-thanks">No, thanks</p>
+
+    {% form 'customer'%}
       <input type="hidden" name="contact[tags]" value="newsletter" />
       <input type="hidden" name="contact[first_name]" value="Newsletter" />
       <input type="hidden" name="contact[last_name]" value="Subscriber" />
@@ -33,8 +51,9 @@
 
       <div data-item="hidden-text">
         {% comment %} remove the below line to display reCAPTCHA badge {% endcomment %}
-        {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }}
+        <!-- {{ 'shopify.online_store.spam_detection.disclaimer_html' | t }} -->
       </div>
     {% endform %}
   </div>
 {% endif %}
+

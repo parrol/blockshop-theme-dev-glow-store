@@ -1425,6 +1425,73 @@ input[type=number] {
 
 }
 
+
+/* POPUP */
+.popup-modal {
+  width: 720px;
+  height: 680px;
+}
+
+.popup--logo {
+  background-image: var(--logo--popup);
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 110px;
+  margin: 0 auto;
+  image-rendering: crisp-edges;
+}
+
+.popup--heading {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.3em;
+  letter-spacing: 0em;
+  padding-bottom: 0px;
+}
+
+
+.popup--paragraph {
+  margin: 1rem 0 3rem 0;
+}
+
+.popup--button {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#popup--newsletter--button-affirmative:focus{
+  position: absolute;
+  left: -9999px;
+}
+
+.popup--no-thanks{
+  text-decoration: underline;
+}
+
+.popup--no-thanks:hover{
+  cursor: pointer;
+}
+
+.on-screen{
+  position: relative !important;
+  left: initial !important;
+}
+
+.off-screen{
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+#contact_form{
+  position: absolute;
+  left: -9999px;
+}
+
+@media only screen and (max-width: 767px){
+  .popup-modal {
+    height: 660px;
+  }
+}
 /*CHANGES*/
 /*
 

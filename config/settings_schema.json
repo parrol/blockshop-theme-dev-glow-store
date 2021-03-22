@@ -451,10 +451,21 @@
         "default": true
       },
       {
+        "type": "image_picker",
+        "id": "popup--newsletter--logo",
+        "label": "Logo"
+      },
+      {
         "type": "text",
         "id": "popup--newsletter--heading",
         "label": "Heading",
-        "default": "Sign up to our mailing list"
+        "default": "Hi Glower, let’s talk!"
+      },
+      {
+        "type": "textarea",
+        "id": "popup--newsletter--paragraph",
+        "label": "Paragraph",
+        "default": "Do you want to receive our eBook with the emblematic looks of our Brand?"
       },
       {
         "type": "checkbox",

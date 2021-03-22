@@ -51,10 +51,10 @@ Element.prototype.isOverFlown = function () {
 
 function calculateLineHeight(element) {
 
-    var lineHeight = parseInt(window.getComputedStyle(element, null).getPropertyValue("line-height"), 10);
-    var clone;
-    var singleLineHeight;
-    var doubleLineHeight;
+    let lineHeight = parseInt(window.getComputedStyle(element, null).getPropertyValue("line-height"), 10);
+    let clone;
+    let singleLineHeight;
+    let doubleLineHeight;
 
     if (isNaN(lineHeight)) {
         clone = element.cloneNode();
@@ -411,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         selects[0].dataset.isOptionSelected = true;
     }
 
-    var intervalID = window.setInterval(addListeners, 1000);
+    let intervalID = window.setInterval(addListeners, 1000);
 
     function addListeners() {
 
@@ -617,4 +617,47 @@ document.addEventListener("DOMContentLoaded", function (event) {
         });
     }
 
+    //////////////////////////////////////////////////////
+    /////////////////////// POP UP ///////////////////////
+    //////////////////////////////////////////////////////
+    let intervalPopupID = window.setInterval(PopUpEventListeners, 200);
+
+    function PopUpEventListeners() {
+        let affirmative_button_popup = document.getElementById('popup--newsletter--button-affirmative');
+
+        if (affirmative_button_popup) {
+            let no_thanks = document.getElementById('popup--newsletter--no-thanks');
+            let contact_form = document.getElementById('contact_form')
+            let modal = document.getElementsByTagName('dialog')[0];
+            let body = document.getElementsByTagName('body')[0];
+            let popup_modal_mask = document.getElementsByClassName('popup-modal-mask')[0];
+
+            if ((modal != undefined) && (body != undefined)) {
+                affirmative_button_popup.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    contact_form.classList.add('on-screen');
+                    affirmative_button_popup.classList.add('off-screen');
+                    no_thanks.classList.add('off-screen');
+                })
+
+                no_thanks.addEventListener('click', function (e) {
+                    modal.classList.add('closed');
+                    modal.classList.remove('completed');
+                    modal.classList.remove('oponed');
+
+                    body.classList.remove('modal-on');
+                    popup_modal_mask.style.display = 'none';
+                })
+                clearInterval(intervalPopupID);
+            }
+
+        } else {
+            // console.warn('popup button non-existent');
+        }
+    }
+
+    window.addEventListener('load', (event) => {
+        PopUpEventListeners();
+    });
 });

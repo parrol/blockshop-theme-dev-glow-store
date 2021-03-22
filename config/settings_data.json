@@ -44,14 +44,15 @@
     "social--vimeo--url": "",
     "social--pinterest--url": "",
     "social--twitter--url": "",
-    "popup--enabled": false,
-    "popup--test-mode": false,
-    "popup--image": "shopify:\/\/shop_images\/IMG_6302_changedcolorprofile.png",
+    "popup--enabled": true,
+    "popup--test-mode": true,
+    "popup--image": "shopify:\/\/shop_images\/welcome-pop-up.jpg",
     "popup--image-url": "shopify:\/\/collections\/all",
-    "popup--page-content": "blog",
+    "popup--page-content": "",
     "popup--newsletter--enabled": true,
-    "popup--newsletter--heading": "Sign up to our mailing list",
-    "popup--social-icons--enabled": true,
+    "popup--newsletter--logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
+    "popup--newsletter--heading": "Hi Glower, let’s talk!",
+    "popup--social-icons--enabled": false,
     "popup--seconds-range": 1,
     "popup--days-range": 7,
     "favicon": "shopify:\/\/shop_images\/favicon.png",
@@ -72,6 +73,7 @@
     "checkout_accent_color": "#197bbd",
     "checkout_button_color": "#197bbd",
     "checkout_error_color": "#e32c2b",
+    "popup--logo": "shopify:\/\/shop_images\/Glow_Logo_Negro.png",
     "color-product-cards-description": "#707070",
     "color-product-cards-border": "#ABABAB",
     "sections": {
@@ -874,8 +876,8 @@
         "type": "grid-collection-with-image",
         "settings": {
           "background-color": "none",
-          "title": "Glow your way",
-          "text": "",
+          "title": "Glow first.",
+          "text": "Products made for you, to highlight your features, attributes and colors. We don't believe that beauty is made by makeup, but we do believe that makeup helps you Glow your way.",
           "button_text": "Shop our products",
           "grid-collection": "all",
           "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
@@ -884,11 +886,18 @@
       "about-us": {
         "type": "about-us",
         "blocks": {
+          "c4bb223d-478f-49a3-80b7-d163dd9f55d7": {
+            "type": "list",
+            "settings": {
+              "image_left": "shopify:\/\/shop_images\/1-trimmed.jpg",
+              "image_right": "shopify:\/\/shop_images\/2-trimmed.jpg"
+            }
+          },
           "de6fffa1-1530-4b74-875c-5746160179e2": {
             "type": "list",
             "settings": {
-              "image_left": "shopify:\/\/shop_images\/about_01.de04bf2a.jpg",
-              "image_right": "shopify:\/\/shop_images\/about_02.583c144c.jpg"
+              "image_left": "shopify:\/\/shop_images\/3-trimmed.jpg",
+              "image_right": "shopify:\/\/shop_images\/4-trimmed.jpg"
             }
           },
           "221b713b-0aef-4ec6-b4f1-ae50613e7d3d": {
@@ -897,15 +906,61 @@
               "image_left": "shopify:\/\/shop_images\/about_04.2e21e031.jpg",
               "image_right": "shopify:\/\/shop_images\/5.jpg"
             }
+          },
+          "84e17ea8-9c6e-4923-a2f5-fd3e5e6e5618": {
+            "type": "list",
+            "settings": {
+              "image_left": "shopify:\/\/shop_images\/about_01.de04bf2a.jpg",
+              "image_right": "shopify:\/\/shop_images\/about_02.583c144c.jpg"
+            }
+          },
+          "e52fa6b5-bbcf-46f9-ae4d-313a8bcb3b8c": {
+            "type": "list",
+            "settings": {
+              "image_left": "shopify:\/\/shop_images\/3.png",
+              "image_right": "shopify:\/\/shop_images\/4.png"
+            }
           }
         },
         "block_order": [
+          "c4bb223d-478f-49a3-80b7-d163dd9f55d7",
           "de6fffa1-1530-4b74-875c-5746160179e2",
-          "221b713b-0aef-4ec6-b4f1-ae50613e7d3d"
+          "221b713b-0aef-4ec6-b4f1-ae50613e7d3d",
+          "84e17ea8-9c6e-4923-a2f5-fd3e5e6e5618",
+          "e52fa6b5-bbcf-46f9-ae4d-313a8bcb3b8c"
         ],
         "settings": {
           "center-content--enabled": true,
-          "header": "Hi, Welcome to Glow Beauty Aids!"
+          "header": "Hello, welcome to Glow ~"
+        }
+      },
+      "product--kit": {
+        "type": "product--kit",
+        "settings": {
+          "product-breadcrumbs-show": true,
+          "variant-style": "dropdowns",
+          "collection_kit": "all",
+          "swatches-enabled": false,
+          "quantity-enabled": true,
+          "smart-payment-button": true,
+          "product-unavailable-form-show": false,
+          "low-in-stock-amount": 0,
+          "measures_text": "<p>what it is<\/p>",
+          "what_it_is": "<p>what it is <\/p>",
+          "special_title": "<p>WHY IT&#x27;S SPECIAL <\/p>",
+          "special_text": "",
+          "good_to_know_title": "<p>GOOD TO KNOW <\/p>",
+          "product-modal-enabled": true,
+          "image-zoom-enabled": true,
+          "loop-enabled": false,
+          "cart-form-position": "left",
+          "product-size-chart-enabled": false,
+          "product-size-chart-option": "size",
+          "product-size-chart-page-content": "",
+          "product-share-show": true,
+          "product-share-twitter": true,
+          "product-share-facebook": true,
+          "product-share-pinterest": true
         }
       }
     },
