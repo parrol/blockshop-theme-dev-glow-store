@@ -2,6 +2,7 @@
 {% assign center_content = section.settings.center-content--enabled %}
 {% assign header = section.settings.header %}
 {% assign image = section.settings.image %}
+{% assign top_image = block.settings.top-image %}
 
 <div class="about-us--container">
 
@@ -24,7 +25,7 @@
                 <img src="{{ block.settings.image_left |  img_url: 'master' }}"
                     alt="{{ block.settings.image_left.alt }}">
             </div>
-            <div class="about-us-image image--right">
+            <div class="about-us-image image--right {{ block.settings.top-image }}">
                 <img src="{{ block.settings.image_right |  img_url: 'master' }}"
                     alt="{{ block.settings.image_right.alt }}">
             </div>
@@ -69,7 +70,17 @@
         {
             "type": "image_picker",
             "id": "image_right",
-            "label": "Rigth image"
+            "label": "Right image"
+        },
+        {
+            "id": "top-image",
+            "label": "Top image",
+            "type": "select",
+            "options": [
+              { "value": "z-index-0", "label": "left"},
+              { "value": "z-index-1", "label": "right"}
+            ],
+            "default": "z-index-0"
         }
     ]
   }
