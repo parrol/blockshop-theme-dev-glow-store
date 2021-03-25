@@ -375,14 +375,32 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     }
 
+    function getNextSiblingByName(el, name) {
+        while (el) {
+            el = el.nextSibling;
+            if (el.nodeName == name) {
+                return el;
+            }
+        }
+
+        return el;
+    }
+
+    function getSelectElement(radio_button) {
+        let radios_root = radio_button.closest('[data-js-class="Radios"]');
+        let selects = getNextSiblingByName(radios_root, 'SELECT');
+
+        return selects;
+    }
+
     function onRadioButtonClicked(event, radio_button) {
 
+        //this ensures the inputs are clicked at the same time the swatch are clicked
         let radio_input = node_before(radio_button);
         radio_input.click();
 
         // get select element
-        let form = radio_button.closest("form");
-        let selects = form.getElementsByTagName("select")
+        let selects = getSelectElement(radio_button);
 
         let select_variant = selects[0]
 
@@ -390,7 +408,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let variant = radio_button.getAttribute("aria-label");
 
         // get variants option elements
-        let options_array = select_variant.getElementsByTagName('option')
+        let options_array = select_variant.getElementsByTagName('option');
         let option_text;
 
         // select option according to radio button selected
