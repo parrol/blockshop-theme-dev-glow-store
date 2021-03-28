@@ -6,6 +6,7 @@
 {% endcomment %}
 
 {% assign colors_available_t = 'products.products_available' | t %}
+{% assign description = product.metafields.color_description %}
 
 {% unless is_swatches %}
   {% assign is_swatches = false %}
@@ -21,25 +22,23 @@
   data-js-class="Radios"
   data-is-swatches="{{ is_swatches }}"
 >
-{% if has_header %}
-{%- comment -%}
-<div class="radios--header">
-    <label class="radios--option-label" data-item="accent-text" id="{{ radios_name }}">
-      {{ option.name | escape }}
-    </label>
+  {% if has_header %}
+  <div class="radios--header">
+      <label class="radios--option-label" data-item="accent-text" id="{{ radios_name }}">
+        {{ option.name | escape }}
+      </label>
 
-    {% if is_swatches %}
-      <span class="radios--option-current" data-item="light-accent-text">
-        {% for value in option.values %}
-          {% if value == option.selected_value %}
-            {{ value | escape }}
-          {% endif %}
-        {% endfor %}
-      </span>
-    {% endif %}
-</div>
-{%- endcomment -%}
-{% endif %}
+      {% if is_swatches %}
+        <span class="radios--option-current" data-item="light-accent-text">
+          {% for value in option.values %}
+            {% if value == option.selected_value %}
+              {{ value | escape }}
+            {% endif %}
+          {% endfor %}
+        </span>
+      {% endif %}
+  </div>
+  {% endif %}
 
   <div
     class="radios--container {% if radios_kit %} radios--container--preview-kit {% endif %}"
@@ -73,9 +72,9 @@
           {% if is_swatches %}
             <label 
               {% if product_form %}
-                class="radios--swatch-button-details {{ value }}"
+                class="radios--swatch-button-details {{ value | remove: ' '}}"
               {% else %}
-                class="radios--swatch-button {{ value }} {% if radios_kit %} radios--swatch-button--preview-kit {% endif %}"
+                class="radios--swatch-button {{ value | remove: ' '}} {% if radios_kit %} radios--swatch-button--preview-kit {% endif %} {% if product_number %} {{ product_number}} {% endif %}"
               {% endif %}
 
               {% if view_grid %}
@@ -84,6 +83,8 @@
               for="{{ radios_name }}-{{ value | downcase | remove: ' ' }}"
               {% endif %}
               aria-label="{{ value | escape }}"
+
+              data-input="{{product.title | downcase | remove: ' '}}{%- if product_number %}-1{% endif -%}-{{ value | downcase | remove: ' ' }}"
             ></label>
 
           {% else %}
@@ -103,17 +104,9 @@
   </div>
 </div>
 
-{% for value in option.values%}
-{% if value == "November" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a sunny coral.</p>
-{% elsif value == "Foxtrot" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a bright poppy.</p>
-{% elsif value == "Tango" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a frosty glitter.</p>
-{% elsif value == "Charlie" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span>  is a soft peach.</p>
-{% else value == "Romeo" %}
-    <p id="option--{{ value }}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value }}"><span class="bold"> {{ value }} </span> is a hot raspberry pink.</p>
-{% endif %}
-{% endfor %}
-<p class=" option-description__text reveal" data-value="default-option-description"> {{ colors_available_t }} </p>
+<div id="{{ radios_name }}">
+  {% for value in option.values%}
+  <p id="option--{{ value | remove: ' '}}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value | remove: ' '}}"><span class="bold"> {{ value }} </span> {{ description[value] }}</p>
+  {% endfor %}
+  <p class=" option-description__text reveal" data-value="default-option-description"> {{ colors_available_t }} </p>
+</div>

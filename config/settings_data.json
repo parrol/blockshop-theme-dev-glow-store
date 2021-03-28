@@ -45,7 +45,7 @@
     "social--pinterest--url": "",
     "social--twitter--url": "",
     "popup--enabled": true,
-    "popup--test-mode": true,
+    "popup--test-mode": false,
     "popup--image": "shopify:\/\/shop_images\/welcome-pop-up.jpg",
     "popup--image-url": "shopify:\/\/collections\/all",
     "popup--page-content": "",
@@ -54,7 +54,7 @@
     "popup--newsletter--heading": "Hi Glower, let’s talk!",
     "popup--social-icons--enabled": false,
     "popup--seconds-range": 1,
-    "popup--days-range": 7,
+    "popup--days-range": 17,
     "favicon": "shopify:\/\/shop_images\/favicon.png",
     "hide-tags": "featured, pinned",
     "cart--type": "drawer",
@@ -412,10 +412,12 @@
         "settings": {
           "product-breadcrumbs-show": true,
           "variant-style": "dropdowns",
-          "swatches-enabled": false,
+          "swatches-enabled": true,
+          "quantity-enabled": true,
           "smart-payment-button": false,
           "product-unavailable-form-show": false,
           "low-in-stock-amount": 0,
+          "measures_text": "<p>what it is<\/p>",
           "what_it_is": "<p><strong>What it is:<\/strong> 35 colors that are divided into matte pigments as well as sparkly. Colors are highly pigmented, with a texture smooth and easy to mix.<\/p>",
           "special_title": "<p><strong> WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
           "special_text": "<p>With this palette you can do a complete makeup: eyebrows, blush, highligther, eyeshadow and bronzer. Essential Palette light your way thanks to its intensely pigmented colors that last all day.<\/p>",
@@ -628,7 +630,7 @@
         ],
         "settings": {
           "product-breadcrumbs-show": true,
-          "variant-style": "dropdowns",
+          "variant-style": "buttons",
           "swatches-enabled": true,
           "quantity-enabled": true,
           "smart-payment-button": false,
@@ -849,7 +851,7 @@
         "settings": {
           "product-breadcrumbs-show": true,
           "variant-style": "dropdowns",
-          "swatches-enabled": false,
+          "swatches-enabled": true,
           "quantity-enabled": true,
           "smart-payment-button": false,
           "product-unavailable-form-show": false,
@@ -890,28 +892,32 @@
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/1_c028c9de-45bb-4c89-9ed7-2bb59ec6cb74.png",
-              "image_right": "shopify:\/\/shop_images\/2-trimmed.png"
+              "image_right": "shopify:\/\/shop_images\/2-trimmed.png",
+              "top-image": "z-index-0"
             }
           },
           "0cbc6116-6bc7-42d4-bd42-fdcf150a0ce5": {
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/3_1253f828-6b92-49b1-ae3d-0381df02cd4c.png",
-              "image_right": "shopify:\/\/shop_images\/4_f12515b3-a680-428d-bb09-1710d17c6552.png"
+              "image_right": "shopify:\/\/shop_images\/4-trimmed.png",
+              "top-image": "z-index-0"
             }
           },
           "832a2ba7-99c6-4c09-82e5-1d666c81ba0a": {
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/6-trimmed_06e79037-08b5-4bf7-b8a7-447d684cfca4.png",
-              "image_right": "shopify:\/\/shop_images\/5.png"
+              "image_right": "shopify:\/\/shop_images\/5.png",
+              "top-image": "z-index-0"
             }
           },
           "342c4751-1675-49b9-9f12-d0ae61299de5": {
             "type": "list",
             "settings": {
               "image_left": "shopify:\/\/shop_images\/7-trimmed.png",
-              "image_right": "shopify:\/\/shop_images\/8-trimmed.png"
+              "image_right": "shopify:\/\/shop_images\/8-trimmed.png",
+              "top-image": "z-index-1"
             }
           }
         },
@@ -928,20 +934,86 @@
       },
       "product--kit": {
         "type": "product--kit",
+        "blocks": {
+          "d05be58e-b1bc-4fa8-a9cd-9027f104c206": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p><strong>The Makeup Set:<\/strong> Four of our new products (Small palette + Big Palette + Glowstick + Glow and Brush #014) to give you that fresh, glowing face look in minutes.<\/p>"
+            }
+          },
+          "a2a98c93-140c-42fc-88e6-e97bb6b3bb47": {
+            "type": "bullet-list",
+            "settings": {
+              "bullet_list": "<p><strong>The Beauty Bag:<\/strong> roomy enough to fit all your essentials (and more!) but still easily slips into your bag; the plastic exterior means you won&#x27;t worry about splashing water on it.<\/p>"
+            }
+          },
+          "9042bea0-76ab-4130-b47a-1aef86c58c28": {
+            "type": "product",
+            "settings": {
+              "product_kit": "essential-palete",
+              "product_kit_id": "Essential Palette"
+            }
+          },
+          "73f46374-dba3-4aa1-9253-184e231e18e4": {
+            "type": "product",
+            "settings": {
+              "product_kit": "small-palette",
+              "product_kit_id": "Small Palette"
+            }
+          },
+          "ff6f6f66-2208-451a-93c1-0890741e1003": {
+            "type": "product",
+            "settings": {
+              "product_kit": "glowstick",
+              "product_kit_id": "Glowstick-1"
+            }
+          },
+          "7b8e1d4a-1275-4b77-96da-f754b025e214": {
+            "type": "product",
+            "settings": {
+              "product_kit": "glowstick",
+              "product_kit_id": "Glowstick-2"
+            }
+          },
+          "29b9b83a-cd52-40f6-af51-42d8769f03f6": {
+            "type": "product",
+            "settings": {
+              "product_kit": "brush",
+              "product_kit_id": "Brush Blending 14"
+            }
+          },
+          "cae822af-d7cb-4884-b28c-9956ec98071c": {
+            "type": "product",
+            "settings": {
+              "product_kit": "bag",
+              "product_kit_id": "Black Ziploc Closure Bag"
+            }
+          }
+        },
+        "block_order": [
+          "d05be58e-b1bc-4fa8-a9cd-9027f104c206",
+          "a2a98c93-140c-42fc-88e6-e97bb6b3bb47",
+          "9042bea0-76ab-4130-b47a-1aef86c58c28",
+          "73f46374-dba3-4aa1-9253-184e231e18e4",
+          "ff6f6f66-2208-451a-93c1-0890741e1003",
+          "7b8e1d4a-1275-4b77-96da-f754b025e214",
+          "29b9b83a-cd52-40f6-af51-42d8769f03f6",
+          "cae822af-d7cb-4884-b28c-9956ec98071c"
+        ],
         "settings": {
           "product-breadcrumbs-show": true,
-          "variant-style": "dropdowns",
-          "collection_kit": "all",
-          "swatches-enabled": false,
+          "variant-style": "buttons",
+          "collection_kit": "makeup-kit",
+          "swatches-enabled": true,
           "quantity-enabled": true,
-          "smart-payment-button": true,
+          "smart-payment-button": false,
           "product-unavailable-form-show": false,
           "low-in-stock-amount": 0,
-          "measures_text": "<p>what it is<\/p>",
-          "what_it_is": "<p>what it is <\/p>",
-          "special_title": "<p>WHY IT&#x27;S SPECIAL <\/p>",
+          "measures_text": "<p>Ready, set, Glow!<\/p>",
+          "what_it_is": "<p><strong>What it is:<\/strong> Our makeup routine for instantglow, plus our Beauty Bag to take your glow wherever you go.<\/p>",
+          "special_title": "<p><strong>WHY IT&#x27;S SPECIAL:<\/strong><\/p>",
           "special_text": "",
-          "good_to_know_title": "<p>GOOD TO KNOW <\/p>",
+          "good_to_know_title": "",
           "product-modal-enabled": true,
           "image-zoom-enabled": true,
           "loop-enabled": false,
@@ -952,7 +1024,7 @@
           "product-share-show": true,
           "product-share-twitter": true,
           "product-share-facebook": true,
-          "product-share-pinterest": true
+          "product-share-pinterest": false
         }
       }
     },

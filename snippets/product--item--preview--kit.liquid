@@ -153,7 +153,9 @@
       is_swatches: true,
       has_header: false,
       view_grid: view_grid,
-      radios_kit: true
+      radios_kit: true,
+      product_number: product_number,
+      product: product
     %}
     {% endfor %}
   </div>
@@ -246,7 +248,7 @@ class="product-form--add-to-cart-preview
   {%- endfor -%}
 </select>
 {% endcomment%}
-
+<div id="radios--kit"></div>
 <select class="product-form--variant-select" data-is-option-selected="false" name="id">
   {% for variant in product.variants %}
     <option
