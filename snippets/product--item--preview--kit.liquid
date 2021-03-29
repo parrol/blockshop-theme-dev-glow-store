@@ -258,16 +258,11 @@ class="product-form--add-to-cart-preview
 </button>
 {% endcapture%}
 
-{% if view_grid and product.type == 'tool' %}
-  {% capture display_class %}
-    hidden-grid-image-collection
-  {% endcapture %}
-{% else %}
   {% capture display_class %}
     product-form
   {% endcapture %}
 
-{% endif %}
+
 
 {% form 'product', product, class: display_class %}
 
