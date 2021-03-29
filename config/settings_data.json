@@ -172,7 +172,7 @@
               "image": "shopify:\/\/shop_images\/DSC_0639.jpg",
               "slide-title": "Affordable",
               "slide-tagline": "We believe that you deserve the best at an affordable price",
-              "slide-link-url": "shopify:\/\/products\/purple-pallete",
+              "slide-link-url": "shopify:\/\/products\/purple-palette",
               "slide-link-title": "CHECK OUR EYE SHADOWS",
               "slide-y-pos": "bottom",
               "slide-x-pos": "left",
@@ -950,13 +950,7 @@
         },
         "block_order": [
           "d05be58e-b1bc-4fa8-a9cd-9027f104c206",
-          "a2a98c93-140c-42fc-88e6-e97bb6b3bb47",
-          "9042bea0-76ab-4130-b47a-1aef86c58c28",
-          "73f46374-dba3-4aa1-9253-184e231e18e4",
-          "ff6f6f66-2208-451a-93c1-0890741e1003",
-          "7b8e1d4a-1275-4b77-96da-f754b025e214",
-          "29b9b83a-cd52-40f6-af51-42d8769f03f6",
-          "cae822af-d7cb-4884-b28c-9956ec98071c"
+          "a2a98c93-140c-42fc-88e6-e97bb6b3bb47"
         ],
         "settings": {
           "product-breadcrumbs-show": true,

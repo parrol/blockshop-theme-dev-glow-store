@@ -11,6 +11,9 @@
 {% assign show_quick_add = settings.product--show-quick-add-buttons %}
 {% assign placeholder_image = 'image' %}
 {% assign show_sale_label = settings.product--show-sale-label %}
+{% assign product_type = product.metafields.type %}
+{% assign key = 'Type' %}
+
 {% if view == "slider" %}
   {% assign placeholder_image = 'collection' %}
 {% endif %}
@@ -106,6 +109,14 @@
   {% endif %}
 
 {% endif %}
+
+{% capture display_url %}
+  {% if product_type[key] == 'Parent product' %}
+  href="/products/{{ product.first_available_variant.title | handleize}}"
+  {% else %}
+  href="{{ url }}"
+  {% endif %}
+{% endcapture %}
 
 {% capture display_title %}
   <h3 class="product--title preview-kit--title" data-item="paragraph">
@@ -273,6 +284,10 @@ class="product-form--add-to-cart-preview
   id="image-container--product-root"
   class="product--root product--root--preview-kit"
   data-product-view="{{ view }}"
+  {% if product_type[key] == 'Parent product' %}
+    data-type="parent-product"
+  {% endif %}
+
   {% if hover_image_enabled and hover_image %}
     data-hover-image="true"
   {% endif %}
@@ -280,7 +295,7 @@ class="product-form--add-to-cart-preview
   >
   {% case view %}
     {% when 'grid' %}
-      <a class="product--item product--item-preview-kit" href="{{ url }}" aria-label="{{ product.title }}">
+      <a class="product--item product--item-preview-kit" {{ display_url }}>
         {% unless product.available or onboarding %}
           <div class="product--sold-out" data-item="accent-text">
             {{ sold_out_t }}
@@ -311,90 +326,23 @@ class="product-form--add-to-cart-preview
       >
         {{ display_vendor }}
         <div class="details--header">
+          {%- comment -%}
+          A parent product is one that has as variants, products that already exist as separate products
+          {%- endcomment -%}
+          {% if product_type[key] == 'Parent product' %}
+          <a href="/products/{{ product.first_available_variant.title | handleize}}">
+            {{ display_title }}
+          </a>
+          {% else %}
           <a href="{{ url }}">
             {{ display_title }}
           </a>
+          {% endif %}
           {{ display_description }}
         </div>
         {{ display_variants }}
         {{ display_option_description }}
       </div>
-
-    {% when 'list' %}
-      <div class="product--image">
-        <a href="{{ url }}" aria-label="{{ product.title }}">
-          {{ image }}
-        </a>
-      </div>
-
-      <div class="product--details">
-        {% unless product.available or onboarding %}
-          <div class="product--sold-out" data-item="accent-text">
-            {{ sold_out_t }}
-          </div>
-        {% elsif compare_price and onboarding == false and show_sale_label %}
-          <div class="product--sale" data-item="accent-text">
-            {{ sale_t }}
-          </div>
-        {% endunless %}
-
-        <div class="product--details--title-row">
-          {{ display_prices }}
-          <a href="{{ url }}">{{ display_title }}</a>
-        </div>
-
-        <a href="{{ vendor_url }}">{{ display_vendor }}</a>
-
-        {% if excerpt.size > 0 %}
-          <div class="product--excerpt" data-item="paragraph">
-            {{ excerpt }}
-          </div>
-        {% endif %}
-
-        {% if show_quick_add and product.available %}
-          {% render 'partial--quick-add', product: product %}
-        {% endif %}
-
-      </div>
-
-    {% when 'slider' %}
-    {%- comment -%}
-    {% unless product.available or onboarding %}
-      <div class="product--sold-out" data-item="accent-text">
-        {{ sold_out_t }}
-      </div>
-    {% elsif compare_price and onboarding == false and show_sale_label %}
-      <div class="product--sale" data-item="accent-text">
-        {{ sale_t }}
-      </div>
-    {% endunless %}
-    {%- endcomment -%}
-
-      <a href="{{ url }}" aria-label="{{ product.title }}">
-        <div class="product--image-wrapper">
-          <div class="product--image">
-            {% if product.variants.size > 1 %}
-              {{ variant_image }}
-            {% else %}
-              {{ image }}
-            {% endif %}
-          </div>
-          {% if hover_image_enabled and hover_image %}
-            {{ hover_image }}
-          {% endif %}
-        </div>
-      </a>
-
-        <div class="product--details">
-          {{ display_vendor }}
-          <div class="details--header">
-            {{ display_title }}
-            {{ display_description }}
-          </div>
-          {{ display_variants }}
-          {{ display_option_description }}
-          {{ display_add_to_cart_button }}
-        </div>
 
   {% endcase %}
   </div>

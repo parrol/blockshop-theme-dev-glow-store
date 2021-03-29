@@ -442,20 +442,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
         */
 
-        // TODO: small palette won't work without this if
+        // TODO: small palette option descriptions won't work without this if
         // if (has_variants) {
-            console.log('hello');
-            let color_images = image_container.children[0].children[0].children[0].children[0].children;
+        console.log('hello');
+        let color_images = image_container.children[0].children[0].children[0].children[0].children;
 
-            Array.prototype.forEach.call(color_images, function (image) {
-                image.style.display = "none";
-                let color_alt = image.children[0].children[0].getAttribute("alt").replace(/\s/g, "");
+        Array.prototype.forEach.call(color_images, function (image) {
+            image.style.display = "none";
+            let color_alt = image.children[0].children[0].getAttribute("alt").replace(/\s/g, "");
 
-                //this seems like it's going to be legacy code :D
-                if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
-                    image.style.display = "block";
-                }
-            })
+            //this seems like it's going to be legacy code :D
+            if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
+                image.style.display = "block";
+            }
+        })
         // }
 
     }
@@ -512,6 +512,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
         kitInput.click();
     }
 
+    function replaceProductLink(radio_button) {
+
+        let product_handle = radio_button.getAttribute('aria-label').toLowerCase().replace(/ /g, '-');
+
+        let image_container = radio_button.closest('#image-container--product-root');
+        let details_header = radio_button.closest('.product--details');
+
+        let product_type = image_container.dataset.type;
+        if (product_type != 'parent-product') return;
+
+        let image_link = image_container.children[0];
+        let title_link = details_header.children[0].children[0];
+
+        if (image_link) {
+            image_link.setAttribute('href', `https://www.glowbeautyaids.com/products/${product_handle}`);
+        }
+        if (title_link) {
+            title_link.setAttribute('href', `https://www.glowbeautyaids.com/products/${product_handle}`);
+        }
+    }
+
     function onRadioButtonClicked(event, radio_button) {
 
 
@@ -525,6 +546,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             if (is_kit) {
                 clickOnKitButton(radio_button);
+                replaceProductLink(radio_button);
             }
             // get select element
             let select = getSelectElement(radio_button);
