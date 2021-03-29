@@ -36,7 +36,8 @@
                   {%
                     render 'framework--product--item--form',
                     product: product,
-                    view: 'grid'
+                    view: 'grid',
+                    product_search: true
                   %}
                 </div>
               {% endfor %}
@@ -178,7 +179,8 @@
           {%
             render 'framework--product--item--form',
             product: product,
-            view: 'grid'
+            view: 'grid',
+            product_search: true
           %}
         </div>
       {% endfor %}

@@ -314,11 +314,13 @@ class="product-form--add-to-cart-preview
           {{ display_title }}
           {{ display_description }}
         </div>
-        {% if product_type[key] != 'Kit' %}
+        {% if product_search != true %}
         {{ display_variants }}
         {% endif %}
         {{ display_option_description }}
+        {% if product_search != true %}
         {{ display_add_to_cart_button }}
+        {% endif %}
       </div>
 
     {% when 'list' %}
