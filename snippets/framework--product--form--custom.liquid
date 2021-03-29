@@ -79,7 +79,7 @@
         </div>
       </div>
 
-      <div id="product-form--variants" class="product-form--variants absolute-hidden">
+      <div id="product-form--variants" class="product-form--variants {% if product_kit %} absolute-hidden{% endif %}">
         {% unless product.has_only_default_variant %}
           <div id="has-variants"></div>
           {% for option in product.options_with_values %}
