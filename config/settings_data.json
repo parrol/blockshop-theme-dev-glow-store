@@ -946,48 +946,6 @@
             "settings": {
               "bullet_list": "<p><strong>The Beauty Bag:<\/strong> roomy enough to fit all your essentials (and more!) but still easily slips into your bag; the plastic exterior means you won&#x27;t worry about splashing water on it.<\/p>"
             }
-          },
-          "9042bea0-76ab-4130-b47a-1aef86c58c28": {
-            "type": "product",
-            "settings": {
-              "product_kit": "essential-palete",
-              "product_kit_id": "Essential Palette"
-            }
-          },
-          "73f46374-dba3-4aa1-9253-184e231e18e4": {
-            "type": "product",
-            "settings": {
-              "product_kit": "small-palette",
-              "product_kit_id": "Small Palette"
-            }
-          },
-          "ff6f6f66-2208-451a-93c1-0890741e1003": {
-            "type": "product",
-            "settings": {
-              "product_kit": "glowstick",
-              "product_kit_id": "Glowstick-1"
-            }
-          },
-          "7b8e1d4a-1275-4b77-96da-f754b025e214": {
-            "type": "product",
-            "settings": {
-              "product_kit": "glowstick",
-              "product_kit_id": "Glowstick-2"
-            }
-          },
-          "29b9b83a-cd52-40f6-af51-42d8769f03f6": {
-            "type": "product",
-            "settings": {
-              "product_kit": "brush",
-              "product_kit_id": "Brush Blending 14"
-            }
-          },
-          "cae822af-d7cb-4884-b28c-9956ec98071c": {
-            "type": "product",
-            "settings": {
-              "product_kit": "bag",
-              "product_kit_id": "Black Ziploc Closure Bag"
-            }
           }
         },
         "block_order": [

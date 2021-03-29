@@ -76,7 +76,7 @@
         </div>
       </div>
 
-      <div class="product-form--variants">
+      <div id="product-form--variants" class="product-form--variants">
         {% unless product.has_only_default_variant %}
           <div id="has-variants"></div>
           {% for option in product.options_with_values %}
@@ -89,7 +89,8 @@
                 id: product.id,
                 is_swatches: true,
                 has_header: false,
-                product_form: true
+                product_form: true,
+                product: product
               %}
             {% else %}
               {%
@@ -101,7 +102,12 @@
           {% endfor %}
         {% endunless %}
 
-        <select id="product-form--variant-select-{{ product.title | downcase }}" class="product-form--variant-select" data-is-option-selected="false" name="id">
+        <select 
+        id="product-form--variant-select-{{ product.title | handleize | downcase }}" 
+        class="product-form--variant-select{% if product_kit %} product-kit{% endif %}" 
+        data-is-option-selected="false" 
+        name="id"
+        >
           {% for variant in product.variants %}
             <option
               value="{{ variant.id }}"
@@ -200,6 +206,18 @@
         <ul class="unordered-list-flat">
           {% if collection_kit.products.size and collection_kit.products.size > 0 %}
             {% for product in collection_kit.products %}
+              {%- comment -%} TODO: this is a placeholder, it needs to be generic, not specific for the two glowsticks{%- endcomment -%}
+              {% if product.handle == 'glowstick' %}
+                <li class="unordered-list-flat--item-preview">
+                  {%
+                    render 'product--item--preview--kit',
+                    product: product,
+                    view: 'grid',
+                    view_grid: true,
+                    product_number: '1'
+                  %}
+                </li>
+              {% endif %}
               <li class="unordered-list-flat--item-preview">
                 {%
                   render 'product--item--preview--kit',

@@ -108,5 +108,5 @@
   {% for value in option.values%}
   <p id="option--{{ value | remove: ' '}}" class="option-description__text hidden" data-is-selected-variant="false" data-value="{{ value | remove: ' '}}"><span class="bold"> {{ value }} </span> {{ description[value] }}</p>
   {% endfor %}
-  <p class=" option-description__text reveal" data-value="default-option-description"> {{ colors_available_t }} </p>
+  <p class=" option-description__text reveal" data-value="default-option-description"> {{ product.variants.size }} {{ colors_available_t }}  </p>
 </div>

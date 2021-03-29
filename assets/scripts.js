@@ -228,6 +228,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // set option description (ON HOVER)
     // sets default description visibility
     let has_variants = document.querySelector('#has-variants');
+    let is_kit = document.querySelector('#radios--kit');
+
 
     function getOptionDescription(option, radio_button) {
         switch (option) {
@@ -260,7 +262,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     // console.log('no selected variant i.e. null');
                 }
             });
-
+            if (selected_variant == null) {
+                console.log('option description is not selected. Check selectOptionDescription');
+            }
             return selected_variant;
         } catch (error) {
             console.log(error);
@@ -270,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // set visibility on selected option
     function setSelectedVisibility(isVisible, radio_button) {
         let selected_variant = getSelectedVariant(radio_button);
+        console.log('(set visibility) radio_button: ', radio_button);
         console.log('(set visibility) selected_variant: ', selected_variant);
         if (isVisible) {
             selected_variant.classList.add("reveal");
@@ -321,7 +326,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // get select element
         //TODO: this needs to be change to something else plox.
-        console.log('SHOW OPTION DESCRIPTIONS');
+        _radio_button = radio_button;
+        console.log(' MOUSEOVER SHOW OPTION DESCRIPTIONS');
+        console.log('_radio_button: ', _radio_button);
+        console.log('radio_button: ', radio_button);
+
         let form = radio_button.closest("form");
         console.log('form: ', form);
 
@@ -335,7 +344,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log('aria_label: ', aria_label);
 
         let radios_root = radio_button.closest("#radios--root");
-        console.log('radio_button: ', radio_button);
         console.log('radios_root: ', radios_root);
 
         let option_description_container = getNextSiblingByName(radios_root, 'DIV');
@@ -401,8 +409,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
         try {
 
             let option_descriptions = getOptionDescription('children', radio_button);
+            console.log('(selectOptionDescription) option_descriptions: ', option_descriptions);
 
             Array.prototype.forEach.call(option_descriptions, function (child) {
+
+                console.log('(selectOptionDescription) data-value: ', child.getAttribute("data-value"));
+                console.log('(selectOptionDescription) name: ', name);
+
                 if (child.getAttribute("data-value") === name) {
                     child.dataset.isSelectedVariant = true;
                     radio_input.checked = true;
@@ -418,6 +431,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
         let image_container = radio_button.closest('#image-container--product-root');
+        console.log('(updateVariantImage) image_container: ', image_container);
+
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -427,7 +442,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
         */
 
-        if (!has_variants) {
+        // TODO: small palette won't work without this if
+        // if (has_variants) {
+            console.log('hello');
             let color_images = image_container.children[0].children[0].children[0].children[0].children;
 
             Array.prototype.forEach.call(color_images, function (image) {
@@ -439,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     image.style.display = "block";
                 }
             })
-        }
+        // }
 
     }
 
@@ -475,27 +492,42 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         //if it's null it means we're in a kit that has the select elsewhere.
         if (selects == null) {
-            let radio_input = radio_button.dataset.input;
-            console.log('(getSelectElement) radio_input: ', radio_input);
-            selects = document.querySelector(`[for*="${radio_input}"]`)
-            console.log(`(getSelectElement) select input id: [for*="${radio_input}"]`);
+            let radios_root_container = radios_root.parentElement;
+            selects = getNextSiblingByName(radios_root_container, 'SELECT');
+
         }
         console.log('(getSelectElement) select: ', selects);
 
         return selects;
     }
 
+    function clickOnKitButton(radio_button) {
+
+        console.log('clickOnKitButton');
+        let radio_input = radio_button.dataset.input;
+        console.log('(clickOnKitButton) radio_input: ', radio_input);
+        let kitInput = document.querySelector(`[id*="${radio_input}"]`)
+        console.log(`(clickOnKitButton) select input id: [for*="${radio_input}"]`);
+        console.log('kitInput: ', kitInput);
+        kitInput.click();
+    }
+
     function onRadioButtonClicked(event, radio_button) {
 
 
         try {
+            console.clear();
+            console.log('(RADIO BUTTON CLICKED!) radio_button: ', radio_button);
             //this ensures the inputs are clicked at the same time the swatch are clicked
             let radio_input = node_before(radio_button);
             radio_input.click();
 
+
+            if (is_kit) {
+                clickOnKitButton(radio_button);
+            }
             // get select element
             let select = getSelectElement(radio_button);
-            console.log('radio_button: ', radio_button);
             select.click();
             console.log('CLICK!!!!');
 
@@ -530,6 +562,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     let selected_variant = getSelectedVariant(radio_button);
                     console.log('selected_variant: ', selected_variant);
                     let color = selected_variant.getAttribute("data-value");
+                    console.log('UPDATE VARIANT color: ', color);
                     updateVariantImage(radio_button, color);
                 }
             }
@@ -540,6 +573,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    //reset inputs in kit
+    if (is_kit) {
+
+        let select = document.getElementsByClassName('product-kit')[0];
+        console.log('select: ', select);
+        select.selectedIndex = 0;
+        console.log('reset');
+
+        let options = document.getElementById('product-form--variants');
+        let radios_roots = options.getElementsByClassName('radios--root');
+        let array = [...radios_roots];
+        array.forEach(element => {
+            //children[1] = radios--container
+            //children[1].children[0] = radios--main
+            //children[1].children[0].children[1] = input
+            element.children[1].children[0].children[1].click();
+        });
     }
 
     let intervalID = window.setInterval(addListeners, 1000);

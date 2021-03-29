@@ -150,10 +150,30 @@
       id: product.id,
       is_swatches: true,
       has_header: false,
-      view_grid: view_grid
+      view_grid: view_grid,
+      product: product
     %}
     {% endfor %}
   </div>
+  <select class="product-form--variant-select" data-is-option-selected="false" name="id">
+    {% for variant in product.variants %}
+      <option
+        value="{{ variant.id }}"
+        data-sku="{{ variant.sku }}"
+        {% if variant == current_variant %}
+          selected
+        {% endif %}
+        {% if low_stock_amount > 0 and
+          variant.inventory_management == "shopify" and
+          variant.inventory_policy == "deny"
+        %}
+          data-inventory-quantity="{{ variant.inventory_quantity }}"
+        {% endif %}
+      >
+        {{ variant.title }}
+      </option>
+    {% endfor %}
+  </select>
 {% endif %}
 
 {% endcapture %}
@@ -244,25 +264,7 @@ class="product-form--add-to-cart-preview
 </select>
 {% endcomment%}
 
-<select class="product-form--variant-select" data-is-option-selected="false" name="id">
-  {% for variant in product.variants %}
-    <option
-      value="{{ variant.id }}"
-      data-sku="{{ variant.sku }}"
-      {% if variant == current_variant %}
-        selected
-      {% endif %}
-      {% if low_stock_amount > 0 and
-        variant.inventory_management == "shopify" and
-        variant.inventory_policy == "deny"
-      %}
-        data-inventory-quantity="{{ variant.inventory_quantity }}"
-      {% endif %}
-    >
-      {{ variant.title }}
-    </option>
-  {% endfor %}
-</select>
+
   <div
   id="image-container--product-root"
   class="product--root"
