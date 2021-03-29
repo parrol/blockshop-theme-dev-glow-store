@@ -10,6 +10,10 @@
 {% assign show_quick_add = settings.product--show-quick-add-buttons %}
 {% assign placeholder_image = 'image' %}
 {% assign show_sale_label = settings.product--show-sale-label %}
+{% assign product_type = product.metafields.type %}
+{% assign key = 'Type' %}
+
+
 {% if view == "slider" %}
   {% assign placeholder_image = 'collection' %}
 {% endif %}
@@ -310,7 +314,9 @@ class="product-form--add-to-cart-preview
           {{ display_title }}
           {{ display_description }}
         </div>
+        {% if product_type[key] != 'Kit' %}
         {{ display_variants }}
+        {% endif %}
         {{ display_option_description }}
         {{ display_add_to_cart_button }}
       </div>
@@ -386,7 +392,9 @@ class="product-form--add-to-cart-preview
             {{ display_title }}
             {{ display_description }}
           </div>
+          {% if product_type[key] != 'Kit' %}
           {{ display_variants }}
+          {% endif %}
           {{ display_option_description }}
           {{ display_add_to_cart_button }}
         </div>
