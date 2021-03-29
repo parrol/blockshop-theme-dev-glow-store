@@ -449,7 +449,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             Array.prototype.forEach.call(color_images, function (image) {
                 image.style.display = "none";
-                let color_alt = image.children[0].children[0].getAttribute("alt");
+                let color_alt = image.children[0].children[0].getAttribute("alt").replace(/\s/g, "");
 
                 //this seems like it's going to be legacy code :D
                 if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
@@ -624,7 +624,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
     //Image filterr
-    if (has_variants) {
+    if (has_variants && !is_kit) {
         let radio_buttons = document.getElementsByClassName('radios--value-button');
         let swatch_buttons = document.getElementsByClassName('radios--swatch-button-details');
         let selected__button__container;

@@ -40,6 +40,9 @@
   {% endif %}"
   data-js-class="FrameworkModal">
 
+  {% if product_kit %}
+  <div id="radios--kit"></div>
+  {% endif %}
     {% form 'product', product, class: 'product-form--container' %}
       <div class="product-form--price-container">
         <div
