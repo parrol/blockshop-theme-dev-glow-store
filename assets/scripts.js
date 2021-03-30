@@ -430,9 +430,45 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
-        let image_container = radio_button.closest('#image-container--product-root');
-        console.log('(updateVariantImage) image_container: ', image_container);
 
+        // return;
+        let image_container = radio_button.closest('#image-container--product-root');
+        if (!image_container) {
+            //meaning we're not in a preview
+            let escape;
+            let product_page__main_content = radio_button.closest('.product-page--main-content');
+            console.log('product_page__main_content: ', product_page__main_content);
+
+            let product__page_media = product_page__main_content.querySelector('.product-page--media');
+            console.log('product__page_media: ', product__page_media);
+
+            let image_container = product__page_media.children[0].children[0];
+            console.log('image_container: ', image_container);
+
+            let image_container_array = [...image_container.children];
+
+            for (let i = 0; i < image_container_array.length; i++) {
+                const image = image_container_array[i];
+                // image.style.display = "none";
+                image.children[0].dataset.active = false;
+            }
+
+            for (let i = 0; i < image_container_array.length; i++) {
+                const image = image_container_array[i];
+                let color_alt = image.children[0].children[0].children[0].children[0].getAttribute("alt").replace(/\s/g, "");
+
+                //this seems like it's going to be legacy code :D
+                if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
+                    console.log('color_alt: ', color_alt.toUpperCase().trim());
+                    console.log('color: ', color.toUpperCase().trim());
+                    // image.style.display = "block";
+                    image.children[0].dataset.active = true;
+                    break;
+                }
+            }
+
+            return;
+        }
 
         /* LOGS
         console.log("image container: ", image_container); // product--root
@@ -442,9 +478,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
         */
 
-        // TODO: small palette option descriptions won't work without this if
         // if (has_variants) {
-        console.log('hello');
         let color_images = image_container.children[0].children[0].children[0].children[0].children;
 
         Array.prototype.forEach.call(color_images, function (image) {
@@ -541,10 +575,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             console.log('(RADIO BUTTON CLICKED!) radio_button: ', radio_button);
             //this ensures the inputs are clicked at the same time the swatch are clicked
             let radio_input = node_before(radio_button);
-            radio_input.click();
-
+            // radio_input.click();
 
             if (is_kit) {
+                radio_input.click();
+                console.log('is kit');
                 clickOnKitButton(radio_button);
                 replaceProductLink(radio_button);
             }
@@ -792,8 +827,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //////////////////////////////////////////////////////
     //update total price when using the quantity buttons//
     //////////////////////////////////////////////////////
-    const quantity = document.getElementById('quantity');
-    if (quantity != null) {
+    let quantity = document.getElementById('quantity');
+    updateTotalProductPrice();
+
+    function updateTotalProductPrice() {
+
+        if (quantity == null) {
+            return;
+        }
 
         let quantity_plus = document.getElementById('quantity-plus');
         let quantity_minus = document.getElementById('quantity-minus');
@@ -801,7 +842,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let unit_price = total_price.getAttribute('data-price');
 
 
-        function operateStrings(a, b) {
+        function sumStrings(a, b) {
             let num1 = Number.parseInt(a);
             let num2 = b
             return (num1 + num2);
@@ -813,7 +854,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         quantity_plus.addEventListener('click', function (e) {
             e.preventDefault();
-            quantity.value = operateStrings(quantity.value, 1);
+            quantity.value = sumStrings(quantity.value, 1);
             updateTotalPrice(unit_price, quantity.value);
         });
 
@@ -823,7 +864,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 quantity.value = 1;
                 updateTotalPrice(unit_price, quantity.value);
             } else {
-                quantity.value = operateStrings(quantity.value, -1);
+                quantity.value = sumStrings(quantity.value, -1);
                 updateTotalPrice(unit_price, quantity.value);
             }
         });
