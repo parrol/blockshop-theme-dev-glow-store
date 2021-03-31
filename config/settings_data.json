@@ -642,7 +642,7 @@
           "special_text": "<p>Fuzzy doe-foot applicator scoops up just the right amount of gloss, giving you instant shine in one swipe.<\/p>",
           "good_to_know_title": "<p><strong> GOOD TO KNOW:<\/strong><\/p>",
           "product-modal-enabled": false,
-          "image-zoom-enabled": true,
+          "image-zoom-enabled": false,
           "loop-enabled": false,
           "cart-form-position": "left",
           "product-size-chart-enabled": false,

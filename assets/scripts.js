@@ -673,8 +673,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // add event listeners for mouseover and mouseout to each radio button
         Array.prototype.forEach.call(radios_buttons, function (radio_button) {
-            radio_button.addEventListener("mouseover", (event) => { showOptionDescription(event, radio_button) });
-            radio_button.addEventListener("mouseout", (event) => { hideOptionDescription(event, radio_button) });
+            radio_button.addEventListener("mouseover", (event) => { showOptionDescription(event, radio_button); mouseoverSwatchLabelKit(event, radio_button) });
+            radio_button.addEventListener("mouseout", (event) => { hideOptionDescription(event, radio_button); mouseoutSwatchLabelKit(event, radio_button) });
             radio_button.addEventListener("click", (event) => { onRadioButtonClicked(event, radio_button); event.preventDefault() });
         });
     }
@@ -914,4 +914,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
         PopUpEventListeners();
     });
 
+
+    //
+    function mouseoverSwatchLabelKit(event, radio_button) {
+        if ((radio_button.classList.contains('radios--swatch-button--preview-kit'))) {
+            radio_button.classList.toggle('radios--swatch-button--preview-kit-hover');
+            return;
+        }
+        radio_button.classList.toggle('radios--swatch-button-hover');
+    }
+
+    function mouseoutSwatchLabelKit(event, radio_button) {
+        if (radio_button.classList.contains('radios--swatch-button--preview-kit')) {
+            radio_button.classList.toggle('radios--swatch-button--preview-kit-hover');
+            return;
+        }
+        radio_button.classList.toggle('radios--swatch-button-hover');
+    }
 });
