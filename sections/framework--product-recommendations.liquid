@@ -2,6 +2,8 @@
 {% assign similar_products_heading = section.settings.product-similar-products-heading %}
 {% assign show_section = section.settings.product-similar-products-show %}
 {% assign max_products = 4 %}
+{% assign key = 'show' %}
+
 
 {% if show_section %}
   <div
@@ -23,14 +25,17 @@
       <div class="product-recommendations--body">
         <div class="product-recommendations--body--container">
           {% for product in recommendations.products limit: max_products %}
-            <div class="product-recommendations--item">
-              {%
-                render 'framework--product--item--form',
-                product: product,
-                view: 'grid',
-                recommendation: true
-              %}
-            </div>
+            {% if product.metafields.recommendations[key] == blank %}
+                <div data-display="{{ product.metafields.recommendations[key] }}"></div>
+                <div class="product-recommendations--item">
+                  {%
+                    render 'framework--product--item--form',
+                    product: product,
+                    view: 'grid',
+                    recommendation: true
+                  %}
+                </div>
+            {% endif %}
           {% endfor %}
         </div>
       </div>
