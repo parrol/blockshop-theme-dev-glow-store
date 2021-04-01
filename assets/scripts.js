@@ -45,46 +45,6 @@ function node_before(sib) {
     return null;
 }
 
-Element.prototype.isOverFlown = function () {
-    return this.clientHeight < this.scrollHeight;
-}
-
-function calculateLineHeight(element) {
-
-    let lineHeight = parseInt(window.getComputedStyle(element, null).getPropertyValue("line-height"), 10);
-    let clone;
-    let singleLineHeight;
-    let doubleLineHeight;
-
-    if (isNaN(lineHeight)) {
-        clone = element.cloneNode();
-        clone.innerHTML = '<br>';
-        element.appendChild(clone);
-        singleLineHeight = clone.offsetHeight;
-        clone.innerHTML = '<br><br>';
-        doubleLineHeight = clone.offsetHeight;
-        element.removeChild(clone);
-        lineHeight = doubleLineHeight - singleLineHeight;
-    }
-
-    return lineHeight;
-}
-
-// Function to count total
-// number of lines
-function countLines(element) {
-    // Get total height of the content
-    let divHeight = element.offsetHeight
-    // console.log('divHeight', divHeight);
-
-    // height of one line
-    let lineHeight = calculateLineHeight(element);
-    // console.log('lineHeight', lineHeight);
-
-    let lines = divHeight / lineHeight;
-    // console.log("Lines: " + lines);
-}
-
 document.addEventListener("DOMContentLoaded", function (event) {
     /////////////////////////////
     /* Change header to sticky */
@@ -125,6 +85,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     }
 
+
+    /////////////////////////////
+    /* Change product media to sticky */
+    /////////////////////////////
+
+    // const product_image = document.getElementsByClassName('product-page--media')[0];
+    // console.log('product_image: ', product_image);
+    // const product_thumbs = document.getElementsByClassName('product-page--thumbs')[0];
+
+    // window.onscroll = () => {
+    //     if (window.pageYOffset > sticky) {
+    //         product_image.classList.add("product_media_sticky");
+    //         product_thumbs.classList.add("product_media_sticky");
+
+    //     } else {
+    //         product_image.classList.remove("product_media_sticky");
+    //         product_thumbs.classList.remove("product_media_sticky");
+    //     }
+    // }
 
     ////////////////////////////////////////////////////
     /* Add accordion functionality                    */
@@ -200,7 +179,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     window.addEventListener('load', (event) => {
-        console.log('page is fully loaded');
         addAcordionListeners();
     });
 
@@ -252,7 +230,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         try {
             let selected_variant = null;
             let option_descriptions = getOptionDescription('children', radio_button);
-            console.log('option_descriptions in function: ', option_descriptions);
 
             Array.prototype.forEach.call(option_descriptions, function (child) {
 
@@ -274,8 +251,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // set visibility on selected option
     function setSelectedVisibility(isVisible, radio_button) {
         let selected_variant = getSelectedVariant(radio_button);
-        console.log('(set visibility) radio_button: ', radio_button);
-        console.log('(set visibility) selected_variant: ', selected_variant);
         if (isVisible) {
             selected_variant.classList.add("reveal");
             selected_variant.classList.remove("hidden");
@@ -287,9 +262,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // hides all option descriptions
     function hideAll(event, radio_button) {
-        // let option_descriptions = event.currentTarget.closest('[name = id ]').children
         let option_descriptions = getOptionDescription('children', radio_button);
-        console.log('(hide all) option_descriptions: ', option_descriptions);
 
         Array.prototype.forEach.call(option_descriptions, function (child) {
             if (child.getAttribute("data-js-class") !== ("Radios")) {
@@ -317,7 +290,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             });
         } catch (error) {
             console.log(error);
-            // debug('welp, things happen: setDefaultVisibility');
         }
     }
 
@@ -327,39 +299,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // get select element
         //TODO: this needs to be change to something else plox.
         _radio_button = radio_button;
-        console.log(' MOUSEOVER SHOW OPTION DESCRIPTIONS');
-        console.log('_radio_button: ', _radio_button);
-        console.log('radio_button: ', radio_button);
-
-        let form = radio_button.closest("form");
-        console.log('form: ', form);
 
         let select = getSelectElement(radio_button);
-        console.log('(show) select: ', select);
-
         let radio_input = node_before(radio_button);
-        console.log('radio_input: ', radio_input);
-
         let aria_label = radio_input.getAttribute("value").replace(/\s/g, "");
-        console.log('aria_label: ', aria_label);
-
         let radios_root = radio_button.closest("#radios--root");
-        console.log('radios_root: ', radios_root);
-
         let option_description_container = getNextSiblingByName(radios_root, 'DIV');
-        console.log('option_description_container: ', option_description_container);
 
         try {
 
             let current_selection = option_description_container.querySelector("#option--" + aria_label);
-            console.log('current_selection: ', current_selection);
 
             if (select.dataset.isOptionSelected == 'false') {
                 setDefaultVisibility(event, false, radio_button);
                 current_selection.classList.add("reveal");
                 current_selection.classList.remove("hidden");
             } else {
-                console.log('(show) radio_button: ', radio_button);
                 setSelectedVisibility(false, radio_button);
                 current_selection.classList.add("reveal");
                 current_selection.classList.remove("hidden");
@@ -375,7 +330,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // get select element
         let form = event.currentTarget.closest("form");
         let select = form.getElementsByTagName("select")
-        console.log('(hide) select: ', select[0]);
 
         let radio_input = node_before(radio_button);
         let aria_label = radio_input.getAttribute("value").replace(/\s/g, "");
@@ -384,7 +338,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let option_description_container = getOptionDescription('container', radio_button);
 
         try {
-
             let current_selection = option_description_container.querySelector("#option--" + aria_label);
 
             if (select[0].dataset.isOptionSelected == 'false') {
@@ -394,7 +347,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             } else {
                 hideAll(event, radio_button);
-                console.log('(hide) radio_button: ', radio_button);
                 setSelectedVisibility(true, radio_button);
             }
         } catch (error) {
@@ -407,15 +359,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function selectOptionDescription(radio_button, name, radio_input) {
 
         try {
-
             let option_descriptions = getOptionDescription('children', radio_button);
-            console.log('(selectOptionDescription) option_descriptions: ', option_descriptions);
 
             Array.prototype.forEach.call(option_descriptions, function (child) {
-
-                console.log('(selectOptionDescription) data-value: ', child.getAttribute("data-value"));
-                console.log('(selectOptionDescription) name: ', name);
-
                 if (child.getAttribute("data-value") === name) {
                     child.dataset.isSelectedVariant = true;
                     radio_input.checked = true;
@@ -431,25 +377,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //sets visibility on image according to radio buttom clicked
     function updateVariantImage(radio_button, color) {
 
-        // return;
         let image_container = radio_button.closest('#image-container--product-root');
         if (!image_container) {
             //meaning we're not in a preview
-            let escape;
             let product_page__main_content = radio_button.closest('.product-page--main-content');
-            console.log('product_page__main_content: ', product_page__main_content);
-
             let product__page_media = product_page__main_content.querySelector('.product-page--media');
-            console.log('product__page_media: ', product__page_media);
-
             let image_container = product__page_media.children[0].children[0];
-            console.log('image_container: ', image_container);
-
             let image_container_array = [...image_container.children];
 
             for (let i = 0; i < image_container_array.length; i++) {
                 const image = image_container_array[i];
-                // image.style.display = "none";
                 image.children[0].dataset.active = false;
             }
 
@@ -459,14 +396,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 //this seems like it's going to be legacy code :D
                 if (color_alt.toUpperCase().trim().localeCompare(color.toUpperCase().trim()) == 0) {
-                    console.log('color_alt: ', color_alt.toUpperCase().trim());
-                    console.log('color: ', color.toUpperCase().trim());
-                    // image.style.display = "block";
                     image.children[0].dataset.active = true;
                     break;
                 }
             }
-
             return;
         }
 
@@ -478,7 +411,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         console.log("children 3:", image_container.children[0].children[0].children[0].children[0]); //product--color-image
         */
 
-        // if (has_variants) {
         let color_images = image_container.children[0].children[0].children[0].children[0].children;
 
         Array.prototype.forEach.call(color_images, function (image) {
@@ -490,8 +422,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 image.style.display = "block";
             }
         })
-        // }
-
     }
 
     function getNextSiblingByName(el, name) {
@@ -503,7 +433,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 return el;
             }
         }
-
         return el;
     }
 
@@ -514,14 +443,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 return el;
             }
         }
-
         return el;
     }
 
     function getSelectElement(radio_button) {
-        console.log('(getSelectElement) radio_button: ', radio_button);
         let radios_root = radio_button.closest('[data-js-class="Radios"]');
-        console.log('(getSelectElement) radios_root: ', radios_root);
         let selects = getNextSiblingByName(radios_root, 'SELECT');
 
         //if it's null it means we're in a kit that has the select elsewhere.
@@ -530,19 +456,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
             selects = getNextSiblingByName(radios_root_container, 'SELECT');
 
         }
-        console.log('(getSelectElement) select: ', selects);
-
         return selects;
     }
 
     function clickOnKitButton(radio_button) {
-
-        console.log('clickOnKitButton');
         let radio_input = radio_button.dataset.input;
-        console.log('(clickOnKitButton) radio_input: ', radio_input);
         let kitInput = document.querySelector(`[id*="${radio_input}"]`)
-        console.log(`(clickOnKitButton) select input id: [for*="${radio_input}"]`);
-        console.log('kitInput: ', kitInput);
         kitInput.click();
     }
 
@@ -569,57 +488,41 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function onRadioButtonClicked(event, radio_button) {
 
-
         try {
-            console.clear();
-            console.log('(RADIO BUTTON CLICKED!) radio_button: ', radio_button);
             //this ensures the inputs are clicked at the same time the swatch are clicked
             let radio_input = node_before(radio_button);
             // radio_input.click();
 
             if (is_kit) {
                 radio_input.click();
-                console.log('is kit');
                 clickOnKitButton(radio_button);
                 replaceProductLink(radio_button);
             }
             // get select element
             let select = getSelectElement(radio_button);
             select.click();
-            console.log('CLICK!!!!');
 
             let select_variant = select
-            console.log('select: ', select_variant);
 
             // get variant name
             let input = getPreviousSiblingByName(radio_button, 'INPUT');
-            console.log('input: ', input);
             let variant = input.getAttribute("value").replace(/\s/g, "");
-            console.log('variant: ', variant);
 
             // get variants option elements
             let options_array = select_variant.children;
             let option_text;
 
-            console.log('options_array: ', options_array);
-            console.log('BEFORE FOR');
             // select option according to radio button selected
             for (option of options_array) {
                 option_text = option.innerText.replace(/\s/g, "")
                 // delete white spaces in innertext
 
-                // console.warn('FOR OPTIONS TEXT IN ARRAY');
-                // console.log('option_text: ', option_text);
-                // console.log('variant: ', variant);
                 if (variant === option_text) {
                     select_variant.value = option.getAttribute("value");
-                    // console.log('select_variant.value: ', select_variant.value);
                     selectOptionDescription(radio_button, variant, radio_input);
 
                     let selected_variant = getSelectedVariant(radio_button);
-                    console.log('selected_variant: ', selected_variant);
                     let color = selected_variant.getAttribute("data-value");
-                    console.log('UPDATE VARIANT color: ', color);
                     updateVariantImage(radio_button, color);
                 }
             }
@@ -636,17 +539,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
     if (is_kit) {
 
         let select = document.getElementsByClassName('product-kit')[0];
-        console.log('select: ', select);
         select.selectedIndex = 0;
-        console.log('reset');
 
         let options = document.getElementById('product-form--variants');
         let radios_roots = options.getElementsByClassName('radios--root');
         let array = [...radios_roots];
         array.forEach(element => {
-            //children[1] = radios--container
-            //children[1].children[0] = radios--main
-            //children[1].children[0].children[1] = input
             element.children[1].children[0].children[1].click();
         });
     }
@@ -687,7 +585,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         let selected__button__container;
         let selected__button;
         try {
-
             selected__button__container = document.getElementById('product-form--variant-select-glowstick');
             selected__button = selected__button__container.options[selected__button__container.selectedIndex].innerText.toUpperCase().trim()
             //Value buttons
@@ -718,7 +615,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             console.warn('Not everything in life is about glowsticks');
         }
     }
-
 
     function filterThumbnails(event, radio_button, filter) {
 
@@ -815,14 +711,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
             dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
         } catch (error) {
             console.log(error);
-            // console.log(`${link_name} doesn't have a dropdown menu`);
         }
     }
 
     function onMouseLeaveDropdownCollection(event) {
         event.currentTarget.style.display = 'none';
     }
-
 
     //////////////////////////////////////////////////////
     //update total price when using the quantity buttons//
@@ -913,7 +807,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener('load', (event) => {
         PopUpEventListeners();
     });
-
 
     //
     function mouseoverSwatchLabelKit(event, radio_button) {
