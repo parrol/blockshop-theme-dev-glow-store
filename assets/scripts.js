@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
             dropdown_container.addEventListener("mouseleave", (event) => { onMouseLeaveDropdownCollection(event) });
         } catch (error) {
-            console.log(error);
+            //console.log(error);
         }
     }
 

@@ -97,7 +97,7 @@
    if this is a preview hide all images other than November
    TODO: this is kinda hardcoded.
    {% endcomment%}
-  {% if image.alt != "NOVEMBER" and image.alt != "Purple palette" and image.alt != 'Makeup kit' %}
+  {% if image.alt != "NOVEMBER" and image.alt != "Purple palette" and image.alt != 'Makeup set' %}
     <div
     class="image--root hidden {% if kit %} image--root--preview-kit {% endif %}"
     data-aspectratio="{{ image.aspect_ratio }}"

@@ -490,11 +490,21 @@
               "nav-menu-collection": "all",
               "max_products": 6
             }
+          },
+          "9afa9367-8bfd-49b3-ae3b-6d3a61fcb900": {
+            "type": "quote",
+            "settings": {
+              "background-color": "none",
+              "nav_menu_link": "Shop our sets",
+              "nav-menu-collection": "shop-our-sets",
+              "max_products": 6
+            }
           }
         },
         "block_order": [
           "ea83c140-e273-4a0b-847a-bfef5b144207",
-          "c48e0503-76fd-48b6-bc38-f3ce6fae5486"
+          "c48e0503-76fd-48b6-bc38-f3ce6fae5486",
+          "9afa9367-8bfd-49b3-ae3b-6d3a61fcb900"
         ],
         "settings": {}
       },
@@ -881,7 +891,7 @@
           "title": "Glow first.",
           "text": "Products made for you, to highlight your features, attributes and colors. We don't believe that beauty is made by makeup, but we do believe that makeup helps you Glow your way.",
           "button_text": "Shop our products",
-          "grid-collection": "all",
+          "grid-collection": "grid-image-collection",
           "image": "shopify:\/\/shop_images\/IMG_6203sRGB.png"
         }
       },

@@ -3,6 +3,7 @@
 {% assign sale_t = 'products.sale' | t %}
 {% assign from_t = 'products.from' | t %}
 {% assign add_to_cart_t = 'products.add_to_cart' | t %}
+{% assign view_set = 'products.view_set' | t %}
 
 {% comment %} Variables {% endcomment %}
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -247,6 +248,28 @@ class="product-form--add-to-cart-preview
 </button>
 {% endcapture%}
 
+{% capture display_view_set_button %}
+<div
+class="product-form--add-to-cart-preview
+ view_set_button
+{% if view_grid %} flex-column-center {% endif %}
+{% if recommendation %} eightpx-padding {% endif %}">
+
+  {%- if product.available -%}
+  <span class="product-form--text">{{ view_set }}</span>
+  {%- else -%}
+  <span class="product-form--text">{{ sold_out_t }}</span>
+  {%- endif -%}
+
+  <span
+    class="fw--loading_animation tiny"
+    data-js-class="FrameworkLoadingAnimation"
+  ></span>
+  {{ display_prices }}
+</div>
+
+{% endcapture %}
+
 {% if view_grid and product.type == 'tool' %}
   {% capture display_class %}
     hidden-grid-image-collection
@@ -314,12 +337,17 @@ class="product-form--add-to-cart-preview
           {{ display_title }}
           {{ display_description }}
         </div>
-        {% if product_search != true %}
+        {% if product_search != true and product.type != 'set' %}
         {{ display_variants }}
         {% endif %}
         {{ display_option_description }}
-        {% if product_search != true %}
+        {% if product_search != true and product.type != 'set' %}
         {{ display_add_to_cart_button }}
+        {% endif %}
+        {% if product_search != true and product.type == 'set' %}
+        <a href={{ product.url }}>
+          {{ display_view_set_button }}
+        </a>
         {% endif %}
       </div>
 
@@ -394,11 +422,15 @@ class="product-form--add-to-cart-preview
             {{ display_title }}
             {{ display_description }}
           </div>
-          {% if product_type[key] != 'Kit' %}
+          {% if product_type[key] != 'set' %}
           {{ display_variants }}
           {% endif %}
           {{ display_option_description }}
+          {% if product.type == 'set' %}
+          {{ display_view_set_button }}
+          {% else %}
           {{ display_add_to_cart_button }}
+          {% endif%}
         </div>
 
   {% endcase %}
