@@ -329,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         // get select element
         let form = event.currentTarget.closest("form");
-        let select = form.getElementsByTagName("select")
+        let select = getSelectElement(radio_button);
 
         let radio_input = node_before(radio_button);
         let aria_label = radio_input.getAttribute("value").replace(/\s/g, "");
@@ -340,7 +340,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         try {
             let current_selection = option_description_container.querySelector("#option--" + aria_label);
 
-            if (select[0].dataset.isOptionSelected == 'false') {
+            if (select.dataset.isOptionSelected == 'false') {
                 setDefaultVisibility(event, true, radio_button);
                 current_selection.classList.add("hidden");
                 current_selection.classList.remove("reveal");

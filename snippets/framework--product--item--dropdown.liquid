@@ -255,6 +255,7 @@
   {% case view %}
     {% when 'grid' %}
       <a class="product--item" href="{{ url }}" aria-label="{{ product.title }}">
+        {%- comment -%}
         {% unless product.available or onboarding %}
           <div class="product--sold-out" data-item="accent-text">
             {{ sold_out_t }}
@@ -264,6 +265,7 @@
             {{ sale_t }}
           </div>
         {% endunless %}
+        {%- endcomment -%}
 
         <div class="product--image-wrapper-dropdown">
           <div class="product--image-dropdown">
@@ -294,6 +296,7 @@
       </div>
 
       <div class="product--details-dropdown">
+        {%- comment -%}
         {% unless product.available or onboarding %}
           <div class="product--sold-out" data-item="accent-text">
             {{ sold_out_t }}
@@ -303,6 +306,7 @@
             {{ sale_t }}
           </div>
         {% endunless %}
+        {%- endcomment -%}
 
         <div class="product--details--title-row">
           {{ display_prices }}
@@ -324,15 +328,17 @@
       </div>
 
     {% when 'slider' %}
-      {% unless product.available or onboarding %}
-        <div class="product--sold-out" data-item="accent-text">
-          {{ sold_out_t }}
-        </div>
-      {% elsif compare_price and onboarding == false and show_sale_label %}
-        <div class="product--sale" data-item="accent-text">
-          {{ sale_t }}
-        </div>
-      {% endunless %}
+    {%- comment -%}
+    {% unless product.available or onboarding %}
+      <div class="product--sold-out" data-item="accent-text">
+        {{ sold_out_t }}
+      </div>
+    {% elsif compare_price and onboarding == false and show_sale_label %}
+      <div class="product--sale" data-item="accent-text">
+        {{ sale_t }}
+      </div>
+    {% endunless %}
+      {%- endcomment -%}
 
       <a href="{{ url }}" aria-label="{{ product.title }}">
         <div class="product--image-wrapper-dropdown">
