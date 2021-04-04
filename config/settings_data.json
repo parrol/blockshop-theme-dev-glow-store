@@ -491,12 +491,12 @@
               "max_products": 6
             }
           },
-          "9afa9367-8bfd-49b3-ae3b-6d3a61fcb900": {
+          "2b5ed147-1995-4530-a269-01dadb517946": {
             "type": "quote",
             "settings": {
               "background-color": "none",
               "nav_menu_link": "Shop our sets",
-              "nav-menu-collection": "shop-our-sets",
+              "nav-menu-collection": "sets",
               "max_products": 6
             }
           }
@@ -504,7 +504,7 @@
         "block_order": [
           "ea83c140-e273-4a0b-847a-bfef5b144207",
           "c48e0503-76fd-48b6-bc38-f3ce6fae5486",
-          "9afa9367-8bfd-49b3-ae3b-6d3a61fcb900"
+          "2b5ed147-1995-4530-a269-01dadb517946"
         ],
         "settings": {}
       },
@@ -965,7 +965,7 @@
         "settings": {
           "product-breadcrumbs-show": true,
           "variant-style": "buttons",
-          "collection_kit": "makeup-kit",
+          "collection_kit": "makeup-set",
           "swatches-enabled": true,
           "quantity-enabled": true,
           "smart-payment-button": false,

@@ -1,4 +1,8 @@
-<div class="collection-item columns large-4">
+{% assign display = collection.metafields.display %}
+{% assign key = 'display' %}
+
+
+<div class="collection-item columns large-4 {% if display[key] == 'hide' %} hidden{% endif %} ">
   <a href="{{ collection.url }}">
     <div class="image-wrapper">
       <div class="hover"></div>
