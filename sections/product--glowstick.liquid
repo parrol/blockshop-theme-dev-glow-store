@@ -130,7 +130,8 @@
           size_chart_content: size_chart_content,
           size_chart_option: size_chart_option,
           show_unavailable_form: show_unavailable_form,
-          quantity_enabled : quantity_enabled
+          quantity_enabled : quantity_enabled,
+          color_blocks: section.blocks
         %}
 
       </div>
@@ -460,6 +461,23 @@
           "type": "richtext",
           "id": "bullet_list",
           "label": "Bullet list"
+        }
+      ]
+    },
+    {
+      "name": "Swatch color",
+      "type": "swatch-color-list",
+      "settings": [
+        {
+          "type": "text",
+          "id": "swatch_color_class",
+          "label": "Swatch color class"
+        },
+        {
+          "type": "image_picker",
+          "id": "swatch_color_image",
+          "label": "Swatch color image",
+          "info": "Size: 96 x 96"
         }
       ]
     }

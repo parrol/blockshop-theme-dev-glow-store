@@ -85,6 +85,16 @@
               aria-label="{{ value | escape }}"
 
               data-input="{{product.title | downcase | remove: ' '}}{%- if product_number %}-1{% endif -%}-{{ value | downcase | remove: ' ' }}"
+
+              {% for block in section.blocks %}
+              {% if block.type == 'swatch-color-list' %}
+                {% assign color_block_image = block.settings.swatch_color_class %}
+                {% assign value = value | escape | remove: ' ' %}
+                  {% if color_block_image == value %}
+                  style="background-image: url('{{ block.settings.swatch_color_image | img_url: "master" }}');"
+                  {% endif %}
+              {% endif %}
+              {% endfor %}
             ></label>
 
           {% else %}
