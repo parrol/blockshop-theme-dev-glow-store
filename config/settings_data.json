@@ -438,7 +438,7 @@
       "framework--product-recommendations": {
         "type": "framework--product-recommendations",
         "settings": {
-          "product-similar-products-show": true,
+          "product-similar-products-show": false,
           "product-similar-products-heading": "You may also like"
         }
       },
